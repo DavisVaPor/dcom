@@ -29,6 +29,7 @@ return new class extends Migration
             $table->enum('tipo',['A','B','C']);
             $table->string('estation_image_path', 2048)->nullable();
             $table->unsignedBigInteger('manager_id')->nullable();
+            $table->date('ultima_visita')->nullable();
 
             $table->foreignId('ubigeo_id')->constrained('ubigeo');
 

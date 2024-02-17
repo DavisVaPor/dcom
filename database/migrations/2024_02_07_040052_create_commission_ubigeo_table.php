@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ubigeo', function (Blueprint $table) {
+        Schema::create('commission_ubigeo', function (Blueprint $table) {
             $table->id();
-            $table->char('cod',6);
-            $table->string('region',45);
-            $table->string('provincia',50);
-            $table->string('distrito',50);
+            $table->foreignId('commission_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('ubigeo_id')->constrained('ubigeo');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ubigeo');
+        Schema::dropIfExists('commission_ubigeo');
     }
 };

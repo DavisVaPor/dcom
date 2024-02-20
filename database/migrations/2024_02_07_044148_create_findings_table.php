@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('ubigeo_id')->constrained('ubigeo');
             $table->string('ubicacion');
             $table->string('caracteristicas');
+            $table->string('imagen');
             $table->string('observaciones')->nullable();
 
             $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');

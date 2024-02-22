@@ -1,19 +1,23 @@
 <nav class="bg-gray-800"> 
     <!-- Primary Navigation Menu -->
-    <div class=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class=" mx-auto px-4 sm:px-4 lg:px-4">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex border-r-2 pr-4">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <x-iconoir-regular-antenna class="text-white block h-10 w-auto"/>
                     </a>
                 </div>
-                <div class="block py-3 px-2 items-center">
+                <div class="block py-3 items-center ">
                     <p class="ml-2 text-2xl text-green-500 font-semibold">DIRECCIÓN </p>
                     <p class="ml-2 -mt-2 font-semibold text-white">
                         DE COMUNICACIONES</p>
                 </div>
+            </div>
+
+            <div class="my-auto text-3xl text-green-300">
+                Intranet de la Direción de Comunicaciones 
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

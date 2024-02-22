@@ -6,21 +6,24 @@
     </x-slot>
 
     <div class="">
-        <div class="flex h-screen bg-gray-800 " :class="{ 'overflow-hidden': isSideMenuOpen }">
+        <div class=" flex h-screen bg-gray-800 " :class="{ 'overflow-hidden': isSideMenuOpen }">
             <!-- Desktop sidebar -->
             <aside class="z-20 flex-shrink-0 hidden w-60 pl-2 overflow-y-auto bg-gray-800 md:block">
                 <div>
                     <div class="text-white">
-                        <div class="flex p-2  bg-gray-800">
-                            
-                        </div>
-                        <div class="flex justify-center">
-                            <div class="">
-                                <img class="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-green-400"
-                                    src="" alt="">
-                                <p class="font-bold text-base  text-gray-400 pt-2 text-center w-24">
-
+                        <div class="mt-3">
+                            <abbr title="Perfil de Usuario">
+                                <a href="{{ route('profile.show') }}">
+                                    <img class="text-center m-auto hidden mb-2 h-24 w-24 rounded-full sm:block object-cover border-2 border-green-300 hover:border-sky-400"
+                                        src="{{ Auth::user()->profile_photo_url }}" alt="">
+                                </a>
+                            </abbr>
+                            <div class="border-y-2 border-emerald-400 py-2">
+                                <p class="font-bold text-lg  text-gray-200 text-center uppercase ">
+                                    {{ Auth::user()->apellido }}
                                 </p>
+                                <p class="font-bold text-sm text-gray-400 text-center ">{{ Auth::user()->name }}</p>
+                                <p class="font-bold text-sm text-gray-100 text-center ">{{ Auth::user()->cargo }}</p>
                             </div>
                         </div>
                         <div>

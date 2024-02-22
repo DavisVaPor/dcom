@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero');
-            $table->integer('anho');
-            $table->string('asunto',150);
-            $table->date('fechaCreacion');
-            $table->enum('estado',['BORRADOR','PRESENTADO']);
-
-            $table->foreignId('commission_id')->constrained('commissions')->onDelete('cascade');
-
+            $table->string('ubicacion');
+            $table->string('tema');
+            $table->text('descripcion');
+            $table->string('imagen_evidencia');
+            $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('promotions');
     }
 };

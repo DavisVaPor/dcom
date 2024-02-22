@@ -15,15 +15,18 @@ return new class extends Migration
     {
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();
-            $table->string('codPatrimonio')->length(12)->default('sin codigo');
+            $table->string('codPatrimonio')->length(12)->default('999999999999');
+            $table->string('codigo_internoDCOM')->nullable();
             $table->string('denominacion');
             $table->string('detalle');
             $table->string('marca');
             $table->string('modelo');
             $table->string('serie');
             $table->string('color');
+            $table->string('caracteristicas')->nullable();
             $table->enum('operatividad',['OPERATIVO','INOPERATIVO']);
-            $table->enum('estado',['BUENO','REGULAR','MALO']);
+            $table->enum('situacion',['USO','DESUSO']);
+            $table->enum('condicion',['BUENO','REGULAR','MALO']);
             $table->string('imagen')->nullable();
             $table->string('equipment_image_path', 2048)->nullable();
             $table->unsignedBigInteger('station_id')->nullable();
@@ -33,7 +36,7 @@ return new class extends Migration
             $table->foreignId('system_id')->constrained('system_equipament');
             $table->foreignId('category_id')->constrained('category');
 
-            $table->enum('situacion',['ALTA','BAJA']);
+            $table->enum('estado',['ALTA','BAJA']);
 
             $table->timestamps();
         });

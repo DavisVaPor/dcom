@@ -16,18 +16,24 @@ return new class extends Migration
         Schema::create('stations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('codestation');
+            $table->enum('tipoPy',['PACC','CPACC','Radio_HF']);
             $table->string('latitud',25);
             $table->string('longitud',25);
             $table->string('altitud',10)->nullable();
             $table->text('url_maps')->nullable();
             $table->integer('frec_canal')->nullable();
-            $table->float('frec_fm',5,2)->nullable();
-            $table->enum('energia',['FOTOVOLTAICO','ELECTRICA']);
+            $table->float('frec_fm',5,2)->nullable();            
             $table->enum('estado',['OPERATIVO','INOPERATIVO']);
+            $table->enum('energia',['FOTOVOLTAICO','ELECTRICA','GENERADOR','OTRA','NO_TIENE']);
+            $table->enum('caseta',['CONCRETO','ADOBE','MADERA']);
+            $table->enum('caseta_estado',['BUENO','REGULAR','MALO']);
             $table->enum('situacion',['VERIFICADO','MANTENIMIENTO','INEXISTENTE']);
             $table->enum('sistema',['VHF','HF']);
             $table->enum('tipo',['A','B','C']);
-            $table->string('estation_image_path', 2048)->nullable();
+            $table->string('image_caseta')->nullable();
+            $table->string('image_panoramica')->nullable();
+            $table->string('image_torre')->nullable();
             $table->unsignedBigInteger('manager_id')->nullable();
             $table->date('ultima_visita')->nullable();
 

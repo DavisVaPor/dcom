@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Str;
+
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -29,12 +31,12 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
-            'name' => $input['name'],
-            'apellido' => $input['apellido'],
-            'cargo' => $input['cargo'],
+            'name' => Str::upper($input['name']),
+            'apellido' => Str::upper($input['apellido']),
+            'cargo' => Str::upper($input['cargo']),
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'rol_id' => 1,
+            'rol_id' => 3,
         ]);
     }
 }

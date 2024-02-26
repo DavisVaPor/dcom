@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('valor_rni',6,4,true);
             $table->date('fecha_medicion');
             $table->string('imagen');
+
             $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
             $table->foreignId('ubigeo_id')->constrained('ubigeo');
 

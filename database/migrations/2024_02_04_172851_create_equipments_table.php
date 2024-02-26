@@ -29,14 +29,14 @@ return new class extends Migration
             $table->enum('condicion',['BUENO','REGULAR','MALO']);
             $table->string('imagen')->nullable();
             $table->string('equipment_image_path', 2048)->nullable();
-            $table->unsignedBigInteger('station_id')->nullable();
+            $table->enum('estado',['ALTA','BAJA']);
 
+            $table->unsignedBigInteger('station_id')->nullable();
             $table->foreign('station_id')->references('id')->on('stations')->onDelete('set null');
 
             $table->foreignId('system_id')->constrained('system_equipament');
             $table->foreignId('category_id')->constrained('category');
 
-            $table->enum('estado',['ALTA','BAJA']);
 
             $table->timestamps();
         });

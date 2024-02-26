@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->enum('servicio',['DIAGNOSTICO','MANTENIMIENTO PREVENTIVO','MANTENIMIENTO CORRECTIVO']);
             $table->date('fechaServicio');
+            
             $table->foreignId('station_id')->constrained()->onDelete('cascade');
             $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
             $table->timestamps();

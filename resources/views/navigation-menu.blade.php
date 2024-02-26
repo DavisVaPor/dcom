@@ -6,17 +6,17 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-iconoir-regular-antenna class="text-white block h-10 w-auto"/>
+                        <x-iconoir-regular-antenna class="text-white block sm:h-10 h-6 w-auto"/>
                     </a>
                 </div>
                 <div class="block py-3 items-center ">
-                    <p class="ml-2 text-2xl text-green-500 font-semibold">DIRECCIÓN </p>
-                    <p class="ml-2 -mt-2 font-semibold text-white">
+                    <p class="ml-2 text-xs sm:text-2xl text-green-500 font-semibold">DIRECCIÓN </p>
+                    <p class="ml-2 -mt-2 text-xs sm:text-lg font-semibold text-white">
                         DE COMUNICACIONES</p>
                 </div>
             </div>
 
-            <div class="my-auto text-3xl text-green-300">
+            <div class="my-auto text-2xl text-green-300">
                 Intranet de la Direción de Comunicaciones 
             </div>
 

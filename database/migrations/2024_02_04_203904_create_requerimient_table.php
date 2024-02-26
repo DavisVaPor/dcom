@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('requerimient', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('catalogo_products');
-            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimient')->onDelete('cascade');
             $table->integer('cantidad');
             $table->string('especificaciones',300);
+            
+            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimient')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

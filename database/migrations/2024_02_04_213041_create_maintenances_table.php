@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->date('fechamantenimiento');
             $table->string('actividades');
-            $table->foreignId('equipment_id')->constrained('equipments')->onDelete('cascade');
             $table->string('estado_old');
             $table->string('estado_now');
+
+            $table->foreignId('equipment_id')->constrained('equipments')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

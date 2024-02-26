@@ -36,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'cargo' => Str::upper($input['cargo']),
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'rol_id' => 3,
+            'rol_id' => 2,
         ]);
     }
 }

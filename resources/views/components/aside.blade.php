@@ -23,7 +23,7 @@
                             Operaciones
                             <li class="relative px-1">
                                 <a class="inline-flex items-center w-full text-xs font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-blue-500"
-                                    href="#">
+                                    href="{{ route('commissions')}}">
                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="briefcase"
                                         class="h-6 w-6 svg-inline--fa fa-briefcase fa-w-16" role="img"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

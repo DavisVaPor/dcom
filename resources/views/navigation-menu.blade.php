@@ -2,22 +2,20 @@
     <!-- Primary Navigation Menu -->
     <div class=" mx-auto px-4 sm:px-4 lg:px-4">
         <div class="flex justify-between h-16">
-            <div class="flex border-r-2 pr-4">
+            <a href="{{ route('dashboard') }}" class="flex border-r-2 mt-1 pr-4 items-center">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-iconoir-regular-antenna class="text-white block sm:h-10 h-6 w-auto"/>
-                    </a>
+                <div class="shrink-0 flex">
+                    <x-iconoir-regular-antenna class="text-white block sm:h-10 h-6 w-auto"/>
                 </div>
-                <div class="block py-3 items-center ">
-                    <p class="ml-2 text-xs sm:text-2xl text-green-500 font-semibold">DIRECCIÓN </p>
-                    <p class="ml-2 -mt-2 text-xs sm:text-lg font-semibold text-white">
+                <div class="block py-3 ml-1">
+                    <p class="text-xs sm:text-2xl text-green-500 font-semibold">DIRECCIÓN </p>
+                    <p class="-mt-2 text-xs sm:text-lg font-semibold text-white">
                         DE COMUNICACIONES</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="my-auto text-2xl text-green-300">
-                Intranet de la Direción de Comunicaciones 
+            <div class="my-auto sm:text-3xl text-white uppercase font-bold">
+                Intranet de la Direción de Comunicaciones Amazonas
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

@@ -30,7 +30,15 @@
         <main class="flex h-full w-full bg-gray-800 " :class="{ 'overflow-hidden': isSideMenuOpen }">
             <x-aside />
             <div class="flex flex-col flex-1 w-full overflow-y-auto">
-                {{ $slot }}
+                <div class="grid mb-4 pb-10 mt-3 px-8 mx-4 h-full rounded-3xl bg-gray-100 border-4 border-green-400">
+                    <div class="grid grid-cols-12 gap-6">
+                        <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                            <div class="col-span-12 mt-8">
+                                {{ $slot }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

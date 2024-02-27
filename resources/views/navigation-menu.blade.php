@@ -2,19 +2,19 @@
     <!-- Primary Navigation Menu -->
     <div class=" mx-auto px-4 sm:px-4 lg:px-4">
         <div class="flex justify-between h-16">
-            <a href="{{ route('dashboard') }}" class="flex border-r-2 mt-1 pr-4 items-center">
+            <a href="{{ route('dashboard') }}" class="flex border-l-2 border-t-2 shadow-md mt-1 pr-4 items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex">
-                    <x-iconoir-regular-antenna class="text-white block sm:h-10 h-6 w-auto"/>
+                    <x-iconoir-regular-antenna class="text-white block h-10 w-auto"/>
                 </div>
-                <div class="block py-3 ml-1">
-                    <p class="text-xs sm:text-2xl text-green-500 font-semibold">DIRECCIÓN </p>
-                    <p class="-mt-2 text-xs sm:text-lg font-semibold text-white">
-                        DE COMUNICACIONES</p>
+                <div class="hidden sm:block py-3 ml-1">
+                    <p class="text-xs md:text-lg sm:text-2xl text-white font-semibold">DIRECCIÓN DE</p>
+                    <p class="-mt-2 text-xs md:text-lg sm:text-lg font-semibold text-green-500">
+                       COMUNICACIONES</p>
                 </div>
             </a>
 
-            <div class="my-auto sm:text-3xl text-white uppercase font-bold">
+            <div class="my-auto ml-2 sm:text-xs xl:text-xl md:text-lg text-white uppercase font-bold">
                 Intranet de la Direción de Comunicaciones Amazonas
             </div>
 

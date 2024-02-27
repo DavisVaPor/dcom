@@ -12,7 +12,6 @@ class Commission extends Model
     protected $fillable = [
         'comision',
         'numero',
-        'fecha_creacion',
         'fecha_inicio',
         'fecha_fin',
         'periodo','year','mes','tipo','estado',

@@ -17,12 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('comision');
             $table->integer('numero');
-            $table->date('fecha_creacion');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->integer('periodo');
             $table->integer('year');
-            $table->integer('mes');
+            $table->string('mes')->length(20);
             $table->enum('tipo',['MANTENIMIENTO','MEDICION','PROMOCION']);
             $table->enum('estado',['PENDIENTE','CONFIRMADO']);
 

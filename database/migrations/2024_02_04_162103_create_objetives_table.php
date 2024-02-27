@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('objetivo');
 
-            $table->foreignId('commission_id')->constrained();
+            $table->foreignId('commission_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

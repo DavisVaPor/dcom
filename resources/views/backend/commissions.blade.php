@@ -8,5 +8,5 @@
         <h1>COMISIONES DE SERVICIOS</h1>
     </div>
 
-    @livewire('comissions.commissions')
+    @livewire('commission.index')
 </x-app-layout>

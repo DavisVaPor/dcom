@@ -68,44 +68,27 @@
         @forelse ($commissions as $commission)
             <tr class="bg-gray-100 border-b border-gray-400 py-1 hover:bg-green-100">
                 <td class="py-1 text-xs text-center">C{{ $commission->numero }}</td>
-                <td class="py-1 w-2/4 text-sm px-2 text-left uppercase">
+                <td class="py-1 w-2/4 lg:text-xs xl:text-sm text-sm px-2 text-left uppercase">
                     <a href="#" class="font-semibold hover:text-blue-600">
                         {{ $commission->comision }}
                     </a>
                 </td>
-                <td class="py-1 text-sm text-center w-24 text-blue-600">{{ $commission->fecha_inicio }}</td>
+                <td class="py-1 text-xs text-center w-auto text-blue-600">{{ $commission->fecha_inicio }}</td>
                 <td class="py-1 text-sm text-center w-24 text-blue-600">{{ $commission->periodo }}</td>
-                <td class="py-1 m-auto w-32">
-                    @if ($commission->tipo == 'MANTENIMIENTO')
-                        <div
-                            class="text-gray-100 text-sm text-center bg-orange-400 bg-clip-content font-semibold w-36 rounded-xl">
-                            {{ $commission->tipo }}
-                        </div>
-                    @endif
-                    @if ($commission->tipo == 'MEDICION')
-                        <div
-                            class="text-gray-100 text-sm text-center border-b-indigo-500 bg-clip-content font-semibold w-36 rounded-xl">
-                            {{ $commission->tipo }}
-                        </div>
-                    @endif
-                    @if ($commission->tipo == 'PROMOCION')
-                        <div
-                            class="text-gray-100 text-sm text-center bg-green-500 bg-clip-content font-semibold w-36 rounded-xl">
-                            {{ $commission->tipo }}
-                        </div>
-                    @endif
+                <td class="py-1 m-auto w-32 text-xs text-center font-semibold">
+                    {{$commission->tipo}}
                 </td>
-                <td class="py-1 m-auto w-32">
+                <td class="py-1 m-auto w-auto">
                     @if ($commission->estado == 'PENDIENTE')
                         <div
-                            class="text-gray-100 text-sm text-center bg-yellow-600 bg-clip-content font-semibold w-36 rounded-xl">
-                            {{ $commission->estado }}
+                            class="text-gray-100 text-sm text-center bg-yellow-600 bg-clip-content font-semibold w-auto rounded-xl">
+                            P
                         </div>
                     @endif
                     @if ($commission->estado == 'CONFIRMADO')
                         <div
-                            class="text-gray-100 text-sm text-center bg-blue-500 bg-clip-content font-semibold w-36 rounded-xl">
-                            {{ $commission->estado }}
+                            class="text-gray-100 text-sm text-center bg-blue-500 bg-clip-content font-semibold w-auto rounded-xl">
+                            C
                         </div>
                     @endif
                 </td>
@@ -144,12 +127,95 @@
             </tr>
         @empty
             <tr class="border-b border-gray-100 bg-gray-100 py-1">
-                <td colspan="6" class="bg-gray-100 border-b border-gray-400 text-center py-2 grid-row-4 italic">
-                    ... No se Encuentraron datos ...
+                <td colspan="7" class="bg-gray-100 border-b border-gray-400 text-center py-2 grid-row-4 italic">
+                    ... No se encuentraron datos ...
                 </td>
             </tr>
         @endforelse
-
     </table>
+    <p class="text-end mt-1">
+        Total de Registros: {{ $commissions->count() }}
+    </p>
     <p class="py-2">{{ $commissions->links() }}</p>
+
+
+    {{-- Modal de Añadir --}}
+    <x-dialog-modal wire:model="modalAdd">
+        <x-slot name="title">
+            <h1 class="font-bold text-gray-500 uppercase">Registro de la Comision de Servicio</h1>
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="col-span-6 sm:col-span-4 my-2 flex items-center ">
+                <x-label class="text-sm font-bold mr-2 border-gray-200 uppercase" for="tipo"
+                    value="{{ __('Tipo de Servicio') }}" />
+                <select class="rounded-xl text-sm" name="tipo" id="tipo" wire:model='tipo'>
+                    <option value="">Seleccione</option>
+                    <option value="MANTENIMIENTO">MANTENIMIENTO DEL SISTEMA DE COMUNICACION</option>
+                    <option value="MEDICION">MEDICION DE LOS SERVICIOS DE TELECOMUNICACIONES</option>
+                    <option value="PROMOCION">PROMOCION DE LAS TELECOMUNICACIONES</option>
+                </select>
+            </div>
+            <x-input-error for="tipo" class="mt-2" />
+            <div class="col-span-6 sm:col-span-4">
+                <x-label class="text-sm font-bold border-gray-200 uppercase" for="name"
+                    value="{{ __('Asunto') }}" />
+                <textarea wire:model.defer='nameCommision' name="nameCommision" rows="5"
+                    class="resize-none w-full border rounded-md border-gray-300" id="">
+                
+                </textarea>
+                <x-input-error for="nameCommision" class="mt-2" />
+            </div>
+
+
+            <div class="flex justif items-center mt-2">
+                <x-label class="text-sm font-bold border-gray-200 uppercase mr-2 " for="fecha"
+                    value="{{ __('Fecha de la Comisión DEL') }}" />
+                <x-input id="fechainicio" type="date" class=" block font-semibold" wire:model='fechainicio'
+                    min="{{ $fechaActual }}" />
+
+                <x-label class="text-sm font-bold mx-2 border-gray-200 uppercase " for="fecha"
+                    value="{{ __('AL') }}" />
+                <x-input id="fechafin" type="date" class=" block font-semibold" wire:model='fechafin'
+                    min="{{ $fechaActual }}" />
+
+            </div>
+            <x-input-error for="fechainicio" class="mt-2" />
+            <x-input-error for="fechafin" class="mt-2" />
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$set('modalAdd',false)" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-secondary-button>
+
+            <x-button class="ml-2" wire:click="saveCommission()" wire:loading.attr="disabled">
+                {{ __('Guardar') }}
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
+
+    {{-- Modal de Eliminar --}}
+    <x-dialog-modal wire:model="modalDel">
+        <x-slot name="title">
+            <h1 class="font-bold uppercase">{{ __('Eliminar Registro') }}</h1>
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('¿Seguro que desea eliminar?') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$set('modalDel',false)" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-secondary-button>
+
+            <x-button class="ml-2" wire:click="deleteCommission({{ $modalDel }})"
+                wire:loading.attr="disabled">
+                {{ __('Eliminar') }}
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
+
+    
 </div>

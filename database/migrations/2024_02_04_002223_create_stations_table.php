@@ -30,6 +30,7 @@ return new class extends Migration
             $table->enum('caseta',['CONCRETO','ADOBE','MADERA']);
             $table->enum('caseta_estado',['BUENO','REGULAR','MALO']);
             $table->enum('situacion',['VERIFICADO','MANTENIMIENTO','INEXISTENTE']);
+            $table->enum('siniestrado',['SI','NO'])->nullable();
             $table->enum('sistema',['VHF','HF']);
             $table->enum('tipo',['A','B','C']);
             $table->string('image_caseta')->nullable();

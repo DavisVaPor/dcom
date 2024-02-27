@@ -120,7 +120,7 @@
                         </p>
                         <li class="relative px-1 ">
                             <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-blue-400"
-                                href="#">
+                                href="{{ route('estaciones')}}">
                                 <x-codicon-radio-tower class="w-7 h-7" />
                                 <span class="ml-2 text-xs">ESTACIONES</span>
                             </a>

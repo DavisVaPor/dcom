@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('region',45);
             $table->string('provincia',50);
             $table->string('distrito',50);
-            $table->timestamps();
         });
     }
 

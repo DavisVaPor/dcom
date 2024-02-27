@@ -11,6 +11,7 @@ class Station extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'codestation',
         'tipoPy',
         'latitud',

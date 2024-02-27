@@ -35,6 +35,10 @@ class Index extends Component
         'fechafin' => 'required|date|after_or_equal:fechainicio',
     ];
 
+    protected $listeners = ['objAttach' => 'render',
+                            'objDetach' => 'render',];
+
+
     public function render()
     {   
 
@@ -109,6 +113,7 @@ class Index extends Component
         } else {
             $comi  = Commission::create([
                 'comision' => Str::upper($this->nameCommision),
+                'slug' => Str::slug($this->nameCommision,'-'),
                 'numero' => $num + 1,
                 'tipo' => $this->tipo,
                 'fecha_inicio' => $this->fechainicio,
@@ -137,7 +142,7 @@ class Index extends Component
                 ]);
             }
             
-            //return redirect()->route('commision.show', $comi->id);
+            return redirect()->route('commision.show', $comi->id);
         }
         $this->modalAdd = false;
     }

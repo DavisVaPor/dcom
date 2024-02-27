@@ -9,4 +9,5 @@
     </div>
 
     @livewire('commission.index')
+
 </x-app-layout>

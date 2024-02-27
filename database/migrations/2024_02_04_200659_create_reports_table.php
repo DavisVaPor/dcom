@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->integer('numero');
+            $table->string('slug');
             $table->integer('anho');
             $table->string('asunto',150);
             $table->date('fechaCreacion');

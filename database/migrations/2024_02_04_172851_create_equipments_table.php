@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();
             $table->string('codPatrimonio')->length(12)->default('999999999999');
+            $table->string('slug');
             $table->string('codigo_internoDCOM')->nullable();
             $table->string('denominacion');
             $table->string('detalle');

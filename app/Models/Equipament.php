@@ -10,6 +10,7 @@ class Equipament extends Model
     use HasFactory;
     protected $fillable = [
         'codPatrimonio',
+        'slug',
         'codigo_internoDCOM','denominacion','detalle',
         'marca','modelo','serie','color','caracteristicas','operatividad',
         'situacion','condicion','imagen','equipment_image_path','estado',

@@ -46,7 +46,7 @@
         </select>
     </div>
 
-    <table class="bg-table-auto rounded-t-lg w-full mx-auto bg-gray-500 text-gray-800">
+    <table class="bg-table-auto rounded-t-lg h-full w-full mx-auto bg-gray-500 text-gray-800">
         <tr class="border-b-2 border-gray-300 text-center text-white">
             <th class="px-1">Cod</th>
             <th class="w-1/3 px-4 py-3">Asunto</th>
@@ -69,7 +69,7 @@
             <tr class="bg-gray-100 border-b border-gray-400 py-1 hover:bg-green-100">
                 <td class="py-1 text-xs text-center">C{{ $commission->numero }}</td>
                 <td class="py-1 w-2/4 lg:text-xs xl:text-sm text-sm px-2 text-left uppercase">
-                    <a href="#" class="font-semibold hover:text-blue-600">
+                    <a href="{{ route('commision.show', [$commission]) }}" class="font-semibold hover:text-blue-600">
                         {{ $commission->comision }}
                     </a>
                 </td>

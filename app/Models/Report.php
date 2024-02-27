@@ -11,6 +11,7 @@ class Report extends Model
     protected $fillable = [
         'numero',
         'anho',
+        'slug',
         'asunto',
         'fechaCreacion',
         'estado',

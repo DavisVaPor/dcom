@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class=" mx-auto px-4 sm:px-4 lg:px-4">
         <div class="flex justify-between h-16">
-            <a href="{{ route('dashboard') }}" class="flex border-l-2 border-t-2 shadow-md mt-1 pr-4 items-center">
+            <a href="{{ route('dashboard') }}" class="flex mt-1 pr-4 items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex">
                     <x-iconoir-regular-antenna class="text-white block h-10 w-auto"/>

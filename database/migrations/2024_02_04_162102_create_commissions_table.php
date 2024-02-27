@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('commissions', function (Blueprint $table) {
             $table->id();
             $table->string('comision');
+            $table->string('slug');
             $table->integer('numero');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');

@@ -11,12 +11,18 @@ class Commission extends Model
 
     protected $fillable = [
         'comision',
+        'slug',
         'numero',
         'fecha_inicio',
         'fecha_fin',
         'periodo','year','mes','tipo','estado',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function objetives(){
         return $this->hasMany(Objetive::class);
     }

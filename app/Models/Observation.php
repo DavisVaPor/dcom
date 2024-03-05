@@ -13,6 +13,11 @@ class Observation extends Model
         return $this->belongsTo(ServiceMantenimient::class);
     }
 
+    public function equipament()
+    {
+        return $this->belongsTo(Equipment::class);
+    }
+
     protected $fillable = [
         'description',
         'service_mantenimient_id',

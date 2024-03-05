@@ -10,7 +10,7 @@ class Maintenance extends Model
     use HasFactory;
 
     public function equipament(){
-        return $this->belongsTo(Equipament::class);
+        return $this->belongsTo(Equipment::class);
     }
 
     protected $fillable = [

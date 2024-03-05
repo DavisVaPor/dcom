@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('fechaConstatacion');
             $table->enum('Radiodifusion',['FM','TV']);
-            $table->foreignId('ubigeo_id')->constrained('ubigeo');
+            $table->foreignId('ubigeo_id')->constrained('ubigeos');
             $table->string('ubicacion');
             $table->string('caracteristicas');
             $table->string('imagen');

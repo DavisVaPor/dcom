@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Equipament extends Model
+class Equipment extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -22,7 +22,7 @@ class Equipament extends Model
 
     public function system()
     {
-        return $this->belongsTo(SystemEquipament::class);
+        return $this->belongsTo(System::class);
     }
 
     public function category()

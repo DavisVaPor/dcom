@@ -17,7 +17,6 @@ class Station extends Model
         'latitud',
         'longitud',
         'altitud',
-        'url_maps',
         'frec_canal',
         'frec_fm',
         'estado',
@@ -26,6 +25,12 @@ class Station extends Model
         'image_caseta','image_panoramica','image_torre','manager_id',
         'ultima_visita','ubigeo_id',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
 
     public function ubigeo()
     {
@@ -40,6 +45,11 @@ class Station extends Model
     public function commissions()
     {
         return $this->belongsToMany(Commission::class);
+    }
+
+    public function equipament()
+    {
+        return $this->hasMany(Equipment::class);
     }
 
     public function servicemantenimiento(){

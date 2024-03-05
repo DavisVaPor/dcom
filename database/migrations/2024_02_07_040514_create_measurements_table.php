@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('imagen');
 
             $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
-            $table->foreignId('ubigeo_id')->constrained('ubigeo');
+            $table->foreignId('ubigeo_id')->constrained('ubigeos');
 
             $table->timestamps();
         });

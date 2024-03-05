@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('commission_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('station_id')->constrained();
-            $table->timestamps();
         });
     }
 

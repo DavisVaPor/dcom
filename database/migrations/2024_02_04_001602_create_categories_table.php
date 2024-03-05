@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('commission_equipment', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('commission_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('equipment_id')->constrained('equipments')->onDelete('cascade');
-            $table->enum('tipo',['OUTPUT','INPUT']);
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commission_equipment');
+        Schema::dropIfExists('category');
     }
 };

@@ -27,25 +27,40 @@
                     </svg>
                 </a>
             </div>
+            <div class="flex">
+                <x-button wire:click="addstation" class="bg-green-500 ml-3 hover:bg-green-800">
+                    Crear
+                    <span class="w-6 h-6 ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                </x-button>
+            </div>
         </div>
-        <div class="flex my-3">
+        <div class="flex w-full justify-between my-3">
             <select class="rounded-lg text-sm mr-2" wire:model='provinciaSearch' name="" id="">
                 <option selected value="">Provincias</option>
                 <option value="101">Chachapoyas</option>
                 <option value="102">Bagua</option>
                 <option value="103">Bongara</option>
-                <option value="105">Luya</option>
-                <option value="106">Rodriguez de Mendoza</option>
-                <option value="104">Condorcanqui</option>
+                <option value="104">Luya</option>
+                <option value="105">Rodriguez de Mendoza</option>
+                <option value="106">Condorcanqui</option>
                 <option value="107">Utcubamba</option>
             </select>
             <select class="rounded-lg text-sm mr-2" wire:model='estado' name="" id="">
                 <option selected value="">Estado</option>
                 <option class="" value="OPERATIVO">Operativo</option>
                 <option class="" value="INOPERATIVO">Inoperativo</option>
-                <option class="" value="MANTEMIENTO">Mantenimiento</option>
-                <option class="" value="INEXISTENTE">Inexistente</option>
-                <option class="" value="NO VERIFICADO">No Verificado</option>
+            </select>
+            <select class="rounded-lg text-sm mr-2 " wire:model='tipoPy' name="" id="">
+                <option selected value="">Proyecto</option>
+                <option class="" value="PACC">PACC</option>
+                <option class="" value="CPACC">CPACC</option>
+                <option class="" value="Radio_HF">RADIO HF</option>
             </select>
             <select class="rounded-lg text-sm mr-2 " wire:model='sistema' name="" id="">
                 <option selected value="">Sistema</option>
@@ -68,6 +83,8 @@
                 <option class="" value="SI">Si</option>
                 <option class="" value="NO">No</option>
             </select>
+
+            
         </div>
 
 
@@ -76,29 +93,28 @@
                 <table class="table-auto rounded-t-lg w-full mx-auto bg-gray-500 text-gray-800">
                     <thead>
                         <tr class="border-b-2 border-gray-300 text-center text-white">
-                            <th class="py-3">Estacion</th>
-                            <th class="py-3">Ubigeo</th>
-                            <th class="py-3">Longitud</th>
-                            <th class="py-3">Latitud</th>
-                            <th class="py-3">Maps</th>
-                            <th class="py-3">Sistema</th>
-                            <th class="py-3">Tipo</th>
-                            <th class="py-3"></th>
+                            <th class="py-1">Estacion</th>
+                            <th class="py-1">Ubigeo</th>
+                            <th class="py-1">Latitud</th>
+                            <th class="py-1">Longitud</th>
+                            <th class="py-1">Maps</th>
+                            <th class="py-1">Sistema</th>
+                            <th class="py-1">Tipo</th>
+                            <th class="py-1"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($estations as $item)
-                            <tr class="text-sm bg-gray-100 border-b border-gray-400 py-1 hover:bg-blue-100">
+                            <tr class="text-sm bg-gray-100 border-b border-gray-400 hover:bg-blue-100">
                                 <td>
                                     <a href="{{ route('estacion.show', [$item]) }}" class="text-blue-700">
                                         {{ $item->name }}</a>
                                 </td>
-                                <td class="flex">{{ $item->ubigeo->id }}: <p class="font-bold uppercase">
-                                        {{ $item->ubigeo->provincia }}</p>: {{ $item->ubigeo->distrito }}</td>
-                                <td class="text-center">{{ $item->longitud }}</td>
+                                <td class="">{{ $item->ubigeo->id }}: {{ $item->ubigeo->provincia }} {{ $item->ubigeo->distrito }}
                                 <td class="text-center">{{ $item->latitud }}</td>
+                                <td class="text-center">{{ $item->longitud }}</td>
                                 <td>
-                                    <a href="{{ $item->urlgooglearth }}"
+                                    <a href="https://www.google.com/maps/place/{{$item->latitud}}{{$item->longitud}}"
                                         class="text-green-500 hover:text-green-700 cursor-pointer mx-2 " target="_blank">
                                         <svg class="svg-inline--fa fa-globe fa-w-16 w-4 h-4 m-auto" role="img"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
@@ -145,7 +161,7 @@
                     @foreach ($estations as $estation)
                         <div class="bg-white w-90 shadow-2xl rounded-xl">
                             <div class="p-2">
-                                <a href="{{ route('estacion.show', [$estation]) }}"
+                                <a href="{{ route('estacion.show', [$estation->id]) }}"
                                     class="text-blue-700 flex items-center justify-center">
                                     <i>
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas"
@@ -193,7 +209,7 @@
                                         {{ $estation->ubigeo->distrito }}</p>
                                 </div>
                                 <div class="flex justify-between items-center mt-1 text-center">
-                                    @if ($estation->operativo == '1')
+                                    @if ($estation->estado == 'OPERATIVO')
                                         <p
                                             class="font-bold w-full px-2 py-1 rounded-lg text-white text-base ml-3 bg-green-800 my-2">
                                             OPERATIVO
@@ -227,6 +243,193 @@
                 <p class="text-center text-gray-800 font-bold">..::No se encuentra registros::..</p>
             </div>
         @endisset
+        <p class="text-right mt-2">Total de Registros: {{$estations->count()}}</p>
         {{ $estations->links() }}
     </div>
+
+    {{-- Modal de Añadir --}}
+    <x-dialog-modal wire:model="modal">
+        <x-slot name="title">
+            <h1 class="font-bold text-gray-500 uppercase text-center">Registro de una Estacion</h1>
+        </x-slot>
+
+        <x-slot name="content">
+
+            <div class="col-span-6 sm:col-span-4">
+                <x-label class="text-sm font-bold border-gray-200 uppercase" for="name"
+                    value="{{ __('Nombre de Estacion *') }}" />
+
+                <x-input class="resize-none w-full border rounded-md border-gray-300" wire:model.defer='station.name'
+                    name="station.name" />
+                <x-input-error for="station.name" class="mt-2" />
+            </div>
+
+            <div class="mt-1 col-span-6 sm:col-span-4">
+                <x-label class="text-sm font-bold border-gray-200 uppercase" for="ubicacion"
+                    value="{{ __('Ubicacion de la Estacion') }}" />
+                <div class="flex items-center">
+                    <div>
+                        <x-label class="text-sm font-bold border-gray-200 uppercase" for="provincia"
+                            value="{{ __('Provincia') }}" />
+                        <select class="rounded-lg text-sm mr-2" wire:model='provincia' name="provincia"
+                            id="provincia">
+                            <option value="">Selecciones</option>
+                            <option value="Chachapoyas">Chachapoyas</option>
+                            <option value="Bagua">Bagua</option>
+                            <option value="Bongara">Bongara</option>
+                            <option value="Luya">Luya</option>
+                            <option value="Rodriguez">Rodriguez de Mendoza</option>
+                            <option value="Condorcanqui">Condorcanqui</option>
+                            <option value="Utcubamba">Utcubamba</option>
+                        </select>
+                    </div>
+                    <div class="ml-5">
+                        <x-label class="text-sm font-bold border-gray-200 uppercase" for="ubigeo"
+                            value="{{ __('Distrito') }}" />
+                        <select class="rounded-lg text-sm mr-2" wire:model='ubigeo' name="ubigeo" id="ubigeo">
+                            <option selected value="">Distrito</option>
+                            @if ($provincia)
+                                @foreach ($ubigeos as $item)
+                                    <option selected value="{{ $item->id }}">{{ $item->distrito }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                </div>
+                <x-input-error for="ubigeo" class="mt-2" />
+            </div>
+
+            <div class="mt-1 col-span-6 sm:col-span-4">
+                <x-label class="text-sm font-bold border-gray-200 uppercase" for="Coordenadas"
+                    value="{{ __('Coordenadas') }}" />
+                <div class="flex justify-between">
+                    <x-input class="mx-1 resize-none w-full border rounded-md border-gray-300"
+                        wire:model.defer='station.lat' name="station.lat" placeholder="Latitud *" />
+                    <x-input class="mx-1 resize-none w-full border rounded-md border-gray-300"
+                        wire:model.defer='station.lon' name="station.lon" placeholder="Longitud *" />
+                    <x-input class="mx-1 resize-none w-full border rounded-md border-gray-300"
+                        wire:model.defer='altitud' name="altitud" placeholder="Altitud" />
+                </div>
+
+                <x-input-error for="station.lat" class="mt-2" />
+                <x-input-error for="station.lon" class="mt-2" />
+            </div>
+
+            <div class="flex justify-between col-span-6 sm:col-span-4 mt-1">
+                <div>
+                    <x-label class="text-sm font-bold border-gray-200 uppercase" for="codStation"
+                        value="{{ __('Codigo de la Estacion') }}" />
+                    <x-input class="resize-none w-full border rounded-md border-gray-300"
+                        wire:model.defer='codStation' name="codStation" />
+                </div>
+
+                <div>
+                    <x-label class="text-sm font-bold border-gray-200 uppercase" for="tipoPy"
+                        value="{{ __('Tipo de Estacion') }}" />
+                    <select class="rounded-xl text-sm" name="tipoPy" id="tipoPy" wire:model='tipoPy'>
+                        <option value="">Seleccione</option>
+                        <option value="PACC">PACC</option>
+                        <option value="CPACC">CPACC</option>
+                        <option value="RADIO_HF">RADIO HF</option>
+                    </select>
+                </div>
+            </div>
+
+            @if ($tipoPy == 'PACC' || $tipoPy == 'CPACC')
+                <div class="mt-1 col-span-6 sm:col-span-4">
+                    <x-label class="text-sm font-bold border-gray-200 uppercase" value="{{ __('Frecuencias') }}" />
+                    <div class="flex justify-between">
+                        <x-input type="number" class="mx-1 resize-none w-full border rounded-md border-gray-300"
+                            wire:model.defer='chanel' name="chanel" pla placeholder="Canal" />
+                        @if ($tipoPy == 'CPACC')
+                            <x-input type="text" class="mx-1 resize-none w-full border rounded-md border-gray-300"
+                                wire:model.defer='fm' name="fm" pla
+                                placeholder="Frecuencia Modulada" />
+                        @endif
+                    </div>
+                </div>
+            @endif
+
+            <div class="flex justify-between col-span-6 sm:col-span-4 my-2 items-center ">
+                <div>
+                    <x-label class="text-sm font-bold mr-2 border-gray-200 uppercase" for="station.sistema"
+                        value="{{ __('Sistema *') }}" />
+                    <select class="rounded-xl text-sm" name="station.sistema" id="station.sistema"
+                        wire:model='station.sistema'>
+                        <option value="">Seleccione</option>
+                        <option value="VHF">VHF</option>
+                        <option value="HF">HF</option>
+                    </select>
+                    <x-input-error for="station.sistema" class="mt-2" />
+
+                </div>
+
+                <div>
+                    <x-label class="text-sm font-bold mr-2 border-gray-200 uppercase" for="station.tipo"
+                        value="{{ __('Tipo *') }}" />
+                    <select class="rounded-xl text-sm" name="station.tipo" id="station.tipo"
+                        wire:model='station.tipo'>
+                        <option value="">Seleccione</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    <x-input-error for="station.tipo" class="mt-2" />
+                </div>
+
+                <div>
+                    <x-label class="text-sm font-bold mr-2 border-gray-200 uppercase" for="station.estado"
+                        value="{{ __('Estado *') }}" />
+                    <select class="rounded-xl text-sm" name="station.estado" id="station.estado"
+                        wire:model='station.estado'>
+                        <option value="">Seleccione</option>
+                        <option value="OPERATIVO">OPERATIVO</option>
+                        <option value="INOPERATIVO">INOPERATIVO</option>
+                    </select>
+                    <x-input-error for="station.estado" class="mt-2" />
+
+                </div>
+
+                <div>
+                    <x-label class="text-sm font-bold mr-2 border-gray-200 uppercase" for="situacion"
+                        value="{{ __('Situacion') }}" />
+                    <select class="rounded-xl text-sm" name="station.situacion" id="situacion"
+                        wire:model='station.situacion'>
+                        <option value="">Seleccione</option>
+                        <option value="VERIFICADO">VERIFICADO</option>
+                        <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+                        <option value="INEXISTENTE">INEXISTENTE</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex justify-between col-span-6 sm:col-span-4 my-2 items-center ">
+                <div>
+                    <x-label class="text-sm font-bold mr-2 border-gray-200 uppercase" for="station.energia"
+                        value="{{ __('Energia') }}" />
+                    <select class="rounded-xl text-sm" name="station.energia" id="station.energia"
+                        wire:model='station.energia'>
+                        <option value="">Seleccione</option>
+                        <option value="ELECTRICA">ELECTRICA</option>
+                        <option value="FOTOVOLTAICO">FOTOVOLTAICO</option>
+                        <option value="GENERADOR">GENERADOR</option>
+                        <option value="OTRA">OTRA</option>
+                        <option value="NO_TIENE">NO TIENE</option>
+                    </select>
+                </div>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$set('modal',false)" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-secondary-button>
+
+            <x-button class="ml-2" wire:click="saveStation()" wire:loading.attr="disabled">
+                {{ __('Guardar') }}
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
+
 </div>

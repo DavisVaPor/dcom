@@ -12,8 +12,8 @@ class Movimient extends Model
         return $this->belongsTo(ServiceMantenimient::class);
     }
 
-    public function equipament(){
-        return $this->belongsTo(Equipament::class);
+    public function equipment(){
+        return $this->belongsTo(Equipment::class);
     }
 
     protected $fillable = [

@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_equipament', function (Blueprint $table) {
+        Schema::create('systems', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_equipament');
+        Schema::dropIfExists('systems');
     }
 };

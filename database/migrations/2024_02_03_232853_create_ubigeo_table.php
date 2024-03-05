@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ubigeo', function (Blueprint $table) {
+        Schema::create('ubigeos', function (Blueprint $table) {
             $table->id();
-            $table->char('cod',6);
             $table->string('region',45);
             $table->string('provincia',50);
             $table->string('distrito',50);

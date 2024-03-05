@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CommissionController;
+use App\Http\Controllers\EquipamentController;
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\StationController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,9 +35,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/comisiones',[CommissionCo
 Route::middleware(['auth:sanctum', 'verified'])->get('/comision/{commission}', [CommissionController::class , 'show'])->name('commision.show');
 
 
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/estaciones',[StationController::class , 'index'] )->name('estaciones');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/estacion/{estation}',[StationController::class , 'show'] )->name('estacion.show');
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/estacion/PDF/{estation}', [StationController::class,'report'])->name('estationpdf');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/inventario',[EquipmentController::class , 'index'] )->name('equipos');
+

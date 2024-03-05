@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('commission_ubigeo', function (Blueprint $table) {
             $table->id();
             $table->foreignId('commission_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('ubigeo_id')->constrained('ubigeo');
-            $table->timestamps();
+            $table->foreignId('ubigeo_id')->constrained('ubigeos');
         });
     }
 

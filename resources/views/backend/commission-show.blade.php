@@ -20,9 +20,6 @@
         <h1>COMISIONES DE SERVICIOS</h1>
     </div>
     
-    <p>
-        
-    </p>
     <div class="items-center text-base mt-2 w-full">
         <h3>DCOM: {{ $commission->numero }} - {{ $commission->year }}: 
             <span class="font-extrabold text-lg text-gray-800">"{{ $commission->comision }}"</span>
@@ -57,4 +54,6 @@
     </div>
 
     @livewire('commission.objectives', ['commission' => $commission], key($commission->id))
+
+    
 </x-app-layout>

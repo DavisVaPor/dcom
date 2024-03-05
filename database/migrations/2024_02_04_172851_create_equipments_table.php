@@ -35,8 +35,8 @@ return new class extends Migration
             $table->unsignedBigInteger('station_id')->nullable();
             $table->foreign('station_id')->references('id')->on('stations')->onDelete('set null');
 
-            $table->foreignId('system_id')->constrained('system_equipament');
-            $table->foreignId('category_id')->constrained('category');
+            $table->foreignId('system_id')->constrained('systems');
+            $table->foreignId('category_id')->constrained('categories');
 
 
             $table->timestamps();

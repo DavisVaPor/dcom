@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommissionController;
-use App\Http\Controllers\EquipamentController;
-use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\GoodController;
 use App\Http\Controllers\StationController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +40,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/estacion/{estation}',[Sta
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/estacion/PDF/{estation}', [StationController::class,'report'])->name('estationpdf');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/inventario',[EquipmentController::class , 'index'] )->name('equipos');
+Route::middleware(['auth:sanctum', 'verified'])->get('/inventario',[GoodController::class , 'index'] )->name('equipos');
 

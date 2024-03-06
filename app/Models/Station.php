@@ -47,9 +47,9 @@ class Station extends Model
         return $this->belongsToMany(Commission::class);
     }
 
-    public function equipament()
+    public function good()
     {
-        return $this->hasMany(Equipment::class);
+        return $this->hasMany(Good::class);
     }
 
     public function servicemantenimiento(){

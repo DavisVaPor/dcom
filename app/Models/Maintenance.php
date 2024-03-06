@@ -9,8 +9,8 @@ class Maintenance extends Model
 {
     use HasFactory;
 
-    public function equipament(){
-        return $this->belongsTo(Equipment::class);
+    public function good(){
+        return $this->belongsTo(Good::class);
     }
 
     protected $fillable = [
@@ -18,6 +18,6 @@ class Maintenance extends Model
         'actividades',
         'estado_old',
         'estado_now',
-        'equipment_id',
+        'good_id',
     ];
 }

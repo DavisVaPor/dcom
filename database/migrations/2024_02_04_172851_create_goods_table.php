@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipments', function (Blueprint $table) {
+        Schema::create('goods', function (Blueprint $table) {
             $table->id();
             $table->string('codPatrimonio')->length(12)->default('999999999999');
             $table->string('slug');
-            $table->string('codigo_internoDCOM')->nullable();
+            $table->string('codigo_interno')->nullable();
             $table->string('denominacion');
             $table->string('detalle');
             $table->string('marca');
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->enum('situacion',['USO','DESUSO']);
             $table->enum('condicion',['BUENO','REGULAR','MALO']);
             $table->string('imagen')->nullable();
-            $table->string('equipment_image_path', 2048)->nullable();
+            $table->string('good_image_path', 2048)->nullable();
             $table->enum('estado',['ALTA','BAJA']);
 
             $table->unsignedBigInteger('station_id')->nullable();
@@ -50,6 +50,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipments');
+        Schema::dropIfExists('goods');
     }
 };

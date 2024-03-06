@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Equipment extends Model
+class Good extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'codPatrimonio',
         'slug',
         'codigo_internoDCOM','denominacion','detalle',
         'marca','modelo','serie','color','caracteristicas','operatividad',
-        'situacion','condicion','imagen','equipment_image_path','estado',
+        'situacion','condicion','imagen','good_image_path','estado',
         'station_id','system_id','category_id',
     ];
     public function estation(){
@@ -45,5 +46,10 @@ class Equipment extends Model
 
     public function mantenimients(){
         return $this->hasMany(Maintenance::class);
+    }
+
+    public function ballot()
+    {
+        return $this->belongsToMany(Ballot::class);
     }
 }

@@ -12,14 +12,14 @@ class Movimient extends Model
         return $this->belongsTo(ServiceMantenimient::class);
     }
 
-    public function equipment(){
-        return $this->belongsTo(Equipment::class);
+    public function good(){
+        return $this->belongsTo(Good::class);
     }
 
     protected $fillable = [
         'fechamovimiento',
         'tipo',
         'service_mantenimient_id',
-        'equipment_id',
+        'good_id',
     ];
 }

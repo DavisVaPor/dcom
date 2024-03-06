@@ -1,0 +1,5 @@
+<div>
+    Inventario
+
+    {{$goods}}
+</div>

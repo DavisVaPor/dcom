@@ -35,8 +35,8 @@ class Commission extends Model
         return $this->belongsToMany(Station::class);
     }
 
-    public function equipments(){
-        return $this->belongsToMany(Equipment::class);
+    public function goods(){
+        return $this->belongsToMany(Good::class);
     }
 
     public function users(){

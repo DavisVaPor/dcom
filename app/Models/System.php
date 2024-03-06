@@ -9,8 +9,8 @@ class System extends Model
 {
     use HasFactory;
 
-    public function equipment()
+    public function good()
     {
-        return $this->hasMany(Equipment::class);
+        return $this->hasMany(Good::class);
     }
 }

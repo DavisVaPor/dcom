@@ -8,6 +8,6 @@
         <h1>Inventario de Equipos de la Direccion de Comunicaciones</h1>
     </div>
 
-    @livewire('equipament.index')
+    @livewire('good.index')
 
 </x-app-layout>

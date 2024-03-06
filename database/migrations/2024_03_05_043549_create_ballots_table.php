@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('ballots', function (Blueprint $table) {
             $table->id();
+            $table->enum('tipo',['SALIDA','ENTRADA']);
+            $table->integer('numero');
+            $table->integer('year')->length('4');
+
+            $table->foreignId('commission_id')->constrained('commissions')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

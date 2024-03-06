@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('commission_equipment', function (Blueprint $table) {
+        Schema::create('ballot_good', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('commission_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('equipment_id')->constrained('equipments')->onDelete('cascade');
-            $table->enum('tipo',['OUTPUT','INPUT']);
+            $table->foreignId('ballot_id')->constrained('ballots')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('good_id')->constrained('goods')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commission_equipment');
+        Schema::dropIfExists('ballot_good');
     }
 };

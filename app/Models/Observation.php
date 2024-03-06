@@ -13,9 +13,9 @@ class Observation extends Model
         return $this->belongsTo(ServiceMantenimient::class);
     }
 
-    public function equipament()
+    public function good()
     {
-        return $this->belongsTo(Equipment::class);
+        return $this->belongsTo(Good::class);
     }
 
     protected $fillable = [

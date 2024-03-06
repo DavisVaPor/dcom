@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Ballot extends Model
 {
     use HasFactory;
+
+    public function goods(){
+        return $this->belongsToMany(Good::class);
+    }
 }

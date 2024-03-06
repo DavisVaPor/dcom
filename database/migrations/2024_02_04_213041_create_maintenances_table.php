@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('estado_old');
             $table->string('estado_now');
 
-            $table->foreignId('equipment_id')->constrained('equipments')->onDelete('cascade');
+            $table->foreignId('good_id')->constrained('goods')->onDelete('cascade');
 
             $table->timestamps();
         });

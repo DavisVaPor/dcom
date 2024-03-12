@@ -17,8 +17,14 @@ class Good extends Model
         'situacion','condicion','imagen','good_image_path','estado',
         'station_id','system_id','category_id',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function estation(){
-        return $this->belongsToMany(Station::class);
+        return $this->belongsTo(Station::class);
     }
 
     public function system()

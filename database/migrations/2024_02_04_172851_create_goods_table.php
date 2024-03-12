@@ -19,17 +19,16 @@ return new class extends Migration
             $table->string('slug');
             $table->string('codigo_interno')->nullable();
             $table->string('denominacion');
-            $table->string('detalle');
+            $table->enum('tipo',['SUMINISTRO','ACTIVO']);
+            $table->integer('cantidad')->default(1);
             $table->string('marca');
             $table->string('modelo');
             $table->string('serie');
             $table->string('color');
-            $table->string('caracteristicas')->nullable();
             $table->enum('operatividad',['OPERATIVO','INOPERATIVO']);
             $table->enum('situacion',['USO','DESUSO']);
             $table->enum('condicion',['BUENO','REGULAR','MALO']);
             $table->string('imagen')->nullable();
-            $table->string('good_image_path', 2048)->nullable();
             $table->enum('estado',['ALTA','BAJA']);
 
             $table->unsignedBigInteger('station_id')->nullable();

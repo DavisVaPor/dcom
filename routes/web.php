@@ -42,3 +42,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/estacion/{estation}',[Sta
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/inventario',[GoodController::class , 'index'] )->name('equipos');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/equipo/{good}',[GoodController::class , 'show'] )->name('equipo.show');
+

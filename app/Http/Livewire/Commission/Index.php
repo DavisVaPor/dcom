@@ -6,7 +6,6 @@ use App\Models\Commission;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
-use Symfony\Component\Mailer\Event\MessageEvent;
 
 class Index extends Component
 {

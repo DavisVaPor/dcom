@@ -65,16 +65,6 @@
                             Ubicacion
                         </div>
                     </th>
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500 text-center">
-                        <div class="flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z">
-                                </path>
-                            </svg>
-                        </div>
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -106,22 +96,12 @@
                                     {{ $article->estation->name }}
                                 </a>
                             @else
-                                ALMACEN DRTC
+                                DRTC
                             @endif
-                        </td>
-                        <td class="flex justify-center items-center">
-                            <button wire:click="edit({{ $article->id }})"
-                                class="text-blue-500 hover:text-blue-900 cursor-pointer mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 m-auto" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
-                            </button>
                         </td>
                     </tr>
                 @empty
-                    <td colspan="7" class="py-2 border-r text-center"> ..:: No se encontraron registros ::..</td>
+                    <td colspan="6" class="py-2 border-r text-center"> ..:: No se encontraron registros ::..</td>
                 @endforelse
             </tbody>
         </table>

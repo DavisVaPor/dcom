@@ -31,7 +31,7 @@ class Commission extends Model
         return $this->hasMany(Report::class);
     }
 
-    public function estations(){
+    public function stations(){
         return $this->belongsToMany(Station::class);
     }
 

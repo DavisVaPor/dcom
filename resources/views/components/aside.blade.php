@@ -98,7 +98,7 @@
                         <li class="relative px-1 ">
                             <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-blue-400"
                                 href="#">
-                                <x-zondicon-radio class="w-7 h-7" />
+                                <x-zondicon-radio class="w-6 h-6" />
                                 <span class="ml-2 text-xs">CONSTATACIONES TV-FM</span>
                             </a>
                         </li>
@@ -129,7 +129,7 @@
     
                         <li class="relative px-1 ">
                             <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-blue-400"
-                                href="#">
+                                href="{{ route('equipos')}}">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="boxes"
                                     class="h-6 w-6 svg-inline--fa fa-boxes fa-w-18" role="img"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -148,6 +148,16 @@
                                         d="M502.6 182.6l-45.25-45.25C451.4 131.4 443.3 128 434.8 128H384V80C384 53.5 362.5 32 336 32h-160C149.5 32 128 53.5 128 80V128H77.25c-8.5 0-16.62 3.375-22.62 9.375L9.375 182.6C3.375 188.6 0 196.8 0 205.3V304h128v-32C128 263.1 135.1 256 144 256h32C184.9 256 192 263.1 192 272v32h128v-32C320 263.1 327.1 256 336 256h32C376.9 256 384 263.1 384 272v32h128V205.3C512 196.8 508.6 188.6 502.6 182.6zM336 128h-160V80h160V128zM384 368c0 8.875-7.125 16-16 16h-32c-8.875 0-16-7.125-16-16v-32H192v32C192 376.9 184.9 384 176 384h-32C135.1 384 128 376.9 128 368v-32H0V448c0 17.62 14.38 32 32 32h448c17.62 0 32-14.38 32-32v-112h-128V368z" />
                                 </svg>
                                 <span class="ml-2 text-xs">TALLER DE COMUNICACIONES</span>
+                            </a>
+                        </li>
+
+                        <li class="relative px-1 ">
+                            <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-blue-400"
+                                href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                                </svg>
+                                <span class="ml-2 text-xs">ALMACEN CENTRAL</span>
                             </a>
                         </li>
     

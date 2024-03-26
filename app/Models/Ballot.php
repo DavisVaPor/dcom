@@ -12,4 +12,8 @@ class Ballot extends Model
     public function goods(){
         return $this->belongsToMany(Good::class);
     }
+
+    public function commission(){
+        return $this->belongsToMany(Commission::class);
+    }
 }

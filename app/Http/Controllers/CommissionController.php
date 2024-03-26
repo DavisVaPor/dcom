@@ -12,6 +12,6 @@ class CommissionController extends Controller
     }
 
     public function show(Commission $commission){
-        return  view('backend.commission-show',compact('commission'));
+        return  view('backend.commission',compact('commission'));
     }
 }

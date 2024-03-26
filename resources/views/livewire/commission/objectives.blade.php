@@ -1,14 +1,13 @@
 <div>
     <div class="flex my-3 justify-between items-center border-b border-gray-300 border-3">
         <h1 class="mr-5 text-xl font-bold text-blue-500">OBJETIVOS</h1>
-
-        @if ($commission->estado == 'PENDIENTE')
-            <div class="justify-end mr-4 my-2">
+        <div class="mr-4 my-2">
+            @if ($commission->estado == 'PENDIENTE')
                 <x-button wire:click="addObjective">
-                    Añadir
+                    Añadir <x-icons.plus-circle class="ml-1" />
                 </x-button>
-            </div>
-        @endif
+            @endif
+        </div>
     </div>
 
 

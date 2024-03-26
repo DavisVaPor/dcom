@@ -55,5 +55,11 @@
 
     @livewire('commission.objectives', ['commission' => $commission], key($commission->id))
 
-    
+    @livewire('commission.stations', ['commission' => $commission], key($commission->id))
+
+    @livewire('commission.users', ['commission' => $commission], key($commission->id))
+
+    @livewire('commission.goods', ['commission' => $commission], key($commission->id))
+
+    @livewire('commission.ubigees', ['commission' => $commission], key($commission->id))
 </x-app-layout>

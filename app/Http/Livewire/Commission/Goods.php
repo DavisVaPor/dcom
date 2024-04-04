@@ -43,17 +43,16 @@ class Goods extends Component
         $this->reset('search','searchserie');
     }
 
-    public function addArticle(Good $article)
+    public function addArticle()
     {
-        $article->commissions()->attach($this->commission->id);
+        $this->commission->goods()->attach($this->selectedArticle);
         $this->modalAdd = false;
-
         $this->emit('articleAttach');
     }
     
-    public function delArticle(Good $article)
+    public function delArticle()
     {
-        $article->commissions()->detach($this->commission->id);
+        $this->commission->goods()->detach($this->modalDel);
         $this->modalDel = false;
         $this->emit('articleDetach');
 

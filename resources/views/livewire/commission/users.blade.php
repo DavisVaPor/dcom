@@ -41,25 +41,10 @@
                 </td>
             </tr>
         @endforelse
-
-        @foreach ($commission->users as $user)
-            <tr class="bg-gray-100 border-b border-gray-200">
-                <td class="px-4 py-3">{{ $user->name }}</td>
-                <td class="px-4 py-3">{{ $user->apellido }}</td>
-                <td class="px-4 py-3 text-center">{{ $user->cargo }}</td>
-                @if ($commission->estado == 'PENDIENTE')
-                    <td class="px-4 py-3">
-                        <div class="flex justify-center">
-                            <button wire:click="mostrarDel({{ $user->id }})"
-                                class="text-red-500 hover:text-gray-600 cursor-pointer">
-                                <x-icons.trash />
-                            </button>
-                        </div>
-                    </td>
-                @endif
-            </tr>
-        @endforeach
     </table>
+    <span class="text-xs text-left">
+        Registros Seleccionados : {{$commission->users->count()}}
+    </span>
 
 
     {{-- Modal de Añadir --}}

@@ -10,47 +10,44 @@
         </div>
     </div>
     <div class="justify-content-between">
-        @isset($commission->ubigee)
-            <table class="table-auto rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
-                <tr class="text-left border-b-2 border-gray-300">
-                    <th class="px-4 py-3 text-center">Provincia</th>
-                    <th class="px-4 py-3 text-center">Distrito</th>
-                    <th class="px-4 py-3"></th>
+        <table class="table-auto rounded-t-lg m-5 w-full mx-auto bg-gray-200 text-gray-800">
+            <tr class="text-left border-b-2 border-gray-300">
+                <th class="px-4 py-3 text-center">Region</th>
+                <th class="px-4 py-3 text-center">Provincia</th>
+                <th class="px-4 py-3 text-center">Distrito</th>
+                <th class="px-4 py-3"></th>
+            </tr>
+            @forelse ($ubigee as $item)
+                <tr class="bg-gray-100 border-b border-gray-200">
+                    <td class="px-4 py-2 text-center">{{ $item->region }}</td>
+                    <td class="px-4 py-2 text-center">{{ $item->provincia }}</td>
+                    <td class="px-4 py-2 text-center">{{ $item->distrito }}</td>
+                    <td class="px-4 py-2 text-center">
+                        @if ($commission->estado === 'PENDIENTE')
+                            <div class="text-center">
+                                <button wire:click="mostrarDel({{ $item->id }})"
+                                    class="text-red-500 hover:text-gray-600 cursor-pointer">
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus-circle"
+                                        class="svg-inline--fa fa-minus-circle fa-w-16 w-6 h-6" role="img"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor"
+                                            d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        @endif
+                    </td>
                 </tr>
-                @forelse ($ubigee as $item)
-                    <tr class="bg-gray-100 border-b border-gray-200">
-                        <td class="px-4 py-2 text-center">{{ $item->provincia }}</td>
-                        <td class="px-4 py-2 text-center">{{ $item->distrito }}</td>
-                        <td class="px-4 py-2 text-center">
-                            @if ($commission->estado === 'PENDIENTE')
-                                <div class="text-center">
-                                    <button wire:click="mostrarDel({{ $item->id }})"
-                                        class="text-red-500 hover:text-gray-600 cursor-pointer">
-                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus-circle"
-                                            class="svg-inline--fa fa-minus-circle fa-w-16 w-6 h-6" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                            <path fill="currentColor"
-                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr class="bg-gray-100 border-b border-gray-200">
-                        <td colspan="4" class="text-center">No se encontraron datos</td>
-                    </tr>
-                @endforelse
-            </table>
-        @endisset
-
-        @empty($commission->ubigee)
-            <div class="text-center">
-                <p class="font-bold text-gray-600">.:: SIN REGISTRO ::.</p>
-            </div>
-        @endempty
+            @empty
+                <tr class="bg-gray-100 border-b border-gray-200">
+                    <td colspan="4" class="text-center">No se encontraron datos</td>
+                </tr>
+            @endforelse
+        </table>
+        <span class="text-xs text-left">
+            Registros Seleccionados : {{$commission->ubigeo->count()}}
+        </span>
     </div>
 
     {{-- Modal de Añadir --}}
@@ -109,7 +106,7 @@
                 {{ __('Cancel') }}
             </x-secondary-button>
 
-            <x-button class="ml-2" wire:click="addUbigee({{ $selected }})" wire:loading.attr="disabled">
+            <x-button class="ml-2" wire:click="addUbigee()" wire:loading.attr="disabled">
                 {{ __('Añadir') }}
             </x-button>
         </x-slot>

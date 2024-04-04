@@ -47,7 +47,7 @@ class Users extends Component
         $this->emit('userAttach');
     }
     
-    public function delEstacion(User $user)
+    public function delEstacion()
     {
         $this->commission->users()->detach($this->modalDel);
         $this->modalDel = false;

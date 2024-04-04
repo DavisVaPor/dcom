@@ -60,7 +60,11 @@
                 </tr>
             @endforelse
         </table>
+        
     </div>
+    <span class="text-xs text-left">
+        Registros Seleccionados : {{$commission->stations->count()}}
+    </span>
 
 
     {{-- Modal de Añadir --}}

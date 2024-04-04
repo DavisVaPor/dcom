@@ -21,11 +21,17 @@
             </tr>
             @forelse ($commission->goods as $article)
                 <tr class="bg-gray-100 border-b border-gray-200">
-                    <td class="px-4 py-3">{{ $article->codPatrimonial }}</td>
+                    <td class="px-4 py-3">
+                        @if ($article->codPatrimonial)
+                            {{ $article->codPatrimonial }}
+                        @else
+                            Sin Codigo
+                        @endif
+                    </td>
                     <td class="px-4 py-3">{{ $article->denominacion }}</td>
                     <td class="px-4 py-3">{{ $article->modelo }}</td>
-                    <td class="px-4 py-3">{{ $article->nserie }}</td>
-                    <td class="px-4 py-3">{{ $article->estado }}</td>
+                    <td class="px-4 py-3">{{ $article->serie }}</td>
+                    <td class="px-4 py-3">{{ $article->condicion }}</td>
                     <td class="px-4 py-3">
                         @if ($commission->estado == 'PENDIENTE')
                             <div class="text-center">
@@ -51,6 +57,9 @@
                 </tr>
             @endforelse
         </table>
+        <span class="text-xs text-left">
+            Registros Seleccionados : {{$commission->goods->count()}}
+        </span>
     </div>
 
     {{-- Modal de Añadir --}}
@@ -73,7 +82,7 @@
                 <div class="flex flex-col">
                     <div class="flex-grow overflow-auto">
                         <table class="rounded-t-lg m-2 w-full mx-auto bg-gray-200 text-gray-800">
-                            <tr class="text-left border-b-2 border-gray-300">
+                            <tr class="text-center border-b-2 border-gray-300">
                                 <th class=""></th>
                                 <th class="px-4 py-3">Cod. Pat. </th>
                                 <th class="px-4 py-3">Nombre</th>
@@ -88,11 +97,17 @@
                                             <input class="rounded-2xl ml-2" wire:model='selectedArticle'
                                                 value="{{ $article->id }}" type="radio">
                                         </td>
-                                        <td class="px-4 py-3">{{ $article->codPatrimonial }}</td>
+                                        <td class="px-4 py-3">
+                                            @if ($article->codPatrimonial)
+                                                {{ $article->codPatrimonial }}
+                                            @else
+                                                Sin Codigo
+                                            @endif
+                                        </td>
                                         <td class="px-4 py-3">{{ $article->denominacion }}</td>
                                         <td class="px-4 py-3">{{ $article->modelo }}</td>
-                                        <td class="px-4 py-3 text-xs">{{ $article->nserie }}</td>
-                                        <td class="px-4 py-3">{{ $article->estado }}</td>
+                                        <td class="px-4 py-3 text-xs">{{ $article->serie }}</td>
+                                        <td class="px-4 py-3">{{ $article->condicion }}</td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -108,7 +123,7 @@
                 {{ __('Cancel') }}
             </x-secondary-button>
 
-            <x-button class="ml-2" wire:click="addArticle({{ $selectedArticle }})" wire:loading.attr="disabled">
+            <x-button class="ml-2" wire:click="addArticle()" wire:loading.attr="disabled">
                 {{ __('Añadir') }}
             </x-button>
         </x-slot>

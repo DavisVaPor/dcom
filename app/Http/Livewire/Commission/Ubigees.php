@@ -55,18 +55,19 @@ class Ubigees extends Component
         $this->modalAdd = true;
     }
 
-    public function addUbigee(Ubigeo $ubigeo)
+    public function addUbigee()
     {
-        $this->commission->ubigee()->attach($ubigeo);
+        $this->commission->ubigeo()->attach($this->selected);
         $this->modalAdd = false;
         $this->emit('ubigeeAttach');
+
     }
 
-    public function delUbigeo(Ubigeo $ubigeo)
+    public function delUbigeo()
     {
-        $this->commission->ubigee()->detach($ubigeo);
+        $this->commission->ubigeo()->detach($this->modalDel);
         $this->modalDel = false;
-        $this->emit('ubigeeDetach');
+        $this->emit('userDetach');
     }
 
     public function mostrarDel($id)

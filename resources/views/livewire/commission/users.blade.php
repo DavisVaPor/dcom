@@ -42,9 +42,12 @@
             </tr>
         @endforelse
     </table>
-    <span class="text-xs text-left">
-        Registros Seleccionados : {{$commission->users->count()}}
-    </span>
+    <div class="flex justify-end">
+        <span class="text-xs text-left">
+            Registros Seleccionados : {{$commission->users->count()}}
+        </span>
+    </div>
+
 
 
     {{-- Modal de Añadir --}}
@@ -55,8 +58,6 @@
 
         <x-slot name="content">
             <div class="col-span-6 sm:col-span-4">
-                <x-label class="text-base font-bold border-gray-200" for="name"
-                    value="{{ __('RELACION DEL PERSONAL') }}" />
                 <div class="flex flex-col">
                     <div class="flex-grow overflow-auto">
                         <table class="text-sm rounded-t-lg m-5 w-full mx-auto bg-gray-200 text-gray-800">

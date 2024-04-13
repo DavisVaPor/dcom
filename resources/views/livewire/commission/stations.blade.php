@@ -1,6 +1,6 @@
 <div>
     <div class="flex my-3 justify-between items-center border-b border-gray-300 border-3">
-        <h1 class="mr-5 text-xl font-bold text-blue-500">ESTACIONES</h1>
+        <h1 class="mr-5 text-2xl font-bold text-blue-500">ESTACIONES</h1>
 
         @if ($commission->estado == 'PENDIENTE')
             <div class="justify-end mr-4 my-2">
@@ -62,10 +62,13 @@
         </table>
         
     </div>
-    <span class="text-xs text-left">
-        Registros Seleccionados : {{$commission->stations->count()}}
-    </span>
-
+    
+    <div class="flex justify-end">
+        <span class="text-xs text-left">
+            Registros Seleccionados : {{$commission->stations->count()}}
+        </span>
+    </div>
+    
 
     {{-- Modal de Añadir --}}
     <x-dialog-modal wire:model="modalAdd">
@@ -109,10 +112,10 @@
                                             <input class="rounded-2xl" wire:model='selectedEstation'
                                                 value="{{ $estation->id }}" type="radio">
                                         </td>
-                                        <td class="px-2 py-1">{{ $estation->name }}</td>
-                                        <td class="px-2 py-1">{{ $estation->ubigeo->provincia }}</td>
-                                        <td class="px-2 py-1">{{ $estation->ubigeo->distrito }}</td>
-                                        <td class="px-2 py-1 text-center">
+                                        <td class="px-2">{{ $estation->name }}</td>
+                                        <td class="px-2">{{ $estation->ubigeo->provincia }}</td>
+                                        <td class="px-2">{{ $estation->ubigeo->distrito }}</td>
+                                        <td class="px-2 text-center">
                                             {{ $estation->sistema }}:{{ $estation->tipo }}</td>
                                     </tr>
                                 @endif

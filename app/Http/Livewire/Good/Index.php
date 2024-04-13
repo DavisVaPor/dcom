@@ -22,9 +22,10 @@ class Index extends Component
     public $article;
     public $tipo = 'ACTIVO';
     public $cantidad = 1;
+    public $codPatrimonial;
 
     protected $rules = [
-        'article.codPatrimonial' => 'required|size:12',
+        'codPatrimonial' => 'required|size:12',
         'article.denominacion' => 'required',
         'tipo' => 'required',
         'article.marca' => 'required',
@@ -70,7 +71,7 @@ class Index extends Component
         $this->validate();
 
         Good::create([
-            'codPatrimonial' => $this->article['codPatrimonial'],
+            'codPatrimonial' => $this->codPatrimonial,
             'denominacion' => $this->article['denominacion'],
             'slug' => Str::slug($this->article['denominacion'],'-'),
             'tipo' => $this->tipo,
@@ -87,7 +88,7 @@ class Index extends Component
         ]);
         
         $this->modalAdd = false;
-        $this->reset('article');
+        $this->reset('article','codPatrimonial');
     }
 
     public function edit(Good $article)

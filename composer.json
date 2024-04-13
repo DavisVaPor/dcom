@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "andreiio/blade-iconoir": "^3.4",
         "attrixtech/laravel-icons": "^1.2",
+        "barryvdh/laravel-dompdf": "^2.1",
         "blade-ui-kit/blade-zondicons": "^1.4",
         "codeat3/blade-codicons": "^1.32",
         "guzzlehttp/guzzle": "^7.2",

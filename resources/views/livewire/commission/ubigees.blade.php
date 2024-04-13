@@ -45,9 +45,12 @@
                 </tr>
             @endforelse
         </table>
-        <span class="text-xs text-left">
-            Registros Seleccionados : {{$commission->ubigeo->count()}}
-        </span>
+        <div class="flex justify-end">
+            <span class="text-xs text-left">
+                Registros Seleccionados : {{$commission->ubigeo->count()}}
+            </span>
+        </div>
+        
     </div>
 
     {{-- Modal de Añadir --}}
@@ -76,21 +79,21 @@
 
                 <div class="flex flex-col">
                     <div class="flex-grow overflow-auto">
-                        <table class="rounded-t-lg my-2 w-full mx-auto bg-gray-200 text-gray-800">
+                        <table class="rounded-t-lg my-2 w-4/5 mx-auto bg-gray-200 text-gray-800">
                             <tr class="text-left border-b-2 border-gray-300">
-                                <th class="font-bold px-4 py-3"></th>
+                                <th class="font-bold py-3"></th>
                                 <th class="font-bold px-4 py-3 text-center">Distrito</th>
                                 <th class="font-bold px-4 py-3 text-center">Provincia</th>
                             </tr>
                             @foreach ($ubigees as $item)
                                 @if (!$commission->ubigeo->contains($item->id))
-                                    <tr class="bg-gray-100 border-b border-gray-200">
-                                        <td class="px-4 py-3">
+                                    <tr class="bg-gray-100 border-b border-gray-200 hover:bg-sky-400" >
+                                        <td class="text-center">
                                             <input class="rounded-2xl" wire:model='selected' value="{{ $item->id }}"
                                                 type="radio">
                                         </td>
-                                        <td class="px-4 py-3">{{ $item->distrito }}</td>
-                                        <td class="px-4 py-3">{{ $item->provincia }}</td>
+                                        <td class="px-4">{{ $item->distrito }}</td>
+                                        <td class="px-4">{{ $item->provincia }}</td>
                                     </tr>
                                 @endif
                             @endforeach

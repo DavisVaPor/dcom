@@ -111,23 +111,23 @@
     {{-- Modal de Añadir --}}
     <x-dialog-modal wire:model="modalAdd">
         <x-slot name="title">
-            <h1 class="font-bold">Ingreso de Equipo a Almacen</h1>
+            <h1 class="font-bold text-center uppercase">Ingreso de Equipo a Almacen</h1>
         </x-slot>
 
         <x-slot name="content">
-            <div class="flex justify-between items-center col-span-6 sm:col-span-4">
+            <div class="flex justify-between items-center col-span-6 sm:col-span-4 mb-2">
                 <div>
                     <x-label class="text-base mr-2 font-bold border-gray-200" for="codPatrimonial"
                         value="{{ __('Cod. Patrimonial') }}" />
-                    <x-input id="name" type="number" class="text-sm block w-auto font-semibold text-right"
-                        wire:model.defer='article.codPatrimonial' maxlength="12" size='12' />
+                    <x-input type="number" class="text-sm block w-auto font-semibold text-right"
+                        wire:model='codPatrimonial' maxlength="12" />
                 </div>
                 <div>
                     <x-label class="text-base font-bold border-gray-200" for="tipo" value="{{ __('Tipo') }}" />
                     <select class="rounded-lg text-sm font-semibold" wire:model='tipo'>
                         <option value="" selected></option>
                         <option value="SUMINISTRO">SUMINISTRO</option>
-                        <option value="ACTIVO">ACTIVO</option>
+                        <option value="ACTIVO">EQUIPO</option>
                     </select>
                 </div>
 
@@ -225,7 +225,7 @@
             </div>
 
             <div class="mt-2 col-span-6 sm:col-span-4">
-                <div>
+                <div class="mt-2">
                     <x-label class="text-base font-bold border-gray-200" for="category_id"
                         value="{{ __('Categoria') }}" />
                     <select class="rounded-lg text-xs" wire:model='article.category_id'>
@@ -236,7 +236,7 @@
                     </select>
                     <x-input-error for="article.category_id" class="mt-2" />
                 </div>
-                <div>
+                <div class="mt-2">
                     <x-label class="text-base font-bold border-gray-200" for="category_id"
                         value="{{ __('Sistema') }}" />
                     <select class="rounded-lg text-xs" wire:model='article.system_id'>

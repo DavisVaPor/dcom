@@ -1,6 +1,6 @@
 <div>
     <div class="flex my-3 justify-between items-center border-b border-gray-300 border-3">
-        <h1 class="mr-5 text-xl font-bold text-blue-500">OBJETIVOS</h1>
+        <h1 class="mr-5 text-2xl font-bold text-blue-500">OBJETIVOS</h1>
         <div class="mr-4 my-2">
             @if ($commission->estado == 'PENDIENTE')
                 <x-button wire:click="addObjective">

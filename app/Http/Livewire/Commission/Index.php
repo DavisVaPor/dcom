@@ -137,11 +137,11 @@ class Index extends Component
 
             if ($comi->tipo == 'PROMOCION') {
                 $comi->objetives()->create([
-                    'objetivo' => 'CUMPLIR CON LA PROMOCION DE LAS TELECOMUNICACIONES'
+                    'objetivo' => 'CUMPLIR CON LA PROMOCION Y DIFUSIÓN DE LAS TELECOMUNICACIONES'
                 ]);
             }
             
-            return redirect()->route('commision.show', $comi->id);
+            return redirect()->route('commision.show', $comi->slug);
         }
         $this->modalAdd = false;
     }
@@ -149,19 +149,20 @@ class Index extends Component
     {
         $this->modalDel = $id;
     }
-    public function deleteCommission(Commission $commission)
+    public function deleteCommission($commission)
     {
-        $commission->delete();
+        $commi = Commission::find($commission);
+        $commi->delete();
         $this->modalDel = false;
     }
 
-    public function editCommission(Commission $commission)
+    public function editCommission($commission)
     {
         $this->modalAdd = true;
-        $this->commission = $commission;
-        $this->nameCommision = $commission->comision;
-        $this->tipo = $commission->tipo;
-        $this->fechainicio = $commission->fecha_inicio;
-        $this->fechafin =  $commission->fecha_fin;
+        $this->commission = Commission::find($commission);
+        $this->nameCommision =  $this->commission->comision;
+        $this->tipo =  $this->commission->tipo;
+        $this->fechainicio =  $this->commission->fecha_inicio;
+        $this->fechafin =   $this->commission->fecha_fin;
     }
 }

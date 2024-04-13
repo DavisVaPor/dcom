@@ -57,9 +57,12 @@
                 </tr>
             @endforelse
         </table>
-        <span class="text-xs text-left">
-            Registros Seleccionados : {{$commission->goods->count()}}
-        </span>
+
+        <div class="flex justify-end">
+            <span class="text-xs text-left">
+                Registros Seleccionados : {{$commission->goods->count()}}
+            </span>
+        </div>
     </div>
 
     {{-- Modal de Añadir --}}

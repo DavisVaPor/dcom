@@ -27,6 +27,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/comisiones',[CommissionCo
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/comision/{commission}', [CommissionController::class , 'show'])->name('commision.show');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/comision/report/{commission}', [CommissionController::class,'report'])->name('commisionpdf');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/estaciones',[StationController::class , 'index'] )->name('estaciones');
 

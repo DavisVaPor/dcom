@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ballot;
 use App\Models\Commission;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -22,4 +23,6 @@ class CommissionController extends Controller
         return $pdf->download($commission->slug.'.pdf');
 
     }
+
+    
 }

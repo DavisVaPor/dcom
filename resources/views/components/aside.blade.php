@@ -36,7 +36,7 @@
                             </li>
                             <li class="relative px-1">
                                 <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-blue-500"
-                                    href="#">
+                                    href="{{ route('informes')}}">
                                     <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="file"
                                         class="h-6 w-6 svg-inline--fa fa-file fa-w-12" role="img"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">

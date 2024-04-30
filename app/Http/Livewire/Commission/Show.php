@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Commission;
 
+use App\Models\Ballot;
 use App\Models\Commission;
 use Livewire\Component;
 
@@ -43,8 +44,43 @@ class Show extends Component
 
             $this->emit('commissionConfi');
 
-            $this->modalConf = false;
         }
+
+        if ($this->commission->goods->isNotEmpty()) {
+            
+            $ballot = Ballot::all();
+
+            if($ballot->isEmpty() == true){
+                $numero = 1;
+            } else{
+                $lastnum = $ballot->last();
+
+                if ($lastnum->year == date('Y')) {
+                    $numero = 1;
+                }else{
+                    $numero = $lastnum->numero + 1;
+                }
+            };
+            
+            $ballotid = Ballot::create([
+                        'tipo' => 'SALIDA',
+                        'numero' => $numero,
+                        'year' => date('Y'),
+                        'commission_id' => $this->commission->id,
+                    ]);
+
+            $goods = $this->commission->goods;
+
+            foreach ($goods as $good) {
+                $ballotid->goods()->attach($good); 
+            }
+
+        }
+
+        $this->modalConf = false;
+
+        return redirect()->route('commissions');
+
     }
 
     public function mostrarPen()
@@ -59,9 +95,17 @@ class Show extends Component
         $pendiente->estado = 'PENDIENTE';
 
         $pendiente->save();
-        
         $this->emit('commissionPen');
 
+        $ballot_id = Ballot::firstWhere('commission_id',$this->commission->id);
+
+        $ballot_id->delete();
+
+        return redirect()->route('commision.show', $this->commission->slug);
+
+
         $this->modalPen = false;
+
+
     }
 }

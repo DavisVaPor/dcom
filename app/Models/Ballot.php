@@ -9,11 +9,19 @@ class Ballot extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'tipo',
+        'numero',
+        'year',
+        'commission_id',
+        
+    ];
+
     public function goods(){
         return $this->belongsToMany(Good::class);
     }
 
     public function commission(){
-        return $this->belongsToMany(Commission::class);
+        return $this->belongsTo(Commission::class);
     }
 }

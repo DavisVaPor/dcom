@@ -73,8 +73,6 @@
 
         <x-slot name="content">
             <div class="col-span-6 sm:col-span-4">
-                <x-label class="text-base font-bold border-gray-200" for="name"
-                    value="{{ __('Busqueda de Estacion') }}" />
                 <div class="flex ">
                     <input wire:model='search' class="form-control m-auto rounded-xl w-1/2 mx-2" type="search"
                         placeholder="Búsqueda por Nombre" aria-label="Search">

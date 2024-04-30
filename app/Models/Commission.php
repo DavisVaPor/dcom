@@ -47,4 +47,8 @@ class Commission extends Model
     {
         return $this->belongsToMany(Ubigeo::class);
     }
+
+    public function ballot(){
+        return $this->hasOne(Ballot::class);
+    }
 }

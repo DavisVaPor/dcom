@@ -54,7 +54,7 @@ class Good extends Model
         return $this->hasMany(Maintenance::class);
     }
 
-    public function ballot()
+    public function ballots()
     {
         return $this->belongsToMany(Ballot::class);
     }

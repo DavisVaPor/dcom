@@ -1,7 +1,12 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <div class="text-center flex items-center">
+                <x-authentication-card-logo/>
+                <p class="ml-2 text-3xl font-extrabold text-blue-900">                
+                    Dirección de Comunicaciones
+                </p>
+            </div>
         </x-slot>
 
         <x-validation-errors class="mb-4" />

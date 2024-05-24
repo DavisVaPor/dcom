@@ -74,13 +74,11 @@ class Show extends Component
             foreach ($goods as $good) {
                 $ballotid->goods()->attach($good); 
             }
-
         }
 
         $this->modalConf = false;
 
         return redirect()->route('commissions');
-
     }
 
     public function mostrarPen()
@@ -103,9 +101,6 @@ class Show extends Component
 
         return redirect()->route('commision.show', $this->commission->slug);
 
-
         $this->modalPen = false;
-
-
     }
 }

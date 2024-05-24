@@ -126,7 +126,7 @@
                 @endforeach
             @else
                 <tr class="bg-white border-b border-gray-300 py-1">
-                    <td colspan="5" class="text-center font-bold">No se encuentra registros</td>
+                    <td colspan="7" class="text-center font-bold">No se encuentra registros</td>
                 </tr>
             @endif
         </tbody>
@@ -144,7 +144,7 @@
             <div class="flex justify-between items-center">
                 <h1 class="font-bold uppercase underline">Registrar Informe</h1>
                 <input disabled type="date" name="" value="{{ $fechactual }}" id=""
-                    class="rounded-xl block font-bold text-center">
+                    class="rounded-xl block font-bold text-center mx-auto">
 
             </div>
         </x-slot>
@@ -173,11 +173,10 @@
                                 <input class="rounded-2xl" wire:model='selectedCommission'
                                     value="{{ $item->id }}" type="radio">
                             </td>
-                            <td class="px-2">#{{ $item->id }}-{{ $item->name }}</td>
+                            <td class="px-2">#{{ $item->id }}-{{ $item->comision }}</td>
                         </tr>
                     @endforeach
                 </table>
-                {{ $commissions->links() }}
                 <x-input-error for="selectedCommission" class="mt-2" />
             </div>
             @isset($fechafinComision)

@@ -27,40 +27,40 @@
     </div>
 
     <div class="table w-full p-1">
-        <table class="w-full border ">
-            <thead class="">
-                <tr class="bg-gray-50 border-b rounded-lg">
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500">
+        <table class="bg-table-auto rounded-t-lg h-full w-full mx-auto bg-gray-700">
+            <thead>
+                <tr class=" text-center text-white">
+                    <th class="py-2 cursor-pointer text-sm font-bold">
                         <div class="flex items-center justify-center">
                             Cod. Patr.
                         </div>
                     </th>
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500">
+                    <th class="py-2 cursor-pointer text-sm font-bold">
                         <div class="flex items-center justify-center">
                             Denominacion
                         </div>
                     </th>
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500">
+                    <th class="py-2 cursor-pointer text-sm font-bold">
                         <div class="flex items-center justify-center">
                             Categoria
                         </div>
                     </th>
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500">
+                    <th class="py-2 cursor-pointer text-sm font-bold">
                         <div class="flex items-center justify-center">
                             Modelo
                         </div>
                     </th>
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500">
+                    <th class="py-2 cursor-pointer text-sm font-bold">
                         <div class="flex items-center justify-center">
                             Condicion
                         </div>
                     </th>
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500">
+                    <th class="py-2 cursor-pointer text-sm font-bold">
                         <div class="flex items-center justify-center">
                             Serie
                         </div>
                     </th>
-                    <th class="py-2 border-r cursor-pointer text-sm font-bold text-gray-500">
+                    <th class="py-2 cursor-pointer text-sm font-bold">
                         <div class="flex items-center justify-center">
                             Ubicacion
                         </div>
@@ -69,20 +69,20 @@
             </thead>
             <tbody>
                 @forelse ($goods as $article)
-                    <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
-                        <td class="py-2 border-r uppercase text-left pl-3">
+                    <tr class="bg-gray-100 border-b border-gray-400 py-1 hover:bg-green-100">
+                        <td class="py-2 uppercase text-left pl-3">
                             <a href="{{ route('equipo.show', [$article]) }}">
                                 {{ $article->codPatrimonio }}
                             </a>
                         </td>
-                        <td class="py-2 border-r uppercase text-left pl-3">
+                        <td class="py-2 uppercase text-left pl-3">
                             <a href="{{ route('equipo.show', [$article]) }}">
                                 {{ $article->denominacion }}
                             </a>
                         </td>
-                        <td class="py-2 border-r text-xs">{{ Str::limit($article->category->name, 15, '...') }}</td>
-                        <td class="py-2 border-r uppercase">{{ $article->modelo }}</td>
-                        <td class="py-2 border-r uppercase">{{ $article->condicion }}</td>
+                        <td class="py-2 text-xs">{{ Str::limit($article->category->name, 15, '...') }}</td>
+                        <td class="py-2 uppercase">{{ $article->modelo }}</td>
+                        <td class="py-2 uppercase">{{ $article->condicion }}</td>
                         <td class="py-2 border-r">
                             @if ($article->serie)
                                 {{ $article->serie }}
@@ -101,7 +101,9 @@
                         </td>
                     </tr>
                 @empty
-                    <td colspan="6" class="py-2 border-r text-center"> ..:: No se encontraron registros ::..</td>
+                    <tr class="bg-gray-100 border-b border-gray-400 py-1 hover:bg-green-100">
+                        <td colspan="7" class="py-2 border-r text-center font-bold"> ..:: No se encontraron registros ::..</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>

@@ -46,7 +46,7 @@
         </select>
     </div>
 
-    <table class="bg-table-auto rounded-t-lg h-full w-full mx-auto bg-gray-500 text-gray-800">
+    <table class="bg-table-auto rounded-t-lg h-full w-full mx-auto bg-gray-700 ">
         <tr class="border-b-2 border-gray-300 text-center text-white">
             <th class="px-1">#</th>
             <th class="px-1">Cod</th>
@@ -142,7 +142,7 @@
             </tr>
         @empty
             <tr class="border-b border-gray-100 bg-gray-100 py-1">
-                <td colspan="7" class="bg-gray-100 border-b border-gray-400 text-center py-2 grid-row-4 italic">
+                <td colspan="8" class="bg-gray-100 border-b border-gray-400 text-center py-2 grid-row-4 italic">
                     ... No se encuentraron datos ...
                 </td>
             </tr>

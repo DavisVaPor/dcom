@@ -4,9 +4,9 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="flex items-center h-10 intro-y">
-        <h2 class="mr-5 text-lg font-medium truncate">Tablero de Control</h2>
-    </div>
+        <div class="text-center text-3xl my-4 font-extrabold text-green-600">
+            <h1>TABLERO DE CONTROL</h1>
+        </div>  
     <div class="grid grid-cols-12 gap-6 mt-5">
         <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
             href="#">

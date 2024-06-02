@@ -4,7 +4,7 @@
             {{ __('Comisiones') }}
         </h2>
     </x-slot>
-    <div class="text-center text-3xl my-2 font-extrabold text-green-600">
+    <div class="text-center text-3xl mb-2 font-extrabold text-green-600">
         <h1>COMISIONES DE SERVICIOS</h1>
     </div>
 

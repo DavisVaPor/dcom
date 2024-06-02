@@ -55,4 +55,6 @@ class Index extends Component
             'user' => $user,
         ]);
     }
+
+    
 }

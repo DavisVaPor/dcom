@@ -87,10 +87,9 @@
             
         </div>
 
-
         @isset($estations)
             <div x-show="openTab === 1">
-                <table class="table-auto rounded-t-lg w-full mx-auto bg-gray-500 text-gray-800">
+                <table class="bg-table-auto rounded-t-lg h-full w-full mx-auto bg-gray-700">
                     <thead>
                         <tr class="border-b-2 border-gray-300 text-center text-white">
                             <th class="py-1">Estacion</th>
@@ -104,8 +103,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($estations as $item)
-                            <tr class="text-sm bg-gray-100 border-b border-gray-400 hover:bg-blue-100">
+                        @forelse ($estations as $item)
+                             <tr class="text-sm bg-gray-100 border-b border-gray-400 hover:bg-blue-100">
                                 <td>
                                     <a href="{{ route('estacion.show', [$item]) }}" class="text-blue-700">
                                         {{ $item->name }}</a>
@@ -152,7 +151,11 @@
                                     @endif
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr class="text-sm bg-gray-100 border-b border-gray-400 hover:bg-blue-100">
+                                <td colspan="8" class="text-center py-2 font-bold"> No se enctraron registros</td>        
+                            </tr>
+                        @endforelse 
                     </tbody>
                 </table>
             </div>
@@ -239,9 +242,6 @@
                 </div>
             </div>
         @else
-            <div class="container mx-auto rounded-md bg-red-200 opacity-50 py-8 justify-center grid-cols-1 gap-2 ">
-                <p class="text-center text-gray-800 font-bold">..::No se encuentra registros::..</p>
-            </div>
         @endisset
         <p class="text-right mt-2">Total de Registros: {{$estations->count()}}</p>
         {{ $estations->links() }}

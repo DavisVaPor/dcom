@@ -28,7 +28,7 @@
             </span>
         </x-button>
     </div>
-    <table class="rounded-t-lg m-1 w-full mx-auto bg-gray-400 text-gray-800">
+    <table class="bg-table-auto rounded-t-lg h-full w-full mx-auto bg-gray-700">
         <tr class="border-b-2 border-gray-300 text-center text-white">
             <th class="px-2 py-3">N°</th>
             <th class="w-3/12 px-4 py-3">Asunto</th>
@@ -126,13 +126,13 @@
                 @endforeach
             @else
                 <tr class="bg-white border-b border-gray-300 py-1">
-                    <td colspan="5" class="text-center font-bold">No se encuentra registros</td>
+                    <td colspan="7" class="text-center font-bold py-2">No se encuentra registros</td>
                 </tr>
             @endif
         </tbody>
     </table>
     <p class="text-right font-bold mt-2 text-gray-500">
-        Total {{ $reports->count() }} Registros
+        Total: {{ $reports->count() }} Registros
     </p>
 
     {{-- {{ $reports->links() }} --}}

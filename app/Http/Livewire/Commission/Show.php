@@ -115,7 +115,6 @@ class Show extends Component
 
         return redirect()->route('commision.show', $this->commission->slug);
 
-
         $this->modalPen = false;
     }
 }

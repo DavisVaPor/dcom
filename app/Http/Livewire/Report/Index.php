@@ -8,6 +8,7 @@ use App\Models\User;
 use DragonCode\Contracts\Cashier\Auth\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 class Index extends Component
 {
@@ -19,6 +20,7 @@ class Index extends Component
     public $tipo;
     public $selectedCommission;
     public $estado;
+    public $numero;
     public $fechactual;
     public $fechafinComision;
     public $asunto = 'INFORME DE ACTIVIDADES REALIZADAS EN LA ';
@@ -26,7 +28,7 @@ class Index extends Component
     protected $rules = [
         'asunto' => 'required|min:20',
         'selectedCommission' => 'required',
-        'fechactual' => 'required'
+        'fechactual' => 'required|after:fechafinComision'
     ];
 
     public function render()
@@ -36,18 +38,18 @@ class Index extends Component
         $reports = Report::all();
 
         $this->fechactual = date('Y-m-d');
+
         if ($this->selectedCommission && $this->asunto = 'INFORME DE ACTIVIDADES REALIZADAS') {
             $commission = Commission::find($this->selectedCommission);
-            $this->asunto = $this->asunto . ' ' . $commission->name;
+            $this->asunto = $this->asunto . ' ' . $commission->comision;
         } elseif ($this->selectedCommission) {
             $this->reset('asunto');
         }
 
         $commissions = User::find($user->id)
         ->commissions()
-        ->where('estado','CONFIRMADA')
-        ->orderBy('id','desc')
-        ->paginate(10);
+        ->where('estado','CONFIRMADO')
+        ->orderBy('id','desc')->get();
 
         return view('livewire.report.index',[
             'reports' => $reports,
@@ -55,6 +57,4 @@ class Index extends Component
             'user' => $user,
         ]);
     }
-
-    
 }

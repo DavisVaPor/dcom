@@ -21,6 +21,6 @@ class ReportController extends Controller
     {
         $pdf = PDF::loadView('reportes.informes',compact('informe'));
         //return view('reportes.informes',compact('informe'));
-        return $pdf->download($informe->asunto.'.pdf');
+        return $pdf->download($informe->slug.'.pdf');
     }
 }

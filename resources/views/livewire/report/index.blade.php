@@ -52,7 +52,7 @@
                             {{ $loop->iteration }}
                         </td>
                         <td class="w-4/12 text-sm px-2 text-left uppercase">
-                            <a href="{{ route('informe.show', [$report]) }}" class="font-semibold hover:text-blue-600">
+                            <a href="#}" class="font-semibold hover:text-blue-600">
                                 {{ $report->id }} - {{ $report->asunto }}
                             </a>
                         </td>
@@ -111,14 +111,15 @@
                                     </button>
                                 @endif
                                 @if ($report->estado == 'PRESENTADO')
-                                <a href="{{ route('informepdf', [$report]) }}"
-                                    class="text-gray-500 hover:text-gray-900 cursor-pointer">
-                                    <svg class="w-6 h-6 m-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                        <path fill="currentColor"
-                                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                                        </path>
-                                    </svg>
-                                </a>
+                                    <a href="{{ route('informepdf', [$report]) }}"
+                                        class="text-gray-500 hover:text-gray-900 cursor-pointer">
+                                        <svg class="w-6 h-6 m-auto" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 576 512">
+                                            <path fill="currentColor"
+                                                d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
+                                            </path>
+                                        </svg>
+                                    </a>
                                 @endif
                             </div>
                         </td>
@@ -126,7 +127,7 @@
                 @endforeach
             @else
                 <tr class="bg-white border-b border-gray-300 py-1">
-                    <td colspan="5" class="text-center font-bold">No se encuentra registros</td>
+                    <td colspan="7" class="text-center font-bold">No se encuentra registros</td>
                 </tr>
             @endif
         </tbody>
@@ -143,10 +144,14 @@
 
             <div class="flex justify-between items-center">
                 <h1 class="font-bold uppercase underline">Registrar Informe</h1>
-                <input disabled type="date" name="" value="{{ $fechactual }}" id=""
-                    class="rounded-xl block font-bold text-center mx-auto">
-
             </div>
+            <div class="flex justify-end items-center"> 
+                <label for="">Fecha:</label>
+                <input disabled type="date" name="" value="{{ $fechactual }}" id=""
+                    class="rounded-xl block font-bold text-center">
+            </div>
+
+           
         </x-slot>
 
         <x-slot name="content">
@@ -154,7 +159,8 @@
             <div class="col-span-6 sm:col-span-4">
                 <x-label class="text-base font-bold border-gray-200" for="name"
                     value="{{ __('ASUNTO DEL INFORME') }}" />
-                <textarea disabled id="name" wire:model.defer='asunto' class="text-sm resize-none w-full h-20 border rounded-md bg-gray-100">
+                <textarea disabled id="name" wire:model.defer='asunto'
+                    class="text-sm resize-none w-full h-20 border rounded-md bg-gray-100">
 
                 </textarea>
                 <x-input-error for="asunto" class="mt-2" />
@@ -211,8 +217,7 @@
                 {{ __('Cancel') }}
             </x-secondary-button>
 
-            <x-button class="ml-2" wire:click="deleteReport({{ $modalDel }})"
-                wire:loading.attr="disabled">
+            <x-button class="ml-2" wire:click="deleteReport({{ $modalDel }})" wire:loading.attr="disabled">
                 {{ __('Eliminar') }}
             </x-button>
         </x-slot>

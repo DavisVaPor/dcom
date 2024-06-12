@@ -16,9 +16,14 @@ class Report extends Model
         'fechaCreacion',
         'estado',
         'commission_id',
+        'user_id',
     ];
     public function commission(){
         return $this->belongsTo(Commission::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function servicemantenimiento(){

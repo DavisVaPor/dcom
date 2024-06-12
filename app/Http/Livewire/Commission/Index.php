@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Commission;
 
-use App\Models\Ballot;
+
 use App\Models\Commission;
 use Livewire\Component;
 use Illuminate\Support\Str;

@@ -70,4 +70,9 @@ class User extends Authenticatable
     public function commissions(){
         return $this->belongsToMany(Commission::class);
     }
+
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
+
 }

@@ -15,7 +15,7 @@ class BallotController extends Controller
 
         $pdf = Pdf::loadView('reports.papeleta',compact('ballot'));
         //return view('commissionPDF',compact('commission'));
-        return $pdf->download($ballot->numero.'.pdf');
+        return $pdf->download('PapeletaSalida_'.$ballot->numero.'.pdf');
 
     }
 }

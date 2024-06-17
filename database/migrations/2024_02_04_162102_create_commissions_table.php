@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('periodo');
             $table->integer('year');
             $table->string('mes')->length(20);
-            $table->enum('tipo',['MANTENIMIENTO','MEDICION','PROMOCION']);
+            $table->enum('tipo',['MANTENIMIENTO','SUPERVISION','PROMOCION']);
             $table->enum('estado',['PENDIENTE','CONFIRMADO']);
 
 

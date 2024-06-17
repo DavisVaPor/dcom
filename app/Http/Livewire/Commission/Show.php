@@ -48,7 +48,7 @@ class Show extends Component
                     $this->emit('commissionConfi');
                 }
             } else {
-                if ($this->commission->ubigees->isNotEmpty()) {
+                if ($this->commission->ubigeo->isNotEmpty()) {
                     $confirmar = Commission::findOrFail($this->commission->id);
 
                     $confirmar->estado = 'CONFIRMADO';

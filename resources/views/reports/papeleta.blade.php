@@ -50,9 +50,25 @@
                 PAPELETA DE {{ $ballot->tipo }} - {{ $ballot->numero }}
             </p>
 
+            <p class="underline">
+                Datos de la Comision de Servicio
+            </p>
 
-           <h2>Numero: {{ $ballot->numero }}</h2>
-            <table class="bg-table-auto rounded-t-lg h-full w-full mx-auto bg-gray-500 text-gray-800">
+            <h2>
+                <span>{{$ballot->commission->comision}}</span>
+            </h2>
+
+            <h2>
+                Tipo: {{$ballot->commission->tipo}}
+            </h2>
+
+            <h3>
+                Fecha de Incio : {{$ballot->commission->fecha_inicio}}
+            </h3>
+            <h3>
+                Fecha de Fin : {{$ballot->commission->fecha_fin}}
+            </h3>
+            <table class="rounded-t-lg mt-6 w-full bg-gray-500 text-gray-800">
                 <thead class="text-sm">
                     <tr class="border-b-2 border-gray-500 text-center">
                         <th>Cod. Patromonial</th>
@@ -77,6 +93,8 @@
                 </tbody>
 
             </table>
+
+            <p class="text-sm float-end mt-4">Registros: <span class="font-bold">{{$ballot->count()}}</span></p>
 
             <footer class="">
                 <p class="text-xs"> Dirección de Comunicaciones Amazonas &copy; {{ date('Y') }} <br>

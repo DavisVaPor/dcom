@@ -111,9 +111,12 @@ class Index extends Component
 
             $this->modalAdd = false;
         } else {
+            $numeroslug = $num+1;
+            $slug = $this->nameCommision.$this->fechafin.$numeroslug;
+
             $comi  = Commission::create([
                 'comision' => Str::upper($this->nameCommision),
-                'slug' => Str::slug($this->nameCommision,'-'),
+                'slug' => Str::slug($slug,'-'),
                 'numero' => $num + 1,
                 'tipo' => $this->tipo,
                 'fecha_inicio' => $this->fechainicio,
@@ -130,15 +133,15 @@ class Index extends Component
                 ]);
             }
 
-            if ($comi->tipo == 'MEDICION') {
+            if ($comi->tipo == 'SUPERVISION') {
                 $comi->objetives()->create([
-                    'objetivo' => 'CUMPLIR CON LA SUPERVISION DE LAS TELECOMUNICACIONES'
+                    'objetivo' => 'CUMPLIR CON LA SUPERVISION DE LOS SERVICIOS DE TELECOMUNICACIONES'
                 ]);
             }
 
             if ($comi->tipo == 'PROMOCION') {
                 $comi->objetives()->create([
-                    'objetivo' => 'CUMPLIR CON LA PROMOCION Y DIFUSIÓN DE LAS TELECOMUNICACIONES'
+                    'objetivo' => 'CUMPLIR CON LA PROMOCION Y SENSIBILIZACION EN MATERIA DE LAS TELECOMUNICACIONES'
                 ]);
             }
             

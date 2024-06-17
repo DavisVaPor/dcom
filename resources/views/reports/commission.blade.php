@@ -66,10 +66,10 @@
                         <p>Servicio: <span class="font-bold">MANTENIMIENTO DE LOS SISTEMAS DE TELECOMUNICACIÓN</span>
                         </p>
                     @else
-                        @if ($commission->tipo === 'MEDICION')
-                            <p>Servicio: <span class="font-bold">MEDICIÓN DE RADIACIÓN NO IONIZANTE (RNI)</span></p>
+                        @if ($commission->tipo === 'SUPERVISION')
+                            <p>Servicio: <span class="font-bold">SUPERVISION DE LOS SERVICIOS DE TELECOMUNICACIONES</span></p>
                         @else
-                            <p>Servicio: <span class="font-bold">PROMOCIÓN DE LAS TELECOMUNIACIONES</span></p>
+                            <p>Servicio: <span class="font-bold">PROMOCIÓN EN MATERIA DE TELECOMUNIACIONES</span></p>
                         @endif
                     @endif
                 </div>

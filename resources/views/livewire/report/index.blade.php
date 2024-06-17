@@ -13,7 +13,7 @@
         <select class="rounded-xl ml-3" name="tipo" id="tipo" wire:model='tipo'>
             <option seleted value="">Tipo</option>
             <option value="MANTENIMIENTO">MANTENIMIENTO</option>
-            <option value="MEDICION">Medicion</option>
+            <option value="SUPERVISION">SUPERVISION</option>
             <option value="PROMOCION">Promocion</option>
         </select>
 

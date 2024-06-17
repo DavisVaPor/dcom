@@ -27,10 +27,10 @@
                     @if ($commission->tipo === 'MANTENIMIENTO')
                         MANTENIEMIENTO DE LOS SISTEMAS DE TELECOMUNICACIÓN
                     @endif
-                    @if ($commission->tipo === 'MEDICION')
+                    @if ($commission->tipo === 'SUPERVISION')
                         SUPERVISIÓN DE LOS SERVICIOS DE TELECOMUNICACIONES
                     @endif
-                    @if ($commission->tipo === 'MEDICION')
+                    @if ($commission->tipo === 'PROMOCION')
                         PROMOCION DE LAS TELECOMUNIACIONES
                     @endif
                 </span>

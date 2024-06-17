@@ -18,7 +18,7 @@
                             @if ($informe->tipo === 'MANTENIMIENTO')
                                 MANTENIEMIENTO DE LOS SISTEMAS DE COMUNICACIONES
                             @else
-                                @if ($informe->tipo === 'MEDICION')
+                                @if ($informe->tipo === 'SUPERVISION')
                                     MEDICION DE RADIACION NO IONIZANTE (RNI)
                                 @else
                                     PROMOCION DE LAS TELECOMUNIACIONES
@@ -109,7 +109,7 @@
                 @endif
             </div>
 
-            @if ($informe->commission->tipo === 'MEDICION' || $informe->commission->tipo === 'PROMOCION')
+            @if ($informe->commission->tipo === 'SUPERVISION' || $informe->commission->tipo === 'PROMOCION')
                 <div class="flex my-3 justify-between border-b border-gray-300 border-3">
                     <h1 class="mr-5 text-lg font-bold text-gray-800">LUGARES A VISITAR</h1>
                 </div>
@@ -172,7 +172,7 @@
 
         </section>
 
-        @if ($informe->tipo == 'MEDICION')
+        @if ($informe->tipo == 'SUPERVISION')
             <section>
                 <livewire:report.report-measurements :informe="$informe">
             </section>

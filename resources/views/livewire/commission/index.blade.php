@@ -21,7 +21,7 @@
         <select class="text-sm rounded-xl mx-2" name="tipofiltro" id="tipofiltro" wire:model='tipofiltro'>
             <option seleted value="">Todos</option>
             <option value="MANTENIMIENTO">MANTENIMIENTO</option>
-            <option value="MEDICION">MEDICION</option>
+            <option value="SUPERVISION">SUPERVISION</option>
             <option value="PROMOCION">PROMOCION</option>
         </select>
         <label for="">Estado:</label>
@@ -167,7 +167,7 @@
                 <select class="rounded-xl text-sm" name="tipo" id="tipo" wire:model='tipo'>
                     <option value="">Seleccione</option>
                     <option value="MANTENIMIENTO">MANTENIMIENTO DEL SISTEMA DE COMUNICACION</option>
-                    <option value="MEDICION">MEDICION DE LOS SERVICIOS DE TELECOMUNICACIONES</option>
+                    <option value="SUPERVISION">SUPERVISION DE LOS SERVICIOS DE TELECOMUNICACIONES</option>
                     <option value="PROMOCION">PROMOCION DE LAS TELECOMUNICACIONES</option>
                 </select>
             </div>

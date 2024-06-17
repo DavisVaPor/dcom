@@ -1,12 +1,5 @@
 <x-app-layout>
 
-
-
-</x-app-layout>
-
-
-
-@section('main')
     {{-- <livewire:report.show-report :informe="$informe"> --}}
 
         <div class=" mt-2 font-extrabold text-gray-600">
@@ -55,7 +48,7 @@
             </div>
             <div>
                 <h2 class="font-bold flex justify-end items-center">
-                    <p>Periodo del {{ $informe->commission->fechainicio }} al {{ $informe->commission->fechafin }}
+                    <p>Periodo del <span class="underline">{{ $informe->commission->fecha_inicio }}</span> al <span class="underline">{{ $informe->commission->fecha_fin }}</span>
                         ({{ $informe->commission->periodo }} Dias)</p>
                 </h2>
             </div>
@@ -67,7 +60,7 @@
             </div>
             <a target="_blank" href="{{ route('commision.show', [$informe->commission]) }}"
                 class="text-blue-500 font-semibold underline ml-10">
-                #C-{{ $informe->commission->id }}: {{ $informe->commission->name }}
+                #C-{{ $informe->commission->id }}: {{ $informe->commission->comision }}
             </a>
 
             <div class="flex my-3 justify-between border-b border-gray-300 border-3">
@@ -103,7 +96,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <p class="font-bold">{{ $objective->name }}</p>
+                            <p class="font-bold">{{ $objective->objetivo }}</p>
                         </div>
                     @endforeach
                 @endif
@@ -114,7 +107,8 @@
                     <h1 class="mr-5 text-lg font-bold text-gray-800">LUGARES A VISITAR</h1>
                 </div>
                 <div class="ml-10 items-center">
-                    @foreach ($informe->commission->ubigee as $item)
+                    <span class="font-bold uppercase underline">Provincia:Distrito</span>
+                    @foreach ($informe->commission->ubigeo as $item)
                         <div class="flex">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -161,9 +155,9 @@
                             }
                         </style>
                         <main class="w-full mx-auto">
-                            <section class="shadow row">
+                            {{-- <section class="shadow row">
                                 <livewire:report.report-systems :informe="$informe">
-                            </section>
+                            </section> --}}
                         </main>
                     </div>
                 </div>
@@ -182,4 +176,5 @@
                 <livewire:report.promotion.promotions :informe="$informe">
             </section>
         @endif
-    @endsection
+
+</x-app-layout>

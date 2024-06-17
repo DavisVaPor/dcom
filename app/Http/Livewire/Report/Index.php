@@ -102,9 +102,9 @@ class Index extends Component
                 'commission_id' => $this->selectedCommission,
             ]);
 
-            //return redirect()->route('informe.show', $newreport->slug);
+            return redirect()->route('informe', $newreport);
         }
-        
+       
         $this->modalAdd = false;
         $this->reset('report','asunto','selectedCommission');
     }
@@ -114,16 +114,17 @@ class Index extends Component
         $this->modalDel = $id;
     }
 
-    public function deleteReport(Report $report)
+    public function deleteReport($report)
     {
-        $report->delete();
+        $repor = Report::find($report);
+        $repor->delete();
         $this->modalDel = false;
     }
 
-    public function editReport(Report $report)
+    public function editReport($report)
     {
-        $this->report = $report;
-        $this->asunto = $report->asunto;
+        $this->report = Report::find($report);
+        $this->asunto = $this->report->asunto;
         $this->selectedCommission = $this->report->commission->id;;
         $this->modalAdd = true;
     }

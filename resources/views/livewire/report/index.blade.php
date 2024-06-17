@@ -52,7 +52,7 @@
                             {{ $loop->iteration }}
                         </td>
                         <td class="w-4/12 text-sm px-2 text-left uppercase">
-                            <a href="#}" class="font-semibold hover:text-blue-600">
+                            <a href="{{ route('informe', [$report]) }}" class="font-semibold hover:text-blue-600">
                                 {{ $report->id }} - {{ $report->asunto }}
                             </a>
                         </td>
@@ -87,7 +87,7 @@
                         </td>
                         <td>
                             <p class="text-xs text-center">
-                                {{ $report->tipo }}
+                                {{ $report->commission->tipo }}
                             </p>
                         </td>
                         <td class="px-2 text-right">
@@ -150,8 +150,6 @@
                 <input disabled type="date" name="" value="{{ $fechactual }}" id=""
                     class="rounded-xl block font-bold text-center">
             </div>
-
-           
         </x-slot>
 
         <x-slot name="content">
@@ -179,7 +177,8 @@
                                 <input class="rounded-2xl" wire:model='selectedCommission'
                                     value="{{ $item->id }}" type="radio">
                             </td>
-                            <td class="px-2">#{{ $item->id }}-{{ $item->comision }}</td>
+                            <td class="px-2">#{{ $item->id }}-{{ $item->comision }}:'('{{ $item->tipo }}')'
+                            </td>
                         </tr>
                     @endforeach
                 </table>

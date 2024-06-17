@@ -24,6 +24,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/comisiones',[CommissionController::class , 'index'] )->name('commissions');
 
@@ -39,9 +43,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/inventario',[GoodControll
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/equipo/{good}',[GoodController::class , 'show'] )->name('equipo.show');
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/comision/report/{commission}', [CommissionController::class,'report'])->name('commisionpdf');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/papeleta/report/{ballot}', [BallotController::class,'papeleta'])->name('papeletapdf');
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/informes',[ReportController::class , 'index'] )->name('informes');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/informe/{informe}',[ReportController::class , 'show'] )->name('informe');
 

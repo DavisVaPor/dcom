@@ -8,8 +8,6 @@
         <h1>INFORMES DE ACTIVIDADES</h1>
     </div>
 
-    {{-- @livewire('reports.index') --}}
-
     @livewire('report.index')
 
 </x-app-layout>

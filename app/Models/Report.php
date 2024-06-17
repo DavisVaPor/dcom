@@ -18,6 +18,14 @@ class Report extends Model
         'commission_id',
         'user_id',
     ];
+
+    
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    
     public function commission(){
         return $this->belongsTo(Commission::class);
     }

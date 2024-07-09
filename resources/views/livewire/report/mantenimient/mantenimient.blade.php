@@ -4,21 +4,16 @@
     </div>
     <div class="flex justify-end items-center">
         @if ($informe->estado == 'BORRADOR')
-            <button wire:click="addModal" class="bg-blue-500 justify-end">
-                Añadir Estación
-                <span class="w-4 h-4 ml-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </span>
-            </button>
+        <div class="justify-end mr-4 my-2">
+            <x-button wire:click="addStationCommission">
+                Añadir <x-icons.plus-circle class="ml-1"/>
+            </x-button>
+        </div>
         @endif
     </div>
 
     <div class="tabs">
-        @foreach ($informe->commission->estations as $estation)
+        @foreach ($informe->commission->stations as $estation)
             <div class="border-b tab">
                 <div class="relative">
                     <input class="w-full h absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox"
@@ -105,11 +100,11 @@
 
                                     <div class="flex">
                                         <span class="text-base text-gray-900 block ml-5">SINIESTRADO:</span>
-                                        @livewire('report.estation.siniester', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                        {{-- @livewire('report.estation.siniester', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                     </div>
                                     <div class="flex">
                                         <span class="text-base text-gray-900 block">ESTADO:</span>
-                                        @livewire('report.estado.updating-status', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                        {{-- @livewire('report.estado.updating-status', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                     </div>
                                 </div>
                                 <div class="flex text-sm mb-2 border-b border-gray-600">
@@ -230,25 +225,25 @@
                                             </li>
                                         </ul>
                                         <div x-show="openTab === 1">
-                                            @livewire('report.report-articles', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                            {{-- @livewire('report.report-articles', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 2">
-                                            @livewire('report.report-activities', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                            {{-- @livewire('report.report-activities', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 3">
-                                            @livewire('report.estation.requirements', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                            {{-- @livewire('report.estation.requirements', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 4">
-                                            @livewire('report.report-observations', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                            {{-- @livewire('report.report-observations', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 5">
-                                            @livewire('report.estation.moviments', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                            {{-- @livewire('report.estation.moviments', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 6">
-                                            @livewire('report.estation.images', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                            {{-- @livewire('report.estation.images', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 7">
-                                            @livewire('report.report-actas', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                            {{-- @livewire('report.report-actas', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                     </div>
                                 </section>
@@ -261,7 +256,7 @@
     </div>
 
     {{-- Modal de Añadir --}}
-    <dialog-modal wire:model="modalAdd">
+{{--<dialog-modal wire:model="modalAdd">
         <x-slot name="title">
             <h1 class="font-bold uppercase">Añadir Estacion</h1>
         </x-slot>
@@ -295,7 +290,7 @@
                                 <th class="font-bold px-2 py-1 text-center">Distrito</th>
                             </tr>
                             @foreach ($estations as $estation)
-                                @if (!$informe->commission->estations->contains($estation->id))
+                                @if (!$informe->commission->stations->contains($station->id))
                                     @if ($estation->id != '1')
                                         <tr class="bg-gray-100 border-b border-gray-200 text-sm hover:bg-blue-900">
                                             <td class="px-1">
@@ -327,5 +322,7 @@
                 {{ __('Añadir') }}
             </button>
         </x-slot>
-    </dialog-modal>
+    </dialog-modal> --}}
+
+
 </div>

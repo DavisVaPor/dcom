@@ -125,6 +125,8 @@
             @endif
 
             @if ($informe->commission->tipo === 'MANTENIMIENTO')
+                @livewire('report.mantenimient.mantenimient', ['informe' => $informe], key($informe->id))    
+
                 <div class="justify-content-between">
                     <div>
                         <style>

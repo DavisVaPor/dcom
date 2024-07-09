@@ -177,7 +177,7 @@
                                 <input class="rounded-2xl" wire:model='selectedCommission'
                                     value="{{ $item->id }}" type="radio">
                             </td>
-                            <td class="px-2">#{{ $item->id }}-{{ $item->comision }}:'('{{ $item->tipo }}')'
+                            <td class="px-2">#{{ $item->id }}-{{ $item->comision }}:{{ $item->tipo }}
                             </td>
                         </tr>
                     @endforeach

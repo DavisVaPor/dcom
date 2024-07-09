@@ -66,6 +66,8 @@ class Index extends Component
     public function addstation()
     {
         $this->modal = true;
+        $this->reset('station','ubigeo','codStation','tipoPy','altitud');
+        $this->reset('chanel','fm','codStation','tipoPy','altitud');
     }
 
     public function saveStation()

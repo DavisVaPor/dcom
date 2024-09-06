@@ -1,16 +1,17 @@
 <div>
     <div class="flex my-3 justify-between items-center border-b border-gray-300 border-3">
         <h1 class="mr-5 text-lg font-bold text-gray-800">ESTACIONES</h1>
-    </div>
-    <div class="flex justify-end items-center">
-        @if ($informe->estado == 'BORRADOR')
-        <div class="justify-end mr-4 my-2">
-            <x-button wire:click="addStationCommission">
-                Añadir <x-icons.plus-circle class="ml-1"/>
-            </x-button>
+        <div class="flex justify-end items-center">
+            @if ($informe->estado == 'BORRADOR')
+                <div class="justify-end mr-4 my-2">
+                    <x-button wire:click="addStationCommission">
+                        Añadir <x-icons.plus-circle class="ml-1" />
+                    </x-button>
+                </div>
+            @endif
         </div>
-        @endif
     </div>
+
 
     <div class="tabs">
         @foreach ($informe->commission->stations as $estation)
@@ -33,89 +34,71 @@
                         </div>
                     </header>
                     <div class="tab-content mb-1 h-full">
+                        <div class="flex">
+                            <div class="text-base text-gray-900 w-1/2">
+                                <span class="underline">UBICACION</span>
+                                <div class="flex justify-between">
+                                    <p class="mr-4">REGION:<span
+                                            class="font-extrabold  ml-2">{{ $estation->ubigeo->region }}</span></p>
+                                    <p class="mx-4">PROVINCIA:<span
+                                            class="font-extrabold ml-2">{{ $estation->ubigeo->provincia }}</span></p>
+                                    <p class="mx-4">DISTRITO<span
+                                            class="font-extrabold ml-2">{{ $estation->ubigeo->distrito }}</span></p>
+                                </div>
+                                <div class="text-base text-gray-900">
+                                    <span class="underline">COORDENADAS</span>
+                                    <div class="flex justify-between">
+                                        <p class="mr-4">LATITUD:<span
+                                                class="font-extrabold  ml-2">{{ $estation->latitud }} S</span></p>
+                                        <p class="mx-4">LONGITUD:<span
+                                                class="font-extrabold  ml-2">{{ $estation->longitud }} W</span></p>
+                                        <p class="mx-4">ALTITUD:<span
+                                                class="font-extrabold  ml-2">{{ $estation->altitud }} m.s.n.m.</span>
+                                        </p>
+                                    </div>
+                                    <div class="text-base text-gray-900">
+                                        <div class="flex justify-between">
+                                            <p class="mx-4">MAPS:<span
+                                                    class="font-extrabold  ml-2"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-base text-gray-900 w-1/2">
+                                <span class="underline">PROYECTO</span>
+                                <div class="flex justify-between">
+                                    <p class="mr-4">TIPO:<span
+                                            class="font-extrabold  ml-2">{{ $estation->tipoPy }}</span></p>
+                                    <p class="mx-4">SISTEMA:<span
+                                            class="font-extrabold ml-2">{{ $estation->sistema }}</span></p>
+                                    <p class="mx-4">ESTACION:<span
+                                            class="font-extrabold ml-2">{{ $estation->tipo }}</span></p>
+                                </div>
+                                <div class="text-base text-gray-900">
+                                    <span class="underline">DETALLES</span>
+                                    <div class="flex justify-between">
+                                        <p class="mr-4">ESTADO:<span
+                                                class="font-extrabold  ml-2">{{ $estation->estado }}</span></p>
+                                        <p class="mx-4">ENERGIA:<span
+                                                class="font-extrabold  ml-2">{{ $estation->energia }}</span></p>
+                                        <p class="mx-4">SINIESTRADO:<span
+                                                class="font-extrabold  ml-2">{{ $estation->siniestrado }}</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="text-base text-gray-900">
+                                    <div class="flex justify-between">
+                                        <p class="mx-4">CONTACTO:<span
+                                                class="font-extrabold  ml-2">{{ $estation->contacto_name }}</span></p>
+                                        <p class="mx-4">TELEFONO:<span
+                                                class="font-extrabold  ml-2">{{ $estation->contacto_numero }}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class=" pb-2 text-gray-500">
                             <div class=" rounded-lg w-full mt-2 p-2">
-                                <div class="flex justify-between mb-2 border-b border-gray-600 items-center">
-                                    <div class="flex items-center">
-                                        <span class="text-base text-gray-900 block">DEPARTAMENTO :</span>
-                                        <span class="text-sm text-blue-700 block font-bold uppercase ml-2 ">
-                                            {{ $estation->ubigeo->departamento }}
-                                        </span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="text-base text-gray-900 block">PROVINCIA :</span>
-                                        <span class="text-sm text-blue-700 block font-bold uppercase ml-2">
-                                            {{ $estation->ubigeo->provincia }}
-                                        </span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="text-base text-gray-900 block">DISTRITO :</span>
-                                        <span class="text-sm text-blue-700 block font-bold uppercase ml-2">
-                                            {{ $estation->ubigeo->distrito }}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="flex justify-between mb-2 border-b border-gray-600">
-                                    <div class="w-3/12">
-                                        <span class="text-base text-gray-900 block">LATITUD</span>
-                                    </div>
-                                    <div class="w-1/12">
-                                        <span class="text-base text-gray-900 block">:</span>
-                                    </div>
-                                    <div class="w-9/12">
-                                        <span
-                                            class="text-base text-gray-900 block font-bold uppercase">{{ $estation->latitud }}
-                                            S</span>
-                                    </div>
-                                    <div class="w-3/12">
-                                        <span class="text-base text-gray-900 block">LONGITUD</span>
-                                    </div>
-                                    <div class="w-1/12">
-                                        <span class="text-base text-gray-900 block">:</span>
-                                    </div>
-                                    <div class="w-9/12">
-                                        <span
-                                            class="text-base text-gray-900 block font-bold uppercase">{{ $estation->longitud }}
-                                            W</span>
-                                    </div>
-
-                                    <div class="flex text-base text-gray-900">
-                                        <span class="">SISTEMA:</span>
-                                        <span class="font-extrabold ml-2">{{ $estation->sistema }}</span>
-                                    </div>
-
-                                    <div class="w-9/12 flex ml-5 text-base text-gray-900 ">
-                                        <span class="">TIPO DE ESTACION:</span>
-                                        <span class="font-extrabold ml-2">{{ $estation->tipo }}</span>
-                                    </div>
-
-                                </div>
-                                <div class="justify-between flex mb-2 border-b border-gray-600">
-                                    <div class="flex">
-                                        <span class="text-base text-gray-900 block">ENERGIA:</span>
-                                        <span
-                                            class="text-base ml-2 text-gray-900 block font-bold uppercase">{{ $estation->energia }}</span>
-                                    </div>
-
-                                    <div class="flex">
-                                        <span class="text-base text-gray-900 block ml-5">SINIESTRADO:</span>
-                                        {{-- @livewire('report.estation.siniester', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
-                                    </div>
-                                    <div class="flex">
-                                        <span class="text-base text-gray-900 block">ESTADO:</span>
-                                        {{-- @livewire('report.estado.updating-status', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
-                                    </div>
-                                </div>
-                                <div class="flex text-sm mb-2 border-b border-gray-600">
-                                    <div class="w-8/12">
-                                        <p class="text-base text-gray-900 block">CONTACTO RESPONSABLE: <span
-                                                class="font-extrabold">{{ $estation->responsable }}</span> </p>
-                                    </div>
-                                    <div class="w-3/12">
-                                        <span class="text-base text-gray-900 block">TELEFONO: {{ $estation->resptelefono }}</span>
-                                    </div>
-                                </div>
                                 <section>
                                     <div x-data="{
                                         openTab: 1,
@@ -225,6 +208,7 @@
                                             </li>
                                         </ul>
                                         <div x-show="openTab === 1">
+                                            @livewire('report.mantenimient.inventary', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                             {{-- @livewire('report.report-articles', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 2">
@@ -250,13 +234,14 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         @endforeach
     </div>
 
     {{-- Modal de Añadir --}}
-{{--<dialog-modal wire:model="modalAdd">
+    {{-- <dialog-modal wire:model="modalAdd">
         <x-slot name="title">
             <h1 class="font-bold uppercase">Añadir Estacion</h1>
         </x-slot>

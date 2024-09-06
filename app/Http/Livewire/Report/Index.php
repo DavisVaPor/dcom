@@ -52,8 +52,6 @@ class Index extends Component
         ->where('estado','CONFIRMADO')
         ->orderBy('id','desc')->get();
 
-
-
         return view('livewire.report.index',[
             'reports' => $reports,
             'commissions' => $commissions,
@@ -92,7 +90,7 @@ class Index extends Component
         } else {
             $newreport = Report::create([
                 'asunto' => Str::upper($this->asunto),
-                'slug' => Str::slug($this->asunto,'-'),
+                'slug' => Str::slug($num.$this->asunto,'-'),
                 'tipo' => $tipo,
                 'numero' => $num + 1,
                 'fechaCreacion' => $this->fechactual,

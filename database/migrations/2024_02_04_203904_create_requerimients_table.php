@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('cantidad');
             $table->string('especificaciones',300);
             
-            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimient')->onDelete('cascade');
+            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimients')->onDelete('cascade');
 
             $table->timestamps();
         });

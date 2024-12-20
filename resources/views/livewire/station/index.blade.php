@@ -61,6 +61,7 @@
                 <option class="" value="PACC">PACC</option>
                 <option class="" value="CPACC">CPACC</option>
                 <option class="" value="Radio_HF">RADIO HF</option>
+                <option class="" value="ALMACEN">ALMACEN</option>
             </select>
             <select class="rounded-lg text-sm mr-2 " wire:model='sistema' name="" id="">
                 <option selected value="">Sistema</option>
@@ -78,13 +79,12 @@
                 <option class="" value="SIN">Sin Energia</option>
                 <option class="" value="ELECTRICA">Electrica</option>
                 <option class="" value="SOLAR">Solar</option>
-            </select> <select class="rounded-lg text-xs mr-2 " wire:model='siniestrado' name="" id="">
+            </select> 
+            <select class="rounded-lg text-xs mr-2 " wire:model='siniestrado' name="" id="">
                 <option selected value="">Siniestro</option>
                 <option class="" value="SI">Si</option>
                 <option class="" value="NO">No</option>
-            </select>
-
-            
+            </select> 
         </div>
 
         @isset($estations)
@@ -332,6 +332,7 @@
                         <option value="PACC">PACC</option>
                         <option value="CPACC">CPACC</option>
                         <option value="RADIO_HF">RADIO HF</option>
+                        <option value="ALMACEN">ALMACEN</option>
                     </select>
                 </div>
             </div>
@@ -360,6 +361,7 @@
                         <option value="">Seleccione</option>
                         <option value="VHF">VHF</option>
                         <option value="HF">HF</option>
+                        <option value="NULL">NULL</option>
                     </select>
                     <x-input-error for="station.sistema" class="mt-2" />
 

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_mantenimient', function (Blueprint $table) {
+        Schema::create('service_mantenimients', function (Blueprint $table) {
             $table->id();
             $table->enum('servicio',['DIAGNOSTICO','MANTENIMIENTO PREVENTIVO','MANTENIMIENTO CORRECTIVO']);
             $table->date('fechaServicio');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_mantenimient');
+        Schema::dropIfExists('service_mantenimients');
     }
 };

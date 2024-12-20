@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('acta');
             $table->date('fechaActa');
-            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimient')->onDelete('cascade');
+            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimients')->onDelete('cascade');
             $table->timestamps();
         });
     }

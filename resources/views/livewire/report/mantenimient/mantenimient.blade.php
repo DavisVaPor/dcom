@@ -212,6 +212,7 @@
                                             {{-- @livewire('report.report-articles', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 2">
+                                            @livewire('report.mantenimient.activity', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                             {{-- @livewire('report.report-activities', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 3">

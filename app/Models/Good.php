@@ -23,7 +23,7 @@ class Good extends Model
         return 'slug';
     }
     
-    public function estation(){
+    public function station(){
         return $this->belongsTo(Station::class);
     }
 

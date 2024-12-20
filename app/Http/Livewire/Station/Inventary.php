@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Good;
+namespace App\Http\Livewire\Station;
 
 use App\Models\Category;
 use App\Models\Good;
@@ -8,26 +8,20 @@ use App\Models\Station;
 use App\Models\System;
 use Livewire\Component;
 use Illuminate\Support\Str;
-use Livewire\WithPagination;
 
 
-class Index extends Component
+class Inventary extends Component
 {
-
-    use WithPagination;
-    public $search = '';
-    public $searchserie = '';
-    public $estation = '';
-    public $modalAdd = false;
+    public $estation;
     public $article;
-    public $tipo = 'ACTIVO';
-    public $cantidad = 1;
+    public $system;
+    public $search;
+    public $modalOpen = false;
     public $codPatrimonial;
 
     protected $rules = [
         'codPatrimonial' => 'required|size:12',
         'article.denominacion' => 'required',
-        'tipo' => 'required',
         'article.marca' => 'required',
         'article.modelo' => 'required',
         'article.color' => 'required',
@@ -39,31 +33,37 @@ class Index extends Component
         'article.system_id' => 'required',
     ];
 
+    protected $listeners = [
+        'articleinveset' => 'render',
+    ];
+
+
+    public function mount(Station $estation)
+    {
+        $this->estation = $estation;
+    }
+    
     public function render()
     {
-        $goods = Good::where('denominacion','LIKE','%'.$this->search.'%')
-                ->where('serie','LIKE','%'.$this->searchserie.'%')
-                ->where('station_id','LIKE','%'.$this->estation)
-                ->latest('denominacion');
+        $articles = Good::where('station_id',$this->estation->id)
+                    ->where('denominacion','LIKE','%'.$this->search.'%')
+                    ->where('system_id','LIKE','%'.$this->system.'%')
+                    ->paginate(15);
 
         $categories = Category::all();
-
         $systems = System::all();
 
-        $stations = Station::all();
-        $goods = Good::all();
-        return view('livewire.good.index',[
-            'goods' => $goods,
-            'stations' => $stations,
+        return view('livewire.station.inventary',[
+            'articles' => $articles,
             'categories' => $categories,
-            'systems' => $systems,
+            'systems' => $systems,            
         ]);
     }
 
-    public function add()
-    {
-        $this->modalAdd = true;
-        $this->reset('article','codPatrimonial','tipo');
+    function modalOpen() {
+        $this->modalOpen = true;
+        $this->reset('article');
+
     }
 
     public function saveArticle()
@@ -74,8 +74,7 @@ class Index extends Component
             'codPatrimonial' => $this->codPatrimonial,
             'denominacion' => $this->article['denominacion'],
             'slug' => Str::slug($this->article['denominacion'],'-'),
-            'tipo' => $this->tipo,
-            'cantidad' => $this->cantidad,
+            'tipo' => 'ACTIVO',
             'marca' => $this->article['marca'],
             'modelo' => $this->article['modelo'],
             'category_id' => $this->article['category_id'],
@@ -85,17 +84,12 @@ class Index extends Component
             'operatividad' => $this->article['operatividad'],
             'situacion' => $this->article['situacion'],
             'system_id' => $this->article['system_id'],
+            'station_id' => $this->estation->id,
         ]);
-        
-        $this->modalAdd = false;
-        $this->reset('article','codPatrimonial');
-    }
 
-    public function edit(Good $article)
-    {
-        $this->article = $article;
-        $this->modalAdd = true;
-
+        $this->emit('articleinveset');
+        $this->modalOpen = false;
+        $this->reset('article');
     }
 
     public function hydrate()
@@ -103,5 +97,4 @@ class Index extends Component
         $this->resetErrorBag();
         $this->resetValidation();
     }
-
 }

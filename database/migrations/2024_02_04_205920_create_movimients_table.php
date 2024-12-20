@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('fechamovimiento');
             $table->enum('tipo',['INSTALACION','RETIRO']);
-            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimient')->onDelete('cascade');
+            $table->foreignId('service_mantenimient_id')->constrained('service_mantenimients')->onDelete('cascade');
             $table->foreignId('good_id')->constrained('goods');
             $table->timestamps();
         });

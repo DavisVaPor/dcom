@@ -121,16 +121,17 @@
                 <div>
                     <x-label class="text-base mr-2 font-bold border-gray-200" for="codPatrimonial"
                         value="{{ __('Cod. Patrimonial') }}" />
-                    <x-input type="number" class="text-sm block w-auto font-semibold text-right"
-                        wire:model='codPatrimonial' maxlength="12" />
+                        <input type="number" maxlength="12" wire:model='codPatrimonial'>
+                    <x-input-error for="codPatrimonial" class="mt-2" />
                 </div>
                 <div>
                     <x-label class="text-base font-bold border-gray-200" for="tipo" value="{{ __('Tipo') }}" />
                     <select class="rounded-lg text-sm font-semibold" wire:model='tipo'>
-                        <option value="" selected></option>
+                        <option value="" selected>Seleccione</option>
                         <option value="SUMINISTRO">SUMINISTRO</option>
                         <option value="ACTIVO">EQUIPO</option>
                     </select>
+                    <x-input-error for="tipo" class="mt-2" />
                 </div>
 
                 @if ($tipo == 'SUMINISTRO')

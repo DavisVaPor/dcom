@@ -99,8 +99,8 @@
                                                 value="{{ $article->id }}" type="radio">
                                         </td>
                                         <td class="px-4 py-3">
-                                            @if ($article->codPatrimonial)
-                                                {{ $article->codPatrimonial }}
+                                            @if ($article->codPatrimonio)
+                                                {{ $article->codPatrimonio }}
                                             @else
                                                 Sin Codigo
                                             @endif

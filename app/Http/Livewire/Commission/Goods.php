@@ -27,7 +27,7 @@ class Goods extends Component
     
     public function render()
     {
-        $articles = Good::whereNull('station_id')
+        $articles = Good::where('station_id','0')
         ->where('denominacion','LIKE','%'.$this->search.'%')
         ->where('serie','LIKE','%'.$this->searchserie.'%')
         ->paginate(10);

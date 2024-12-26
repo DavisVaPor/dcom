@@ -114,8 +114,9 @@
                 <div class="my-8">
                     @if ($commission->tipo === 'MANTENIMIENTO')
                         <p class="font-bold underline">Estaciones a visitar:</p>
-                        @foreach ($commission->estations as $estation)
-                            <p class="ml-16 uppercase">{{ $estation->name }} - {{ $estation->ubigeo->distrito }},
+                        @foreach ($commission->stations as $estation)
+                            <p class="ml-16 uppercase">
+                                {{ $estation->name }} Sistema:{{ $estation->sistema }} : {{ $estation->tipo }} - {{ $estation->ubigeo->distrito }},
                                 {{ $estation->ubigeo->provincia }}</p>
                         @endforeach
                     @else
@@ -143,7 +144,7 @@
                                 </tr>
                             </thead>
                             <tbody class="text-sm text-center">
-                                @forelse($commission->articles as $article)
+                                @forelse($commission->goods as $article)
                                     <tr>
                                         <td class="text-left font-bold">{{ $article->denominacion }}</td>
                                         <td class="">{{ $article->codPatrimonial }}</td>

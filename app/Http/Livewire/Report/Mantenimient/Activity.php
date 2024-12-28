@@ -13,7 +13,7 @@ class Activity extends Component
     public $informe;
     public $estation;
     public $mantenimient;
-    public $activity;
+    public $servicio;
     public $selectedEstation;
 
     public $estadoEstacion;
@@ -22,12 +22,12 @@ class Activity extends Component
     public $modalDel = false;
 
     protected $rules = [
-        'activity.descripcion' => 'required',
+        'mantenimient.servicio' => 'required',
     ];
 
     protected $listeners = [
-        'activityAdd' => 'render',
-        'activitySup' => 'render',
+        'mantenimientAdd' => 'render',
+        'mantenimientSup' => 'render',
         'mantenimientoadd'=> 'render',
     ];
 
@@ -53,8 +53,8 @@ class Activity extends Component
         if (isset($this->activity->id)) {
             $this->activity->save();
         } else {
-            $this->informe->activities()->create([
-                'descripcion' => Str::upper($this->activity['descripcion']),
+            $this->informe->servicemantenimiento()->create([
+                'servicio' => Str::upper($this->activity['servicio']),
                 'estation_id' => $this->estation->id,
                 //'manteniemient_id' => $this->informe->mantenimient->id,
             ]);
@@ -77,7 +77,7 @@ class Activity extends Component
         }
         $activity->delete();
         $this->modalDel = false;
-        $this->emit('activitySup');
+        $this->emit('mantenimientSup');
     }
 
     public function editActivity(Activity $activity)

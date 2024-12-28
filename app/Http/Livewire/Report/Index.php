@@ -69,22 +69,21 @@ class Index extends Component
     {
         $commission = Commission::find($this->selectedCommission);
         $tipo = $commission->tipo;
+        $ultimo = 0;
 
-        isset(Report::where('user_id',auth()->user()->id)->latest()->first()) ? $ultimo = $this->report->numero : $ultimo = 0;
+        // isset(Report::where('user_id',auth()->user()->id)->latest()->first()) ? $ultimo = $this->report->numero : $ultimo = 0;
     
-        if (isset(Report::where('user_id',auth()->user()->id))->latest()->first()) {
+        /* if (isset(Report::where('user_id',auth()->user()->id))->latest()->first()) {
             $ultimo = Report::where('user_id',auth()->user()->id)->latest()->first();
         } else {
             $ultimo = 1;
-        }
-        
-        isset
+        } */
 
         if ($ultimo) {
             if (strftime('%Y', strtotime($this->fechactual)) != date('Y')) {
              $num = 0;
              } else {
-                 $num =  $ultimo->numero + 1;
+                 $num =  $ultimo + 1;
              }
          }else{
              $num = 0;

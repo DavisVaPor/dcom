@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Report\Mantenimient;
 
+use App\Models\Activity as ModelsActivity;
 use App\Models\Station;
+use App\Models\ServiceMantenimient;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -12,23 +14,28 @@ class Activity extends Component
 {
     public $informe;
     public $estation;
+    public $actividad;
     public $mantenimient;
-    public $servicio;
-    public $selectedEstation;
+    public $mantenimiento = 'DIAGNOSTICO';
+    public $servicio, $description;
+    public $servicemantenimiento;
 
     public $estadoEstacion;
 
-    public $modalAdd = false;
-    public $modalDel = false;
+    public $modalAdd = false, $modalAddActivity = false;
+    public $modalDel = false, $modalDelActivity = false;
 
     protected $rules = [
-        'mantenimient.servicio' => 'required',
+        'mantenimiento' => 'required',
+        'mantenimient.fechaServicio' => 'required',
+        'mantenimient.diagnostico' => 'required',
+        'mantenimient.acciones' => 'required',
     ];
 
     protected $listeners = [
         'mantenimientAdd' => 'render',
         'mantenimientSup' => 'render',
-        'mantenimientoadd'=> 'render',
+        'activityAdd' => 'render',
     ];
 
     public function mount(Station $estation)
@@ -38,29 +45,31 @@ class Activity extends Component
 
     public function render()
     {
-        return view('livewire.report.mantenimient.activity');
+        $this->servicemantenimiento = ServiceMantenimient::where('station_id', $this->estation->id)->where('report_id',$this->informe->id)->first(); 
+        
+        return view('livewire.report.mantenimient.activity',[
+            
+        ]);
     }
 
     public function addModal()
     {
-        $this->reset('activity');
+        $this->reset('mantenimient');
         $this->modalAdd = true;
     }
-
-    public function saveActivity()
+    
+    public function saveMantenimiento()
     {
         $this->validate();
-        if (isset($this->activity->id)) {
-            $this->activity->save();
-        } else {
             $this->informe->servicemantenimiento()->create([
-                'servicio' => Str::upper($this->activity['servicio']),
-                'estation_id' => $this->estation->id,
-                //'manteniemient_id' => $this->informe->mantenimient->id,
+                'servicio' => $this->mantenimiento,
+                'station_id' => $this->estation->id,
+                'diagnostico' => $this->mantenimient['diagnostico'],
+                'fechaServicio' => $this->mantenimient['fechaServicio'],
+                'acciones' => $this->mantenimient['acciones'],
             ]);
-        }
-        $this->emit('activityAdd');
-        $this->reset('activity');
+        $this->emit('mantenimientAdd');
+        $this->reset('mantenimient');
         $this->modalAdd = false;
     }
 
@@ -69,21 +78,44 @@ class Activity extends Component
         $this->modalDel = $id;
     }
 
-    public function deleteActivity(Activity $activity)
+    public function deleteMantenimiento(ServiceMantenimient $mantenimient)
     {
-        foreach ($activity->images as $image) {
-            $url = str_replace('storage','public',$image->url);
-            Storage::delete($url);
-        }
-        $activity->delete();
+        $mantenimient->delete();
         $this->modalDel = false;
         $this->emit('mantenimientSup');
     }
 
-    public function editActivity(Activity $activity)
+    public function addModalActivity() {
+        $this->reset('actividad');
+        $this->modalAddActivity = true;
+    }
+
+
+    public function saveActividad()
     {
-        $this->activity = $activity;
-        $this->selectedEstation = $this->activity->estation_id;
-        $this->modalAdd = true;
+        if (isset($this->actividad->id)) {
+            $this->actividad->save();
+        } else {
+            $this->servicemantenimiento->activities()->create([
+                'description' => $this->description,
+            ]);
+        }
+        $this->emit('activityAdd');
+        $this->reset('actividad');
+        $this->modalAddActivity = false;
+    }
+
+    public function deleteActividad(ModelsActivity $activity)
+    {
+        $activity->delete();
+        $this->emit('mantenimientSup');
+    }
+
+
+    public function editActivity(ModelsActivity $activity)
+    {
+        $this->actividad = $activity;
+        $this->description = $this->actividad->description;
+        $this->modalAddActivity = true;
     }
 }

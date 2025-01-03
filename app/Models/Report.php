@@ -35,7 +35,7 @@ class Report extends Model
     }
 
     public function servicemantenimiento(){
-        return $this->hasMany(ServiceMantenimient::class);
+        return $this->hasOne(ServiceMantenimient::class);
     }
 
     public function measurements(){

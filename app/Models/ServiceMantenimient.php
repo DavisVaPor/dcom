@@ -12,6 +12,8 @@ class ServiceMantenimient extends Model
         'servicio',
         'fechaServicio',
         'station_id',
+        'diagnostico',
+        'acciones',
         'report_id',
     ];
 

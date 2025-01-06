@@ -4,8 +4,7 @@
     </p>
 
     <div class="flex justify-end">
-        {{-- @livewire('report.article.install-equipament', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
-        {{-- @livewire('report.article.uptated', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+        @livewire('report.mantenimient.install', ['estation' => $estation, 'informe' => $informe], key($estation->estation))
         {{-- @livewire('report.article.retirototal', ['estation' => $estation,'informe' => $informe],key($estation->id)) --}}
     </div>
 
@@ -37,23 +36,23 @@
         </tr>
         @forelse ($articles as $article)
             <tr class="bg-gray-100 border-b border-gray-200">
-                <td class="px-4 font-bold ">{{ $article->codPatrimonial }}</td>
+                <td class="px-4 font-bold ">{{ $article->codPatrimonio }}</td>
                 <td class="px-4 py-1">{{ $article->denominacion }}</td>
-                <td class="px-4 py-1">{{ $article->nserie }}</td>
+                <td class="px-4 py-1">{{ $article->serie }}</td>
                 <td class="px-4 py-1 text-center">{{ $article->system->name }}</td>
                 <td class="px-4 py-1 text-center font-bold">
-                    @if ($article->estado == 'BUENO')
+                    @if ($article->condicion == 'BUENO')
                         <p class="text-green-500">
-                            {{ $article->estado }}
+                            {{ $article->condicion }}
                         </p>
                     @else
-                        @if ($article->estado == 'REGULAR')
+                        @if ($article->condicion == 'REGULAR')
                             <p class="text-yellow-500">
-                                {{ $article->estado }}
+                                {{ $article->condicion }}
                             </p>
                         @else
                             <p class="text-red-500">
-                                {{ $article->estado }}
+                                {{ $article->condicion }}
                             </p>
                         @endif
                     @endif
@@ -63,6 +62,8 @@
                         {{-- @livewire('report.article.reparations', ['article' => $article, 'estation' => $estation, 'informe' => $informe], key($article->id))
 
                         @livewire('report.article.retiro', ['article' => $article, 'estation' => $estation, 'informe' => $informe], key($article->id)) --}}
+
+                        @livewire('report.mantenimient.retiro', ['estation' => $estation, 'informe' => $informe, 'article' => $article], key($estation->estation))
                     </div>
                 </td>
             </tr>
@@ -75,5 +76,4 @@
         @endforelse
     </table>
     {{ $articles->links() }}
-
 </div>

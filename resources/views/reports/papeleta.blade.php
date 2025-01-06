@@ -47,7 +47,7 @@
         <body class="font-sans">
 
             <p class="text-center text-2xl font-bold mt-6">
-                PAPELETA DE {{ $ballot->tipo }} - {{ $ballot->numero }}
+                PAPELETA DE {{ $ballot->tipo }} - {{ $ballot->numero }} - DCOM
             </p>
 
             <p class="underline">

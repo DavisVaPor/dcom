@@ -204,7 +204,7 @@
                     <x-input-error for="article.operatividad" class="mt-2" />
                 </div>
 
-                <div class="w-1/3 col-span-6 sm:col-span-4">
+                {{-- <div class="w-1/3 col-span-6 sm:col-span-4">
                     <x-label class="text-base font-bold border-gray-200" for="situacion"
                         value="{{ __('Situacion') }}" />
                     <select class="rounded-lg text-sm w-full font-semibold" wire:model.defer='article.situacion'>
@@ -213,7 +213,8 @@
                         <option value="DESUSO">DESUSO</option>
                     </select>
                     <x-input-error for="article.situacion" class="mt-2" />
-                </div>
+                </div> --}}
+                
             </div>
             <div class="flex mt-2">
                 @if ($tipo == 'ACTIVO')

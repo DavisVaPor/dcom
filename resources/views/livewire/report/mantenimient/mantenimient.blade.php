@@ -152,7 +152,7 @@
                                                 </a>
                                             </li>
 
-                                            <li @click="openTab = 3" class="mr-1 cursor-pointer">
+                                            {{-- <li @click="openTab = 3" class="mr-1 cursor-pointer">
                                                 <a :class="openTab === 3 ? activeClass : inactive"
                                                     class="bg-gray-100 py-2 px-2 flex items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
@@ -162,7 +162,7 @@
                                                     </svg>
                                                     <span class="text-sm">Requerimientos</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
 
                                             <li @click="openTab = 4" class="mr-1 cursor-pointer">
                                                 <a :class="openTab === 4 ? activeClass : inactive"
@@ -222,15 +222,13 @@
                                         </ul>
                                         <div x-show="openTab === 1">
                                             @livewire('report.mantenimient.inventary', ['estation' => $estation, 'informe' => $informe], key($estation->id))
-                                            {{-- @livewire('report.report-articles', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
                                         <div x-show="openTab === 2">
                                             @livewire('report.mantenimient.activity', ['estation' => $estation, 'informe' => $informe], key($estation->id))
-                                            {{-- @livewire('report.report-activities', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
-                                        <div x-show="openTab === 3">
-                                            {{-- @livewire('report.estation.requirements', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
-                                        </div>
+                                        {{-- <div x-show="openTab === 3">
+                                            @livewire('report.mantenimient.requerimients', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                        </div> --}}
                                         <div x-show="openTab === 4">
                                             {{-- @livewire('report.report-observations', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>

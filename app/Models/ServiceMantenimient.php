@@ -25,7 +25,7 @@ class ServiceMantenimient extends Model
         return $this->belongsTo(Report::class);
     }
 
-    public function image(){
+    public function images(){
         return $this->hasMany(ImageService::class);
     }
 
@@ -43,5 +43,9 @@ class ServiceMantenimient extends Model
 
     public function movimients(){
         return $this->hasMany(Movimient::class);
+    }
+
+    public function observations(){
+        return $this->hasMany(Observation::class);
     }
 }

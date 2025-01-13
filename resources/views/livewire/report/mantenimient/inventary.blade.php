@@ -4,7 +4,7 @@
     </p>
 
     <div class="flex justify-end">
-        @livewire('report.mantenimient.install', ['estation' => $estation, 'informe' => $informe], key($estation->estation))
+        @livewire('report.mantenimient.install', ['estation' => $estation, 'informe' => $informe], key($estation->estation))   
         {{-- @livewire('report.article.retirototal', ['estation' => $estation,'informe' => $informe],key($estation->id)) --}}
     </div>
 

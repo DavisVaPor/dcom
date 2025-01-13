@@ -120,24 +120,7 @@
                                     };">
                                         <ul class="list-reset flex mt-4">
                                             <li @click="openTab = 1" class="mr-1 cursor-pointer">
-
                                                 <a :class="openTab === 1 ? activeClass : inactive"
-                                                    class="bg-gray-100 py-2 px-2 flex items-center ">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                                        data-icon="boxes"
-                                                        class="h-6 w-6 svg-inline--fa fa-boxes fa-w-18 mr-2"
-                                                        role="img" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 576 512">
-                                                        <path fill="currentColor"
-                                                            d="M560 288h-80v96l-32-21.3-32 21.3v-96h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16zm-384-64h224c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16h-80v96l-32-21.3L256 96V0h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16zm64 64h-80v96l-32-21.3L96 384v-96H16c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16z">
-                                                        </path>
-                                                    </svg>
-                                                    <span class="text-sm">Inventario</span>
-                                                </a>
-                                            </li>
-
-                                            <li @click="openTab = 2" class="mr-1 cursor-pointer">
-                                                <a :class="openTab === 2 ? activeClass : inactive"
                                                     class="bg-gray-100 py-2 px-2 flex items-center">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas"
                                                         data-icon="tools"
@@ -149,6 +132,23 @@
                                                         </path>
                                                     </svg>
                                                     <span class="text-sm">Actvidades</span>
+                                                </a>
+                                            </li>
+
+                                            <li @click="openTab = 2" class="mr-1 cursor-pointer">
+
+                                                <a :class="openTab === 2 ? activeClass : inactive"
+                                                    class="bg-gray-100 py-2 px-2 flex items-center ">
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                        data-icon="boxes"
+                                                        class="h-6 w-6 svg-inline--fa fa-boxes fa-w-18 mr-2"
+                                                        role="img" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 576 512">
+                                                        <path fill="currentColor"
+                                                            d="M560 288h-80v96l-32-21.3-32 21.3v-96h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16zm-384-64h224c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16h-80v96l-32-21.3L256 96V0h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16zm64 64h-80v96l-32-21.3L96 384v-96H16c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16z">
+                                                        </path>
+                                                    </svg>
+                                                    <span class="text-sm">Inventario</span>
                                                 </a>
                                             </li>
 
@@ -220,26 +220,26 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <div x-show="openTab === 1">
+                                        <div x-show="openTab === 2">
                                             @livewire('report.mantenimient.inventary', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
-                                        <div x-show="openTab === 2">
+                                        <div x-show="openTab === 1">
                                             @livewire('report.mantenimient.activity', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                         {{-- <div x-show="openTab === 3">
                                             @livewire('report.mantenimient.requerimients', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div> --}}
                                         <div x-show="openTab === 4">
-                                            {{-- @livewire('report.report-observations', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.observations', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                         <div x-show="openTab === 5">
-                                            {{-- @livewire('report.estation.moviments', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.movimients', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                         <div x-show="openTab === 6">
-                                            {{-- @livewire('report.estation.images', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.galery', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                         <div x-show="openTab === 7">
-                                            {{-- @livewire('report.report-actas', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.actas', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                     </div>
                                 </section>

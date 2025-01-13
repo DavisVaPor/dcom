@@ -1,21 +1,23 @@
 <div>
-    <div class="flex justify-end items-center">
-        @if ($informe->estado == 'BORRADOR')
-            <x-button wire:click="addModal" class="bg-green-500 justify-end">
-                Instalar Equipo
-                <span class="w-6 h-6 ml-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </span>
-            </x-button>
-        @endif
+    <div class="flex justify-end items-center p-4">
+        @isset($servicemantenimiento)
+            @if ($informe->estado == 'BORRADOR')
+                <x-button wire:click="addModal" class="bg-green-500 justify-end">
+                    Instalar Equipo
+                    <span class="w-6 h-6 ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                </x-button>
+            @endif
+        @endisset
     </div>
 
-     {{-- Modal de Agregar --}}
-     <x-dialog-modal wire:model="modalAdd">
+    {{-- Modal de Agregar --}}
+    <x-dialog-modal wire:model="modalAdd">
         <x-slot name="title">
             <h1 class="font-bold uppercase">Instalar equipo</h1>
         </x-slot>
@@ -25,8 +27,8 @@
                 <div class="m-2">
                     <x-label class="text-base uppercase font-bold border-gray-200" for="fecha"
                         value="{{ __('Fecha de instalacion') }}" />
-                    <input class="rounded-xl text-sm" type="date" name="fecha" id="fecha"
-                        wire:model='fecha' max="{{$fechaActual}}">
+                    <input class="rounded-xl text-sm" type="date" name="fecha" id="fecha" wire:model='fecha'
+                        max="{{ $fechaActual }}">
                     <x-input-error for="fecha" class="mt-2" />
                 </div>
                 <x-label class="text-base font-bold border-gray-200 uppercase" for="ArticleSelect"

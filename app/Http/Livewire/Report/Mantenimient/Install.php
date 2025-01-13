@@ -26,6 +26,8 @@ class Install extends Component
 
     protected $listeners = [
         'EquipoInstall' => 'render',
+        'mantenimientAdd' => 'render',
+        'mantenimientSup' => 'render',
     ];
 
     public function mount(Station $estation)

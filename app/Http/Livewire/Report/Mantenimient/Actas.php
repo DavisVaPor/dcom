@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Report\Mantenimient;
 
 use App\Models\Acta;
+use App\Models\ServiceMantenimient;
 use App\Models\Station;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -19,12 +20,13 @@ class Actas extends Component
     public $modalInfo = false;
     public $visualizarActa;
     public $modalEliminar = false;
+    public $servicemantenimiento;
 
     public $fechaActual;
     public $fechaActa;
 
     protected $rules = [
-        'image' => 'required|file|max:3064',
+        'file_url' => 'required|file|max:3064',
         'fechaActa' => 'required|date|before:fechaActual',
     ];
 
@@ -33,7 +35,6 @@ class Actas extends Component
         'ActaDelete' => 'render',
     ];
 
-    
     public function mount(Station $estation)
     {
         $this->estation = $estation;
@@ -41,6 +42,8 @@ class Actas extends Component
 
     public function render()
     {
+        $this->servicemantenimiento = ServiceMantenimient::where('station_id', $this->estation->id)->where('report_id',$this->informe->id)->first(); 
+        $this->fechaActual = date('Y-m-d');
         return view('livewire.report.mantenimient.actas');
     }
 
@@ -53,24 +56,15 @@ class Actas extends Component
     public function save()
     {   
         $this->validate();
-        $carpeta = 'ActaMantenimientos' . '/'. 'Acta'.$this->estation->id.$this->estation->name;
-        $name = 'ActaMantenimiento'.$this->estation->name.now()->timestamp.'.pdf';
+        $carpeta = 'public'.'/'.'ActaMantenimientos'.'/'.$this->estation->id.$this->estation->name;
+        $name = 'ActaMantenimiento'.$this->servicemantenimiento->id.'.pdf';
         $acta_url = $this->file_url->storeAs($carpeta,$name);
 
-        if (isset($this->acta->id)) {
-            Storage::delete($this->acta->file_url);
-
-            $this->acta->name = 'ActaMantenimiento'.'-'.'-'.$this->estation->name.'-'.$this->fechaActa;
-            $this->acta->fecha = $this->fechaActa;
-            $this->acta->file_url =  $acta_url;
-        } else {
-            $this->informe->actas()->create([
-                'name' => 'ActaMantenimiento'.'-'.'-'.$this->estation->name.'-'.$this->fechaActa,
-                'fecha' => $this->fechaActa,
-                'estation_id' => $this->estation->id,
+            $this->servicemantenimiento->actas()->create([
+                'acta' => 'ActaMantenimiento'.'-'.$this->estation->name.'-'.$this->fechaActa,
+                'fechaActa' => $this->fechaActa,
                 'file_url' => $acta_url,
             ]);
-        }
 
         $this->emit('acta');
         $this->reset(['file_url', 'acta']);
@@ -78,6 +72,7 @@ class Actas extends Component
     }
 
     public function infoActa(Acta $acta) {
+        
         $this->visualizarActa =  $acta;
         $this->modalInfo = true;
     }
@@ -94,12 +89,5 @@ class Actas extends Component
         $this->modalEliminar = false;
         $this->reset('acta');
         $this->emit('ActaDelete');
-    }
-
-    public function editModal(Acta $acta) {
-        $this->acta = $acta;
-        $this->fechaActa = $acta->fecha;
-        $this->file_url = $acta->file_url;
-        $this->modalAdd = true;
     }
 }

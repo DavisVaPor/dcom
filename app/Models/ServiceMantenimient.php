@@ -37,7 +37,7 @@ class ServiceMantenimient extends Model
         return $this->hasMany(Activity::class);
     }
 
-    public function acta(){
+    public function actas(){
         return $this->hasMany(Acta::class);
     }
 

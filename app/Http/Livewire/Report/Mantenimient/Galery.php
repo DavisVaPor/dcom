@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Report\Mantenimient;
 
 use App\Models\ImageService;
+use App\Models\ServiceMantenimient;
+use Livewire\WithFileUploads;
 use App\Models\Station;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
@@ -10,9 +12,11 @@ use Illuminate\Support\Facades\Storage;
 
 class Galery extends Component
 {
+    use WithFileUploads;
+
     public $estation;
     public $informe;
-    public $imagen;
+    public $imagen, $servicemantenimiento;
     public $modalAdd = false;
     public $modalDel = false;
 
@@ -21,14 +25,20 @@ class Galery extends Component
         'imageSup' => 'render'
     ];
 
+    protected $rules = [
+        'imagen' => 'required|image',
+    ];
+
     public function mount(Station $estation)
     {
         $this->estation = $estation;
     }
-    
+
 
     public function render()
     {
+        $this->servicemantenimiento = ServiceMantenimient::where('station_id', $this->estation->id)->where('report_id',$this->informe->id)->first(); 
+
         return view('livewire.report.mantenimient.galery');
     }
 
@@ -37,30 +47,21 @@ class Galery extends Component
         $this->modalAdd = true;
     }
 
-    public function delImage($id)
-    {
-        $this->reset('image');
-        $this->imagen = '';
-        $this->modalDel = $id;
-    }
-
     public function saveImage()
     {
         $this->validate();
+        $carpeta = 'public'.'/'.'GaleriaMant'.'/'.$this->estation->id.$this->estation->name;
+        $name = date('YmdHis').$this->servicemantenimiento->id.'.jpg';
+        $imagen_url = $this->imagen->storeAs($carpeta,$name);
 
-        if (isset($this->image->id)) {
-            $this->image->save();
-        } else {
-            $imagen = $this->imagen->store($this->informe->id.$this->estation->id.'/img');
-            
-                $this->activity->images()->create([
-                    'name' => 'estation'.'-'.$this->estation->id.$this->estation->name,
-                    'imagen' => $imagen,
-                ]);
+        $this->servicemantenimiento->images()->create([
+            'name' => 'estation' . '-' . $this->estation->id . $this->estation->name.date('YmdHis'),
+            'image' => $imagen_url,
+        ]);
+        $this->modalAdd = false;
 
-            $this->reset(['image','imagen']);
-        }
-        $this->emit('imageSave');
+        $this->emit('imageSave');  
+        $this->reset(['imagen']);
     }
 
     public function mostrarDel($id)
@@ -70,11 +71,17 @@ class Galery extends Component
 
     public function deleteImage(ImageService $image)
     {
-        $url = str_replace('storage','public',$image->url);
-        
+        $url = str_replace('storage', 'public', $image->url);
+
         Storage::delete($url);
         $image->delete();
         $this->modalDel = false;
         $this->emit('imageSup');
+    }
+
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
 }

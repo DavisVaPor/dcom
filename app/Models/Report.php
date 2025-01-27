@@ -39,7 +39,7 @@ class Report extends Model
     }
 
     public function measurements(){
-        return $this->hasMany(Measuremnet::class);
+        return $this->hasMany(Measurement::class);
     }
 
     public function findings()

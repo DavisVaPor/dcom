@@ -12,7 +12,7 @@
                                 MANTENIEMIENTO DE LOS SISTEMAS DE COMUNICACIONES
                             @else
                                 @if ($informe->tipo === 'SUPERVISION')
-                                    MEDICION DE RADIACION NO IONIZANTE (RNI)
+                                    SUPERVISION DE LOS SERVICIOS DE TELECOMUNICACIONES
                                 @else
                                     PROMOCION DE LAS TELECOMUNIACIONES
                                 @endif
@@ -156,11 +156,7 @@
                                 max-height: 100vh;
                             }
                         </style>
-                        <main class="w-full mx-auto">
-                            {{-- <section class="shadow row">
-                                <livewire:report.report-systems :informe="$informe">
-                            </section> --}}
-                        </main>
+
                     </div>
                 </div>
             @endif
@@ -168,14 +164,19 @@
 
         </section>
 
-        @if ($informe->tipo == 'SUPERVISION')
+        @if ($informe->commission->tipo == 'SUPERVISION')
             <section>
-                <livewire:report.report-measurements :informe="$informe">
+                @livewire('report.supervision.mediciones',  ['informe' => $informe], key($informe->id))
+            </section>
+        @endif
+        @if ($informe->commission->tipo == 'SUPERVISIONs')
+            <section>
+                @livewire('report.supervision.constataciones',  ['informe' => $informe], key($informe->id))
             </section>
         @endif
         @if ($informe->tipo == 'PROMOCION')
             <section>
-                <livewire:report.promotion.promotions :informe="$informe">
+                @livewire('report.promocion.promocion',  ['informe' => $informe], key($informe->id))
             </section>
         @endif
 

@@ -80,7 +80,7 @@ class Index extends Component
              }
          }else{
              $num = 0;
-         } */
+         }
 
         $num = 0;
 

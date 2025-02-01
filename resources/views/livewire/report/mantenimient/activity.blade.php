@@ -93,8 +93,8 @@
         <x-slot name="content">
             <div class="mb-2 flex justify-between">
                 <h1 class="font-bold uppercase">Estacion:{{ $estation->name }}</h1>
-                @isset($informe->servicemantenimiento)
-                    <h1 class="font-bold uppercase">Tipo de Servicio:
+                {{-- @isset($informe->servicemantenimiento) --}}
+                    {{-- <h1 class="font-bold uppercase">Tipo de Servicio:
                         <span class="ml-1 text-green-800">
                             @if ($informe->servicemantenimiento->tipo == 'DIAGNOSTICO')
                                 {{ $informe->mantenimient->tipo }}
@@ -106,8 +106,10 @@
                                 MANTENIMIENTO CORRECTIVO
                             @endif
                         </span>
-                    </h1>
-                @endisset
+                    </h1> --}}
+                {{-- @endisset --}}
+
+                
             </div>
             <div class="block">
                 <x-label class="text-base font-bold border-gray-200" for="name"

@@ -16,6 +16,14 @@ class Movimient extends Model
         return $this->belongsTo(Good::class);
     }
 
+    public function station_in(){
+        return $this->belongsTo(Station::class);
+    }
+
+    public function station_out(){
+        return $this->belongsTo(Station::class);
+    }
+
     protected $fillable = [
         'fechamovimiento',
         'tipo',

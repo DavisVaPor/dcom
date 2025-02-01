@@ -16,6 +16,7 @@ class Acta extends Model
     protected $fillable = [
         'acta',
         'fechaActa',
+        'file_url',
         'service_mantenimient_id',
     ];
 }

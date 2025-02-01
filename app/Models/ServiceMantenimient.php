@@ -12,6 +12,8 @@ class ServiceMantenimient extends Model
         'servicio',
         'fechaServicio',
         'station_id',
+        'diagnostico',
+        'acciones',
         'report_id',
     ];
 
@@ -23,7 +25,7 @@ class ServiceMantenimient extends Model
         return $this->belongsTo(Report::class);
     }
 
-    public function image(){
+    public function images(){
         return $this->hasMany(ImageService::class);
     }
 
@@ -35,11 +37,15 @@ class ServiceMantenimient extends Model
         return $this->hasMany(Activity::class);
     }
 
-    public function acta(){
+    public function actas(){
         return $this->hasMany(Acta::class);
     }
 
     public function movimients(){
         return $this->hasMany(Movimient::class);
+    }
+
+    public function observations(){
+        return $this->hasMany(Observation::class);
     }
 }

@@ -41,6 +41,7 @@ class Index extends Component
 
     public function render()
     {   
+        $this->fechaActual = date('Y-m-d');
 
         $commissions = Commission::where('comision', 'LIKE', '%' . $this->search . '%')
             ->where('numero', 'LIKE', '%' . $this->searchcode . '%')

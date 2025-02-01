@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\Report\Mantenimient\Movimients;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,7 +32,6 @@ class Station extends Model
         return 'slug';
     }
     
-
     public function ubigeo()
     {
         return $this->belongsTo(Ubigeo::class);
@@ -54,5 +54,9 @@ class Station extends Model
 
     public function servicemantenimiento(){
         return $this->hasMany(ServiceMantenimient::class);
+    }
+
+    public function movimients(){
+        return $this->hasMany(Movimient::class);
     }
 }

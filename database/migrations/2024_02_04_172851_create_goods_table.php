@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('serie');
             $table->string('color');
             $table->enum('operatividad',['OPERATIVO','INOPERATIVO']);
-            $table->enum('situacion',['USO','DESUSO']);
+            $table->enum('situacion',['INSTALADO','COMISION','ALMACEN']);
             $table->enum('condicion',['BUENO','REGULAR','MALO']);
             $table->string('imagen')->nullable();
             $table->enum('estado',['ALTA','BAJA']);

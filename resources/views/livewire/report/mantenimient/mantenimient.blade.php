@@ -58,8 +58,20 @@
                                     </div>
                                     <div class="text-base text-gray-900">
                                         <div class="flex justify-between">
-                                            <p class="mx-4">MAPS:<span
-                                                    class="font-extrabold  ml-2"></span></p>
+                                            <p class="mx-4">MAPS:<span class="font-extrabold  ml-2">
+                                                    <a href="https://www.google.com/maps/place/{{ $estation->latitud }}{{ $estation->longitud }}"
+                                                        class="text-green-500 hover:text-green-700 cursor-pointer "
+                                                        target="_blank">
+                                                        <svg class="svg-inline--fa fa-globe fa-w-16 w-4 h-4 "
+                                                            role="img" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 496 512">
+                                                            <path fill="currentColor"
+                                                                d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z">
+                                                            </path>
+                                                        </svg>
+                                                    </a>
+                                                </span>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +103,8 @@
                                         <p class="mx-4">CONTACTO:<span
                                                 class="font-extrabold  ml-2">{{ $estation->contacto_name }}</span></p>
                                         <p class="mx-4">TELEFONO:<span
-                                                class="font-extrabold  ml-2">{{ $estation->contacto_numero }}</span></p>
+                                                class="font-extrabold  ml-2">{{ $estation->contacto_numero }}</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -107,24 +120,7 @@
                                     };">
                                         <ul class="list-reset flex mt-4">
                                             <li @click="openTab = 1" class="mr-1 cursor-pointer">
-
                                                 <a :class="openTab === 1 ? activeClass : inactive"
-                                                    class="bg-gray-100 py-2 px-2 flex items-center ">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                                        data-icon="boxes"
-                                                        class="h-6 w-6 svg-inline--fa fa-boxes fa-w-18 mr-2"
-                                                        role="img" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 576 512">
-                                                        <path fill="currentColor"
-                                                            d="M560 288h-80v96l-32-21.3-32 21.3v-96h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16zm-384-64h224c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16h-80v96l-32-21.3L256 96V0h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16zm64 64h-80v96l-32-21.3L96 384v-96H16c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16z">
-                                                        </path>
-                                                    </svg>
-                                                    <span class="text-sm">Inventario</span>
-                                                </a>
-                                            </li>
-
-                                            <li @click="openTab = 2" class="mr-1 cursor-pointer">
-                                                <a :class="openTab === 2 ? activeClass : inactive"
                                                     class="bg-gray-100 py-2 px-2 flex items-center">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas"
                                                         data-icon="tools"
@@ -139,7 +135,24 @@
                                                 </a>
                                             </li>
 
-                                            <li @click="openTab = 3" class="mr-1 cursor-pointer">
+                                            <li @click="openTab = 2" class="mr-1 cursor-pointer">
+
+                                                <a :class="openTab === 2 ? activeClass : inactive"
+                                                    class="bg-gray-100 py-2 px-2 flex items-center ">
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                        data-icon="boxes"
+                                                        class="h-6 w-6 svg-inline--fa fa-boxes fa-w-18 mr-2"
+                                                        role="img" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 576 512">
+                                                        <path fill="currentColor"
+                                                            d="M560 288h-80v96l-32-21.3-32 21.3v-96h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16zm-384-64h224c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16h-80v96l-32-21.3L256 96V0h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16zm64 64h-80v96l-32-21.3L96 384v-96H16c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16z">
+                                                        </path>
+                                                    </svg>
+                                                    <span class="text-sm">Inventario</span>
+                                                </a>
+                                            </li>
+
+                                            {{-- <li @click="openTab = 3" class="mr-1 cursor-pointer">
                                                 <a :class="openTab === 3 ? activeClass : inactive"
                                                     class="bg-gray-100 py-2 px-2 flex items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
@@ -149,7 +162,7 @@
                                                     </svg>
                                                     <span class="text-sm">Requerimientos</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
 
                                             <li @click="openTab = 4" class="mr-1 cursor-pointer">
                                                 <a :class="openTab === 4 ? activeClass : inactive"
@@ -207,28 +220,26 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <div x-show="openTab === 1">
-                                            @livewire('report.mantenimient.inventary', ['estation' => $estation, 'informe' => $informe], key($estation->id))
-                                            {{-- @livewire('report.report-articles', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
-                                        </div>
                                         <div x-show="openTab === 2">
+                                            @livewire('report.mantenimient.inventary', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                        </div>
+                                        <div x-show="openTab === 1">
                                             @livewire('report.mantenimient.activity', ['estation' => $estation, 'informe' => $informe], key($estation->id))
-                                            {{-- @livewire('report.report-activities', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
                                         </div>
-                                        <div x-show="openTab === 3">
-                                            {{-- @livewire('report.estation.requirements', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
-                                        </div>
+                                        {{-- <div x-show="openTab === 3">
+                                            @livewire('report.mantenimient.requerimients', ['estation' => $estation, 'informe' => $informe], key($estation->id))
+                                        </div> --}}
                                         <div x-show="openTab === 4">
-                                            {{-- @livewire('report.report-observations', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.observations', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                         <div x-show="openTab === 5">
-                                            {{-- @livewire('report.estation.moviments', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.movimients', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                         <div x-show="openTab === 6">
-                                            {{-- @livewire('report.estation.images', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.galery', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                         <div x-show="openTab === 7">
-                                            {{-- @livewire('report.report-actas', ['estation' => $estation, 'informe' => $informe], key($estation->id)) --}}
+                                            @livewire('report.mantenimient.actas', ['estation' => $estation, 'informe' => $informe], key($estation->id))
                                         </div>
                                     </div>
                                 </section>

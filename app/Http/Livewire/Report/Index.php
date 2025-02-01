@@ -69,8 +69,6 @@ class Index extends Component
     {
         $commission = Commission::find($this->selectedCommission);
         $tipo = $commission->tipo;
-
-        /*whereNull
         
         $ultimo = Report::where('user_id',auth()->user()->id)->latest()->first();
 
@@ -78,7 +76,7 @@ class Index extends Component
             if (strftime('%Y', strtotime($this->fechactual)) != date('Y')) {
              $num = 0;
              } else {
-                 $num =  $ultimo->numero + 1;
+                 $num =  $ultimo + 1;
              }
          }else{
              $num = 0;

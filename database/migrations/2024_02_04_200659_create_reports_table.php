@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('fechaCreacion');
             $table->enum('estado',['BORRADOR','PRESENTADO']);
 
-            $table->foreignId('commission_id')->constrained('commissions')->onDelete('cascade');
+            $table->foreignId('commission_id')->constrained('commissions')->onDelete('cascade')
 
             $table->timestamps();
         });

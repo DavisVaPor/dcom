@@ -115,8 +115,7 @@
                     @if ($commission->tipo === 'MANTENIMIENTO')
                         <p class="font-bold underline">Estaciones a visitar:</p>
                         @foreach ($commission->stations as $estation)
-                            <p class="ml-16 uppercase">
-                                {{ $estation->name }} {{ $estation->sistema }}:{{ $estation->tipo }} - {{ $estation->ubigeo->distrito }},
+                            <p class="ml-16 uppercase">{{ $estation->name }} - {{ $estation->ubigeo->distrito }},
                                 {{ $estation->ubigeo->provincia }}</p>
                         @endforeach
                     @else

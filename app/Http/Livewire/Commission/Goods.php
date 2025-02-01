@@ -45,7 +45,12 @@ class Goods extends Component
 
     public function addArticle()
     {
+        $article = Good::findOrFail($this->ArticleSelect);
+        
         $this->commission->goods()->attach($this->selectedArticle);
+
+        $article->situacion = 'COMISION';
+
         $this->modalAdd = false;
         $this->emit('articleAttach');
     }

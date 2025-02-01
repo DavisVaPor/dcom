@@ -21,5 +21,6 @@ class Observation extends Model
     protected $fillable = [
         'description',
         'service_mantenimient_id',
+        'nivel',
     ];
 }

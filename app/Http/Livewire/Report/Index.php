@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Report;
 use App\Models\Commission;
 use App\Models\Report;
 use App\Models\User;
-use DragonCode\Contracts\Cashier\Auth\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;

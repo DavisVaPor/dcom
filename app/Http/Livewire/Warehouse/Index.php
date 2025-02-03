@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Good;
+namespace App\Http\Livewire\Warehouse;
 
 use App\Models\Category;
 use App\Models\Good;
@@ -10,11 +10,10 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 
-
 class Index extends Component
 {
     use WithPagination;
-    public $search= '';
+    public $search = '';
     public $sserie = '';
     public $spatrimonio = '';
     public $includeNulls;
@@ -42,20 +41,25 @@ class Index extends Component
 
     public function render()
     {
-        $this->goods = Good::where('denominacion','LIKE','%'.$this->search.'%')
-                ->where('serie','LIKE','%'.$this->sserie.'%')
-                ->where('codPatrimonio','LIKE','%'.$this->spatrimonio.'%')
-                ->where('station_id','LIKE',$this->estation)
-                ->latest('denominacion')->get();
-        //$this->goods = Good::whereNull('station_id')->get();
-   
+        /* $this->goods = Good::where('denominacion', 'LIKE', '%' . $this->search . '%')
+            ->where('serie', 'LIKE', '%' . $this->sserie . '%')
+            ->where('codPatrimonio', 'LIKE', '%' . $this->spatrimonio . '%')
+            ->where('station_id', 'LIKE', $this->estation)
+            ->latest('denominacion')->get(); */
+
+        $this->goods = Good::whereNull('station_id')
+                            ->where('denominacion', 'LIKE', '%' . $this->search . '%')
+                            ->where('serie', 'LIKE', '%' . $this->sserie . '%')
+                            ->where('codPatrimonio', 'LIKE', '%' . $this->spatrimonio . '%')
+                            ->get();
+
         $categories = Category::all();
 
         $systems = System::all();
 
         $stations = Station::all();
 
-        return view('livewire.good.index',[
+        return view('livewire.warehouse.index', [
             'stations' => $stations,
             'categories' => $categories,
             'systems' => $systems,

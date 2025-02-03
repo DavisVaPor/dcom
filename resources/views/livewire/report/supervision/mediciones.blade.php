@@ -113,7 +113,6 @@
                     <div>
                         <x-label class="text-base border-gray-200 font-semibold" for="name"
                             value="{{ __('LATITUD') }}" />
-                        <p></p>
                         <div class="flex items-center text-xs">
                             <x-input id="Latitud" type="number" class="w-16 mt-1 rounded-xl block"
                                 wire:model='latgra' />
@@ -153,14 +152,14 @@
                         <x-label class="text-base font-bold border-gray-200 mt-2" for="name"
                             value="{{ __('Fecha') }}" />
                         <input class="rounded-xl" type="date" max="{{ $fechaActual }}" name=""
-                            id="" wire:model.defer='measurement.fecha'>
+                            id="" wire:model.defer='measurement.fecha' />
                         <x-input-error for="measurement.fecha" class="mt-2" />
                     </div>
                     <div class="ml-8">
                         <x-label class="text-base font-bold border-gray-200 mt-2" for="name"
                             value="{{ __('Valor de RNI') }}" />
                         <input class="rounded-xl" type="text" name="" id=""
-                            wire:model.defer='measurement.rni'>
+                            wire:model.defer='measurement.rni' />
                         <x-input-error for="measurement.rni" class="mt-2" />
                     </div>
                 </div>
@@ -179,16 +178,15 @@
                 </div>
                 <div wire:loading wire:target="imagen" class="bg-yellow-300 border-l-4 border-red-300 p-4 m-auto"
                     role="alert">
-                    <p class="font-bold text-center">Previsualizacion</p>
                     <p>Cargando la imagen ...</p>
                 </div>
+            </div>
         </x-slot>
 
         <x-slot name="footer">
             <x-secondary-button wire:click="$set('modalAdd',false)" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-secondary-button>
-
             <x-button class="ml-2" wire:click="save()" wire:loading.attr="disabled">
                 {{ __('Guardar') }}
             </x-button>
@@ -219,47 +217,47 @@
     </x-dialog-modal>
 
     {{-- Modal de Ver Evidencia --}}
-    @isset($openimagen)
+     @isset($openimagen)
         <x-dialog-modal wire:model="modalImagen">
             <x-slot name="title">
                 <h1 class="uppercase">Evidencia de La Medicion de RNI</h1>
             </x-slot>
-
-            <x-slot name="content">
-                <h1 class="uppercase font-bold text-lg">Medicion de {{ $openimagen->ubicacion }}</h1>
-                <div class=" ">
-                    <div class=" shadow-md border  rounded-lg">
-                        <div>
-                            <img class="rounded-t-lg m-auto w-96 h-auto" src="{{ Storage::url($openimagen->imagen) }}">
-                        </div>
-                        <div class="mx-4 my-2 text-base uppercase">
-                            <label class="text-center text-lg underline my-2" for="">Detalles del Registro
-                            </label>
-                            <p class="border-b border-gray-200">Fecha de Medicion : <span
-                                    class="font-bold">{{ $openimagen->fecha }}</span></p>
-                            <p class="border-b border-gray-200">Provincia : <span
-                                    class="font-bold">{{ $openimagen->ubigeo->provincia }}</span></p>
-                            <p class="border-b border-gray-200">Distrito : <span
-                                    class="font-bold">{{ $openimagen->ubigeo->distrito }}</span></p>
-                            <p class="border-b border-gray-200">Latitud : <span
-                                    class="font-bold">{{ $openimagen->latitud }}</span></p>
-                            <p class="border-b border-gray-200">Longitud : <span
-                                    class="font-bold">{{ $openimagen->longitud }}</span></p>
-                            <p class="border-b border-gray-200">Valor de RNI : <span
-                                    class="font-bold">{{ $openimagen->valor_rni . ' ' }} %</span></p>
-                            <p class="border-b border-gray-200">Maps : <a target="_blank"
-                                    href="{{ $measurement->maps }}" class="font-bold hover:text-blue-900">Ubicacion
-                                    Geografica en Google Maps</a></p>
+        
+                <x-slot name="content">
+                    <h1 class="uppercase font-bold text-lg">Medicion de {{ $openimagen->ubicacion }}</h1>
+                    <div class=" ">
+                        <div class=" shadow-md border  rounded-lg">
+                            <div>
+                                <img class="rounded-t-lg m-auto w-96 h-auto" src="{{ Storage::url($openimagen->imagen) }}">
+                            </div>
+                            <div class="mx-4 my-2 text-base uppercase">
+                                <label class="text-center text-lg underline my-2" for="">Detalles del Registro
+                                </label>
+                                <p class="border-b border-gray-200">Fecha de Medicion : <span
+                                        class="font-bold">{{ $openimagen->fecha }}</span></p>
+                                <p class="border-b border-gray-200">Provincia : <span
+                                        class="font-bold">{{ $openimagen->ubigeo->provincia }}</span></p>
+                                <p class="border-b border-gray-200">Distrito : <span
+                                        class="font-bold">{{ $openimagen->ubigeo->distrito }}</span></p>
+                                <p class="border-b border-gray-200">Latitud : <span
+                                        class="font-bold">{{ $openimagen->latitud }}</span></p>
+                                <p class="border-b border-gray-200">Longitud : <span
+                                        class="font-bold">{{ $openimagen->longitud }}</span></p>
+                                <p class="border-b border-gray-200">Valor de RNI : <span
+                                        class="font-bold">{{ $openimagen->valor_rni . ' ' }} %</span></p>
+                                <p class="border-b border-gray-200">Maps : <a target="_blank"
+                                        href="#" class="font-bold hover:text-blue-900">Ubicacion
+                                        Geografica en Google Maps</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </x-slot>
-
+                </x-slot>
+        
             <x-slot name="footer">
                 <x-secondary-button wire:click="$set('modalImagen',false)" wire:loading.attr="disabled">
                     {{ __('Cerrar') }}
                 </x-secondary-button>
             </x-slot>
-        </x-dialog-modal>
+        </x-dialog-modal> 
     @endisset
 </div>

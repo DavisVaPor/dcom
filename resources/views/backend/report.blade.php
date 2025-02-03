@@ -1,5 +1,7 @@
 <x-app-layout>
-
+    <x-button wire:click="regresar" class="bg-gray-300">
+        <a class="text-xs ml-2 my-auto" href="{{ route('informes') }}">Regresar</a>
+    </x-button>
     {{-- <livewire:report.show-report :informe="$informe"> --}}
 
         <div class=" mt-2 font-extrabold text-gray-600">

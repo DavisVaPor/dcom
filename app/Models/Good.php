@@ -14,8 +14,8 @@ class Good extends Model
         'slug',
         'codigo_internoDCOM','denominacion','detalle',
         'marca','modelo','serie','color','caracteristicas','operatividad',
-        'situacion','condicion','imagen','good_image_path','estado',
-        'station_id','system_id','category_id',
+        'condicion','imagen','good_image_path','estado',
+        'system_id','category_id',
     ];
 
     public function getRouteKeyName()

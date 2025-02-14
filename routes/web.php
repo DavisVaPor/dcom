@@ -3,6 +3,7 @@
 use App\Http\Controllers\BallotController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\GoodController;
+use App\Http\Controllers\LandingPage;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StationController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     
 });
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',[LandingPage::class,'index'])->name('dashboard');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/comisiones',[CommissionController::class , 'index'] )->name('commissions');
 
@@ -47,6 +50,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/equipo/{good}',[GoodContr
 Route::middleware(['auth:sanctum', 'verified'])->get('/comision/report/{commission}', [CommissionController::class,'report'])->name('commisionpdf');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/papeleta/report/{ballot}', [BallotController::class,'papeleta'])->name('papeletapdf');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/informe/report/{report}', [ReportController::class,'reporte'])->name('informepdf');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/informes',[ReportController::class , 'index'] )->name('informes');

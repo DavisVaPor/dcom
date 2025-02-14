@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    {{-- <livewire:report.show-report :informe="$informe"> --}}
+    @livewire('report.show', ['informe' => $informe], key($informe->id))
 
         <div class=" mt-2 font-extrabold text-gray-600">
             <h2 class="text-lg  text-center">INF {{ $informe->id }}-{{ $informe->asunto }}</h2>
@@ -168,10 +168,9 @@
             <section>
                 @livewire('report.supervision.mediciones',  ['informe' => $informe], key($informe->id))
             </section>
-        @endif
-        @if ($informe->commission->tipo == 'SUPERVISIONs')
+
             <section>
-                @livewire('report.supervision.constataciones',  ['informe' => $informe], key($informe->id))
+                @livewire('report.supervision.constantaciones',  ['informe' => $informe], key($informe->id))
             </section>
         @endif
         @if ($informe->tipo == 'PROMOCION')

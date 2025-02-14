@@ -108,9 +108,9 @@ class Mediciones extends Component
         $this->modalDel = $id;
     }
 
-    public function delete($id)
+    public function delete(Measurement $medicion)
     {
-        $measurement =  Measurement::findOrFail($id)->first();
+        $measurement =  $medicion;
         
         $url = str_replace('storage', 'public', $measurement->imagen);
         Storage::delete($url);
@@ -137,15 +137,16 @@ class Mediciones extends Component
 
         $this->latitud = $this->latgra . '°' . $this->latmin . "'" . $this->latseg . '"' . ' S';
         $this->longitud = $this->longra . '°' . $this->lonmin . "'" . $this->lonseg . '"' . ' W';
-        $this->ubigeo = $this->measurement->ubigee->id;
+        $this->ubigeo = $this->measurement->ubigeo->id;
         $this->imagen = $this->measurement->imagen;
+
         $this->modalAdd = true;
     }
     
-    public function openModalImage($id)
+    public function openModalImage(Measurement $measurement)
     {
-        $this->openimagen = Measurement::where('id', $id)->first(); 
+        $this->measurement = $measurement;
+        $this->openimagen = $measurement; 
         $this->modalImagen = true;
-
     }
 }

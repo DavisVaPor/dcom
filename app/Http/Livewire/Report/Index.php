@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Report;
 use App\Models\Commission;
 use App\Models\Report;
 use App\Models\User;
-use DragonCode\Contracts\Cashier\Auth\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
@@ -48,11 +47,11 @@ class Index extends Component
         }
 
         $commissions = User::find($user->id)
-        ->commissions()
-        ->where('estado','CONFIRMADO')
-        ->orderBy('id','desc')->get();
+            ->commissions()
+            ->where('estado', 'CONFIRMADO')
+            ->orderBy('id', 'desc')->get();
 
-        return view('livewire.report.index',[
+        return view('livewire.report.index', [
             'reports' => $reports,
             'commissions' => $commissions,
             'user' => $user,
@@ -61,7 +60,7 @@ class Index extends Component
 
     public function addReport()
     {
-        $this->reset('report','asunto','selectedCommission');
+        $this->reset('report', 'asunto', 'selectedCommission');
         $this->modalAdd = true;
     }
 
@@ -69,15 +68,8 @@ class Index extends Component
     {
         $commission = Commission::find($this->selectedCommission);
         $tipo = $commission->tipo;
-        $ultimo = 0;
-
-        // isset(Report::where('user_id',auth()->user()->id)->latest()->first()) ? $ultimo = $this->report->numero : $ultimo = 0;
-    
-        /* if (isset(Report::where('user_id',auth()->user()->id))->latest()->first()) {
-            $ultimo = Report::where('user_id',auth()->user()->id)->latest()->first();
-        } else {
-            $ultimo = 1;
-        } */
+        
+        $ultimo = Report::where('user_id',auth()->user()->id)->latest()->first();
 
         if ($ultimo) {
             if (strftime('%Y', strtotime($this->fechactual)) != date('Y')) {
@@ -89,6 +81,19 @@ class Index extends Component
              $num = 0;
          }
 
+        $num = 0;
+
+        if (Report::where('user_id', auth()->user()->id)->count() > 0) {
+            $ultimo = Report::where('user_id', auth()->user()->id)->latest()->first();
+
+            if (strftime('%Y', strtotime($this->fechactual)) != date('Y')) {
+            } else {
+                $num =  $ultimo->numero + 1;
+            }
+        } else {
+            $num = 0;
+        }
+
         $this->validate();
         if (isset($this->report->id)) {
             $this->report->asunto = $this->asunto;
@@ -97,7 +102,7 @@ class Index extends Component
         } else {
             $newreport = Report::create([
                 'asunto' => Str::upper($this->asunto),
-                'slug' => Str::slug($num.$this->asunto,'-'),
+                'slug' => Str::slug($num . $this->asunto, '-'),
                 'tipo' => $tipo,
                 'numero' => $num + 1,
                 'fechaCreacion' => $this->fechactual,
@@ -109,9 +114,9 @@ class Index extends Component
 
             return redirect()->route('informe', $newreport);
         }
-       
+
         $this->modalAdd = false;
-        $this->reset('report','asunto','selectedCommission');
+        $this->reset('report', 'asunto', 'selectedCommission');
     }
 
     public function delReport($id)
@@ -134,5 +139,3 @@ class Index extends Component
         $this->modalAdd = true;
     }
 }
-
-

@@ -132,53 +132,22 @@
             <h1 class="font-bold text-lg uppercase">Estacion:{{ $estation->name }}</h1>
 
             <div class="mb-2 flex justify-between">
-                <div class="block">
-                    <x-label class="text-base font-bold border-gray-200" for="name" value="{{ __('Servicio') }}" />
-                    @if ($informe->estado == 'BORRADOR')
-                        <select class="rounded-xl text-sm" wire:model='mantenimiento'>
-                            <option value="DIAGNOSTICO">DIAGNOSTICO</option>
-                            <option value="PREVENTIVO">PREVENTIVO</option>
-                            <option value="CORRECTIVO">CORRECTIVO</option>
-                        </select>
-                        {{-- {{$mantenimiento}} --}}
-                    @endif
-
-                    {{-- @isset($informe->servicemantenimiento)
-                        <h1 class="font-bold uppercase">Tipo de Servicio:
-                            <span class="ml-1 text-green-800">
-                                @if ($informe->servicemantenimiento->tipo == 'DIAGNOSTICO')
-                                    {{ $informe->mantenimient->tipo }}
-                                @endif
-                                @if ($informe->servicemantenimiento->tipo == 'PREVENTIVO')
-                                    MANTENIMIENTO PREVENTIVO
-                                @endif
-                                @if ($informe->servicemantenimiento->tipo == 'CORRECTIVO')
-                                    MANTENIMIENTO CORRECTIVO
-                                @endif
-                            </span>
-                        </h1>
-                    @endisset --}}
-                    <x-input-error for="mantenimiento" class="mt-2" />
-                </div>
-
-                <div class="block">
-                    <x-label class="text-base font-bold border-gray-200" for="fechaServicio"
-                        value="{{ __('Fecha de Servicio') }}" />
-                    <input class="rounded-xl text-sm" type="date" name="" id=""
-                        wire:model='mantenimient.fechaServicio'>
-                    <x-input-error for="mantenimient.fechaServicio" class="mt-2" />
-                </div>
-
-            </div>
-
-            <div class="block">
-                <x-label class="text-base font-bold border-gray-200" for="mantenimient.diagnostico"
-                    value="{{ __('Diagnostico de  la Estacion') }}" />
-                <textarea id="name" wire:model.defer='mantenimient.diagnostico'
-                    class="resize-none w-full h-2/5 border rounded-md">
-
-                    </textarea>
-                <x-input-error for="mantenimient.diagnostico" class="mt-2" />
+                <h1 class="font-bold uppercase">Estacion:{{ $estation->name }}</h1>
+                @isset($informe->servicemantenimiento)
+                    <h1 class="font-bold uppercase">Tipo de Servicio:
+                        <span class="ml-1 text-green-800">
+                            @if ($informe->servicemantenimiento->tipo == 'DIAGNOSTICO')
+                                {{ $informe->mantenimient->tipo }}
+                            @endif
+                            @if ($informe->servicemantenimiento->tipo == 'PREVENTIVO')
+                                MANTENIMIENTO PREVENTIVO
+                            @endif
+                            @if ($informe->servicemantenimiento->tipo == 'CORRECTIVO')
+                                MANTENIMIENTO CORRECTIVO
+                            @endif
+                        </span>
+                    </h1>
+                @endisset
             </div>
             <div class="block">
                 <x-label class="text-base font-bold border-gray-200" for="mantenimient.acciones"

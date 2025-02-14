@@ -11,6 +11,10 @@ class GoodController extends Controller
         return view('backend.goods');
     }
 
+    public function almacen(){
+        return view('backend.almacen');
+    }
+
     public function show(Good $good){
         return  view('backend.good',compact('good'));
     }

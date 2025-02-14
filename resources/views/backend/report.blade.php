@@ -1,5 +1,4 @@
 <x-app-layout>
-
     @livewire('report.show', ['informe' => $informe], key($informe->id))
 
         <div class=" mt-2 font-extrabold text-gray-600">

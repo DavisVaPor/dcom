@@ -1,15 +1,17 @@
 <div>
     <div class="flex justify-end items-center">
-        <x-button wire:click="addModal" class="bg-yellow-600 justify-end">
-            SERVICIO REALIZADO
-            <span class="w-4 h-4 ml-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                        clip-rule="evenodd" />
-                </svg>
-            </span>
-        </x-button>
+        @if ($informe->estado == 'BORRADOR')
+            <x-button wire:click="addModal" class="bg-yellow-600 justify-end">
+                SERVICIO REALIZADO
+                <span class="w-4 h-4 ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </x-button>
+        @endif
     </div>
     <h1 class="mr-5 text-lg font-bold text-blue-800 text-center">SERVICIO REALIZADO</h1>
     <table class="rounded-t-lg m-2 w-full mx-auto bg-gray-200 text-gray-800">
@@ -33,14 +35,16 @@
                 <td><span>{{ $servicemantenimiento->acciones }}</span></td>
                 <td><span>{{ $servicemantenimiento->fechaServicio }}</span></td>
                 <td>
-                    <button class="text-red-500 hover:text-gray-900 cursor-pointer"
-                        wire:click="mostrarDel({{ $servicemantenimiento->id }})" wire:loading.attr="disabled">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 m-auto" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                    </button>
+                    @if ($informe->estado == 'BORRADOR')
+                        <button class="text-red-500 hover:text-gray-900 cursor-pointer"
+                            wire:click="mostrarDel({{ $servicemantenimiento->id }})" wire:loading.attr="disabled">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 m-auto" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    @endif
                 </td>
             @else
             <tr class="bg-gray-100 border-b border-gray-200">
@@ -53,16 +57,18 @@
     <div class="mt-5">
         <h1 class="mr-5 text-lg font-bold text-blue-800 text-center">REGISTRO DE ACTIVIDADES REALIZADAS</h1>
         <div class="flex justify-end items-center">
-            <x-button wire:click="addModalActivity" class="bg-yellow-800 justify-end">
-                Añadir Actividad
-                <span class="w-4 h-4 ml-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </span>
-            </x-button>
+            @if ($informe->estado == 'BORRADOR')
+                <x-button wire:click="addModalActivity" class="bg-yellow-800 justify-end">
+                    Añadir Actividad
+                    <span class="w-4 h-4 ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                </x-button>
+            @endif
         </div>
         <table class="rounded-t-lg m-2 w-full mx-auto bg-gray-200 text-gray-800">
             <tr class="text-left border-b-2 border-gray-300">
@@ -188,33 +194,34 @@
     </x-dialog-modal>
 
 
-        {{-- Modal de Registro de Actividad --}}
-        <x-dialog-modal wire:model="modalAddActivity">
-            <x-slot name="title">
-                <h1 class="font-bold uppercase">Agregar Actividad</h1>
-            </x-slot>
-            <x-slot name="content">
-                <h1 class="font-bold text-lg uppercase">Estacion:{{ $estation->name }}</h1>
-                
-                <div class="mb-2 flex justify-between">
-                    <div class="block w-full">
-                        <x-label class="text-base font-bold border-gray-200" for="description" value="{{ __('Actividad Realizada') }}" />
-                       
-                        <textarea id="name" wire:model='description' class="resize-none w-full h-3/5 border rounded-md">
+    {{-- Modal de Registro de Actividad --}}
+    <x-dialog-modal wire:model="modalAddActivity">
+        <x-slot name="title">
+            <h1 class="font-bold uppercase">Agregar Actividad</h1>
+        </x-slot>
+        <x-slot name="content">
+            <h1 class="font-bold text-lg uppercase">Estacion:{{ $estation->name }}</h1>
+
+            <div class="mb-2 flex justify-between">
+                <div class="block w-full">
+                    <x-label class="text-base font-bold border-gray-200" for="description"
+                        value="{{ __('Actividad Realizada') }}" />
+
+                    <textarea id="name" wire:model='description' class="resize-none w-full h-3/5 border rounded-md">
                             
                         </textarea>
-                    </div>
                 </div>
-            </x-slot>
-    
-            <x-slot name="footer">
-                <x-secondary-button wire:click="$set('modalAddActivity',false)" wire:loading.attr="disabled">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-    
-                <x-button class="ml-2" wire:click="saveActividad()" wire:loading.attr="disabled">
-                    {{ __('Guardar') }}
-                </x-button>
-            </x-slot>
-        </x-dialog-modal>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$set('modalAddActivity',false)" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-secondary-button>
+
+            <x-button class="ml-2" wire:click="saveActividad()" wire:loading.attr="disabled">
+                {{ __('Guardar') }}
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
 </div>

@@ -1,21 +1,25 @@
 <div>
     <h1 class="mr-5 text-lg font-bold text-green-800 text-center">GALERIA DE FOTOS</h1>
-    <button wire:click='addModalImage' class="text-green-500 hover:text-gray-900 cursor-pointer mr-2">
-        <abbr title="AGREGAR IMAGEN">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 m-auto">
-                <path fill="currentColor"
-                    d="M447.1 32h-384C28.64 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM111.1 96c26.51 0 48 21.49 48 48S138.5 192 111.1 192s-48-21.49-48-48S85.48 96 111.1 96zM446.1 407.6C443.3 412.8 437.9 416 432 416H82.01c-6.021 0-11.53-3.379-14.26-8.75c-2.73-5.367-2.215-11.81 1.334-16.68l70-96C142.1 290.4 146.9 288 152 288s9.916 2.441 12.93 6.574l32.46 44.51l93.3-139.1C293.7 194.7 298.7 192 304 192s10.35 2.672 13.31 7.125l128 192C448.6 396 448.9 402.3 446.1 407.6z" />
-            </svg>
-        </abbr>
-    </button>
-    <div class="mx-auto rounded-md  py-8 justify-center md:grid-cols-3 grid grid-cols-1 gap-2 ">
-        @forelse ($servicemantenimiento->images as $item)
+    @if ($informe->estado == 'BORRADOR')
+        <button wire:click='addModalImage' class="text-green-500 hover:text-gray-900 cursor-pointer mr-2">
+            <abbr title="AGREGAR IMAGEN">
+                Agrergar Imagen
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 m-auto">
+                    <path fill="currentColor"
+                        d="M447.1 32h-384C28.64 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM111.1 96c26.51 0 48 21.49 48 48S138.5 192 111.1 192s-48-21.49-48-48S85.48 96 111.1 96zM446.1 407.6C443.3 412.8 437.9 416 432 416H82.01c-6.021 0-11.53-3.379-14.26-8.75c-2.73-5.367-2.215-11.81 1.334-16.68l70-96C142.1 290.4 146.9 288 152 288s9.916 2.441 12.93 6.574l32.46 44.51l93.3-139.1C293.7 194.7 298.7 192 304 192s10.35 2.672 13.31 7.125l128 192C448.6 396 448.9 402.3 446.1 407.6z" />
+                </svg>
+            </abbr>
+        </button>
+    @endif
+    @forelse ($servicemantenimiento->images as $item)
+        <div class="mx-auto rounded-md  py-8 justify-center md:grid-cols-3 grid grid-cols-1 gap-2 ">
             <div class="bg-white w-90 shadow-2xl rounded-xl">
                 <div class="p-2">
                     <div class="group relative">
                         <img class="hover:bg-opacity-50 shadow-xl rounded-md w-full m-auto"
                             src="{{ Storage::url($item->image) }}" />
-                        <div class=" absolute rounded bg-opacity-0 w-full  top-0 flex items-center duration-700 transition justify-end">
+                        <div
+                            class=" absolute rounded bg-opacity-0 w-full  top-0 flex items-center duration-700 transition justify-end">
                             <button class="text-red-500 bg-white hover:text-gray-900 cursor-pointer"
                                 wire:click="mostrarDel({{ $item->id }})" wire:loading.attr="disabled">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 m-auto" fill="none"
@@ -28,12 +32,12 @@
                     </div>
                 </div>
             </div>
-        @empty
-            <div>
-                No hay imagenes
-            </div>
-        @endforelse
-    </div>
+        </div>
+    @empty
+        <div class="text-center text-gray-500 w-full pt-8">
+            No hay imagenes
+        </div>
+    @endforelse
 
     {{-- Modal de Añadir --}}
     <x-dialog-modal wire:model="modalAdd">

@@ -91,7 +91,7 @@
                 </tr>
             @empty
                 <tr class="bg-gray-100 border-b border-gray-200">
-                    <td colspan="7" class="text-center px-4 py-2 font-bold text-gray-600">No hay registros</td>
+                    <td colspan="8" class="text-center px-4 py-2 font-bold text-gray-600">No hay registros</td>
                 </tr>
             @endforelse
         </table>

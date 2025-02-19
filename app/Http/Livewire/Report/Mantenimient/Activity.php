@@ -18,7 +18,7 @@ class Activity extends Component
     public $mantenimient;
     public $mantenimiento = 'DIAGNOSTICO';
     public $servicio, $description;
-    public $servicemantenimiento;
+    public $servicemantenimiento, $fechaActual;
 
     public $estadoEstacion;
 
@@ -45,6 +45,8 @@ class Activity extends Component
 
     public function render()
     {
+        $this->fechaActual = date('Y-m-d');
+
         $this->servicemantenimiento = ServiceMantenimient::where('station_id', $this->estation->id)->where('report_id',$this->informe->id)->first(); 
         
         return view('livewire.report.mantenimient.activity',[

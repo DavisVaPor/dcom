@@ -26,63 +26,66 @@
                     <th class="py-3 w-1/12 text-center">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="text-gray-600 text-sm font-light">
-                @forelse ($servicemantenimiento->actas as $item)
-                    <tr class=" border-b border-gray-200 hover:bg-blue-100">
-                        <td class="w-8/12 text-left whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="mr-2 text-black">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-
-                                </div>
-                                <span class="font-medium">{{ $item->acta }}</span>
-                            </div>
-                        </td>
-                        <td class="py-3 w-32 text-xs text-center">
-                            <span class="font-medium">{{ $item->fechaActa }}</span>
-                        </td>
-
-                        <td class="py-3 w-1/12 text-center">
-                            <div class="flex item-center justify-center">
-                                <abbr title="Previsualizcion del Documento">
-                                    <button wire:click='infoActa({{ $item }})'
-                                        class="w-6 mr-2 transform hover:text-blue-500 hover:scale-110">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            @isset($servicemantenimiento)
+                <tbody class="text-gray-600 text-sm font-light">
+                    @forelse ($servicemantenimiento->actas as $item)
+                        <tr class=" border-b border-gray-200 hover:bg-blue-100">
+                            <td class="w-8/12 text-left whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="mr-2 text-black">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20"
+                                            fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                                                clip-rule="evenodd"></path>
                                         </svg>
-                                    </button>
-                                </abbr>
 
-                                @if ($informe->estado == 'BORRADOR')
-                                    <abbr title="Eliminar Registro">
-                                        <div wire:click='deleteModal({{ $item->id }})'
-                                            class="w-6 mr-2 transform hover:text-red-500 hover:scale-110">
+                                    </div>
+                                    <span class="font-medium">{{ $item->acta }}</span>
+                                </div>
+                            </td>
+                            <td class="py-3 w-32 text-xs text-center">
+                                <span class="font-medium">{{ $item->fechaActa }}</span>
+                            </td>
+
+                            <td class="py-3 w-1/12 text-center">
+                                <div class="flex item-center justify-center">
+                                    <abbr title="Previsualizcion del Documento">
+                                        <button wire:click='infoActa({{ $item }})'
+                                            class="w-6 mr-2 transform hover:text-blue-500 hover:scale-110">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
-                                        </div>
+                                        </button>
                                     </abbr>
-                                @endif
 
-                            </div>
-                        </td>
-                    @empty
-                        <td class="py-3 w-full px-6 text-center whitespace-nowrap" colspan="3">
-                            No Existen Datos
-                        </td>
-                @endforelse
-            </tbody>
+                                    @if ($informe->estado == 'BORRADOR')
+                                        <abbr title="Eliminar Registro">
+                                            <div wire:click='deleteModal({{ $item->id }})'
+                                                class="w-6 mr-2 transform hover:text-red-500 hover:scale-110">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </div>
+                                        </abbr>
+                                    @endif
+
+                                </div>
+                            </td>
+                        @empty
+                            <td class="py-3 w-full px-6 text-center whitespace-nowrap" colspan="3">
+                                No Existen Datos
+                            </td>
+                    @endforelse
+                </tbody>
+            @endisset
+
         </table>
     </div>
 

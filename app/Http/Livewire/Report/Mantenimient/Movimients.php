@@ -12,7 +12,9 @@ class Movimients extends Component
 {
     public $estation;
     public $informe;
+    public $movimients;
     public $movement;
+    public $estacion; 
     public $article, $servicemantenimiento;
     public $modalActa = false;
     public $modalSup = false;
@@ -31,10 +33,12 @@ class Movimients extends Component
     public function render()
     {
         $this->servicemantenimiento = ServiceMantenimient::where('station_id', $this->estation->id)->where('report_id',$this->informe->id)->first(); 
-       $movimients = Movimient::where('service_mantenimient_id', $this->servicemantenimiento->id)->get();
+        if($this->servicemantenimiento){
+            $movimients = Movimient::where('service_mantenimient_id', $this->servicemantenimiento->id)->get();
+        }
 
         return view('livewire.report.mantenimient.movimients',[
-            'movimients' => $movimients,
+           
         ]);
     }
 

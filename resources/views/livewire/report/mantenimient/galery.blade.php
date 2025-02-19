@@ -11,33 +11,36 @@
             </abbr>
         </button>
     @endif
-    @forelse ($servicemantenimiento->images as $item)
-        <div class="mx-auto rounded-md  py-8 justify-center md:grid-cols-3 grid grid-cols-1 gap-2 ">
-            <div class="bg-white w-90 shadow-2xl rounded-xl">
-                <div class="p-2">
-                    <div class="group relative">
-                        <img class="hover:bg-opacity-50 shadow-xl rounded-md w-full m-auto"
-                            src="{{ Storage::url($item->image) }}" />
-                        <div
-                            class=" absolute rounded bg-opacity-0 w-full  top-0 flex items-center duration-700 transition justify-end">
-                            <button class="text-red-500 bg-white hover:text-gray-900 cursor-pointer"
-                                wire:click="mostrarDel({{ $item->id }})" wire:loading.attr="disabled">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 m-auto" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                            </button>
+    @isset($servicemantenimiento)
+        @forelse ($servicemantenimiento->images as $item)
+            <div class="mx-auto rounded-md  py-8 justify-center md:grid-cols-3 grid grid-cols-1 gap-2 ">
+                <div class="bg-white w-90 shadow-2xl rounded-xl">
+                    <div class="p-2">
+                        <div class="group relative">
+                            <img class="hover:bg-opacity-50 shadow-xl rounded-md w-full m-auto"
+                                src="{{ Storage::url($item->image) }}" />
+                            <div
+                                class=" absolute rounded bg-opacity-0 w-full  top-0 flex items-center duration-700 transition justify-end">
+                                <button class="text-red-500 bg-white hover:text-gray-900 cursor-pointer"
+                                    wire:click="mostrarDel({{ $item->id }})" wire:loading.attr="disabled">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 m-auto" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @empty
-        <div class="text-center text-gray-500 w-full pt-8">
-            No hay imagenes
-        </div>
-    @endforelse
+        @empty
+            <div class="text-center text-gray-500 w-full pt-8">
+                No hay imagenes
+            </div>
+        @endforelse
+    @endisset
+
 
     {{-- Modal de Añadir --}}
     <x-dialog-modal wire:model="modalAdd">

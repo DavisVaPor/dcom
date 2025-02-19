@@ -57,18 +57,21 @@
     <div class="mt-5">
         <h1 class="mr-5 text-lg font-bold text-blue-800 text-center">REGISTRO DE ACTIVIDADES REALIZADAS</h1>
         <div class="flex justify-end items-center">
-            @if ($informe->estado == 'BORRADOR')
-                <x-button wire:click="addModalActivity" class="bg-yellow-800 justify-end">
-                    Añadir Actividad
-                    <span class="w-4 h-4 ml-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </span>
-                </x-button>
-            @endif
+            @isset($servicemantenimiento)
+                @if ($informe->estado == 'BORRADOR')
+                    <x-button wire:click="addModalActivity" class="bg-yellow-800 justify-end">
+                        Añadir Actividad
+                        <span class="w-4 h-4 ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </x-button>
+                @endif
+            @endisset
+
         </div>
         <table class="rounded-t-lg m-2 w-full mx-auto bg-gray-200 text-gray-800">
             <tr class="text-left border-b-2 border-gray-300">
@@ -132,22 +135,32 @@
             <h1 class="font-bold text-lg uppercase">Estacion:{{ $estation->name }}</h1>
 
             <div class="mb-2 flex justify-between">
-                <h1 class="font-bold uppercase">Estacion:{{ $estation->name }}</h1>
-                @isset($informe->servicemantenimiento)
-                    <h1 class="font-bold uppercase">Tipo de Servicio:
-                        <span class="ml-1 text-green-800">
-                            @if ($informe->servicemantenimiento->tipo == 'DIAGNOSTICO')
-                                {{ $informe->mantenimient->tipo }}
-                            @endif
-                            @if ($informe->servicemantenimiento->tipo == 'PREVENTIVO')
-                                MANTENIMIENTO PREVENTIVO
-                            @endif
-                            @if ($informe->servicemantenimiento->tipo == 'CORRECTIVO')
-                                MANTENIMIENTO CORRECTIVO
-                            @endif
-                        </span>
-                    </h1>
-                @endisset
+                <h1 class="font-bold uppercase">Tipo de Servicio:
+                    <span class="ml-1 text-green-800">
+                        <select id="name" wire:model='mantenimiento' class="w-full h-10 border rounded-md">
+                            <option value="DIAGNOSTICO">DIAGNOSTICO</option>
+                            <option value="PREVENTIVO">MANTENIMIENTO PREVENTIVO</option>
+                            <option value="CORRECTIVO">MANTENIMIENTO CORRECTIVO</option>
+                        </select>
+                        <x-input-error for="mantenimiento" class="mt-2" />
+                    </span>
+                </h1>
+                <div>
+                    <x-label class="text-sm font-bold border-gray-200 uppercase mr-2 " for="fecha"
+                        value="{{ __('Fecha de Servicio') }}" />
+                    <x-input id="mantenimient.fechaServicio" type="date" class=" block font-semibold" wire:model.defer='mantenimient.fechaServicio'
+                        max="{{ $fechaActual }}" />
+                </div>
+
+            </div>
+            <div class="block">
+                <x-label class="text-base font-bold border-gray-200" for="mantenimient.diagnostico"
+                    value="{{ __('Diagnostico de la Estacion') }}" />
+                <textarea id="name" wire:model.defer='mantenimient.diagnostico'
+                    class="resize-none w-full h-2/5 border rounded-md">
+
+                    </textarea>
+                <x-input-error for="mantenimient.diagnostico" class="mt-2" />
             </div>
             <div class="block">
                 <x-label class="text-base font-bold border-gray-200" for="mantenimient.acciones"

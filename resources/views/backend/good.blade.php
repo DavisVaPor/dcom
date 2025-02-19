@@ -227,16 +227,16 @@
                     <div class="text-sm">
                         <div class="flex mb-2 border-b border-gray-600">
                             <div class="w-3/12">
-                                <span class=" text-gray-900 block uppercase">UBICACCION</span>
+                                <span class=" text-gray-900 block uppercase">UBICACION</span>
                             </div>
                             <div class="w-1/12">
                                 <span class=" text-gray-900 block">:</span>
                             </div>
                             <div class="w-9/12">
                                 <span class=" text-gray-900 block font-bold uppercase">
-                                    @if ($good->estation)
-                                        <a href="{{ route('estacion.show', $good->estation->id) }}">
-                                            {{ $good->estation->name }}
+                                    @if ($good->station)
+                                        <a href="{{ route('estacion.show', $good->station->id) }}">
+                                            {{ $good->station->name }}
                                         </a>
                                     @else
                                         DRTC

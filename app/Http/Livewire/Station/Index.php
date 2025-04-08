@@ -23,7 +23,7 @@ class Index extends Component
     public $energiaSearch;
     public $siniestradoSearch;
     public $search = '';
-    public $chanel,$fm;
+    public $chanel = 0,$fm = 0;
     public $altitud,$codStation; 
 
     public $modal = false;
@@ -39,6 +39,7 @@ class Index extends Component
         'station.tipo' => 'required',
         'station.estado' => 'required',
         'station.energia' => 'required',
+        'station.situacion' => 'required',
     ];
 
 

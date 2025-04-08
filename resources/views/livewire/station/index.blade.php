@@ -278,7 +278,7 @@
                             <option value="Bagua">Bagua</option>
                             <option value="Bongara">Bongara</option>
                             <option value="Luya">Luya</option>
-                            <option value="Rodriguez">Rodriguez de Mendoza</option>
+                            <option value="Rodriguez de Mendoza">Rodriguez de Mendoza</option>
                             <option value="Condorcanqui">Condorcanqui</option>
                             <option value="Utcubamba">Utcubamba</option>
                         </select>
@@ -305,9 +305,9 @@
                     value="{{ __('Coordenadas') }}" />
                 <div class="flex justify-between">
                     <x-input class="mx-1 resize-none w-full border rounded-md border-gray-300"
-                        wire:model.defer='station.lat' name="station.lat" placeholder="Latitud *" />
+                        wire:model.defer='station.lat' name="station.lat" placeholder="Latitud *" />º
                     <x-input class="mx-1 resize-none w-full border rounded-md border-gray-300"
-                        wire:model.defer='station.lon' name="station.lon" placeholder="Longitud *" />
+                        wire:model.defer='station.lon' name="station.lon" placeholder="Longitud *" />º
                     <x-input class="mx-1 resize-none w-full border rounded-md border-gray-300"
                         wire:model.defer='altitud' name="altitud" placeholder="Altitud" />
                 </div>
@@ -403,6 +403,8 @@
                         <option value="MANTENIMIENTO">MANTENIMIENTO</option>
                         <option value="INEXISTENTE">INEXISTENTE</option>
                     </select>
+                    <x-input-error for="station.situacion" class="mt-2" />
+
                 </div>
             </div>
 
@@ -419,6 +421,8 @@
                         <option value="OTRA">OTRA</option>
                         <option value="NO_TIENE">NO TIENE</option>
                     </select>
+                    <x-input-error for="station.energia" class="mt-2" />
+
                 </div>
             </div>
         </x-slot>
